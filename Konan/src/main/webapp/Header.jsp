@@ -19,16 +19,22 @@
             <li class="nav_item"><a href="#">Q&A</a></li>
             <li class="nav_item"><a href="#">탐정소식</a></li>
             
+            <%-- 브라우저가 최초의 요청을 발생시키고 브라우저를 닫을 때 까지
+			SessionScope에서는 session영역에 저장되어 있는 데이터나 객체를 자유롭게 사용 가능 --%>
+			<!-- c:when:: 로그아웃 상태인 경우에만 표시될 항목 -->
+			<!-- c:otherwise:: 로그인 상태인 경우에만 표시될 항목 -->
             <c:choose>
-            	<!-- 로그아웃 상태인 경우에만 표시될 항목 -->
-                <c:when test="${empty sessionScope.id}">
+            	
+            	
+                <c:when test="${empty sessionScope.id}"> 					 
             		<li class="nav_item"><a href="Login.jsp">로그인</a></li>
             		<li class="nav_item"><a href="JoinId">회원가입</a></li>
-            	<!-- 로그인 상태인 경우에만 표시될 항목 -->
             	</c:when>
+            	
             	<c:otherwise>
             		<li class="nav_item"><a href="LogoutProcess.jsp">로그아웃</a></li>
             	</c:otherwise>
+            	
             </c:choose>
          </ul>
 	</header>
