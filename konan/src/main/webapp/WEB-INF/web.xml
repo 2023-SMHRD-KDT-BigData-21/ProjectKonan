@@ -1,0 +1,57 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>JoinController</servlet-name>
+  	<display-name>JoinController</display-name>
+  	<description></description>
+  	<servlet-class>com.konan.controller.JoinController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>LoginController</servlet-name>
+  	<display-name>LoginController</display-name>
+  	<description></description>
+  	<servlet-class>com.konan.controller.LoginController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>DeleteController</servlet-name>
+  	<display-name>DeleteController</display-name>
+  	<description></description>
+  	<servlet-class>com.konan.controller.DeleteController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>IdCheckController</servlet-name>
+  	<display-name>IdCheckController</display-name>
+  	<description></description>
+  	<servlet-class>com.konan.controller.IdCheckController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>BoardInsertController</servlet-name>
+  	<display-name>BoardInsertController</display-name>
+  	<description></description>
+  	<servlet-class>com.konan.controller.BoardInsertController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>JoinController</servlet-name>
+  	<url-pattern>/JoinController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LoginController</servlet-name>
+  	<url-pattern>/LoginController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DeleteController</servlet-name>
+  	<url-pattern>/DeleteController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>IdCheckController</servlet-name>
+  	<url-pattern>/IdCheckController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>BoardInsertController</servlet-name>
+  	<url-pattern>/BoardInsertController</url-pattern>
+  </servlet-mapping>
+</web-app>
