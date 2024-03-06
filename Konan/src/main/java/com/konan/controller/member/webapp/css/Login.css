@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+#countion{
+	margin: 0 auto;
+}
+.login-container {
+	/*100% 넘어가지 않게*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;  
+    box-sizing: border-box; 
+    
+	max-width:70%;
+	min-width: 350px;
+	height: 400px;
+    background-color: #fff;
+    
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 20px;
+    text-align:center;
+    
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
+	/* 요소를 세로 정렬*/
+    display: flex;
+    flex-direction: column;
+    
+	width: 100%;
+	margin: 0 auto; 
+	text-align: center;
+}
+
+.login-form > input {
+	width: 300px;
+	height: 30px;
+	border-radius: 5px;
+}
+
+.login-form > input[type="text"] , input[type="password"] {
+	border: 0.01em solid black;
+	margin: 3px auto; 
+}
+
+.login-form > input[type="text"]::focus , input[type="password"]::focus {
+	outline:none;
+}
+
+.login_btn {
+	width: 100%;
+	border: 0.01em solid #1e90ff;
+    background-color:#1e90ff;
+    color: white;
+    
+	margin: 10px auto;
+	
+    text-align: center;
+    
+    -webkit-transition-duration: 0.1s;
+    transition-duration: 0.1s;
+    -webkit-transition-property: box-shadow, transform;
+    transition-property: box-shadow, transform;
+}
+
+.login_btn:hover .login_btn:focus, .login_btn:active{
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    -webkit-transform: scale(1.01);
+    transform: scale(1.01);
+}
+
+
+body{
+	background-color: lightgray;
+}

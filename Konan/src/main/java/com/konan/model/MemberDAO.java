@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import com.konan.database.SqlSessionManager;
+import com.konan.model.Member;
 
 public class MemberDAO {
 	SqlSessionFactory sqlsessionFactory = SqlSessionManager.getSqlSessionFactory();
@@ -35,6 +36,13 @@ public class MemberDAO {
 		sqlsession.close();
 		
 		return user;
+	}
+	
+	public int update(Member member) {
+		SqlSession sqlSession = sqlsessionFactory.openSession(true);
+		int res = sqlSession.update("com.smhrd.database.MemberMapper.update", member);
+		sqlSession.close();
+		return res;
 	}
 	
 	public List<Member> getAllMember(){
