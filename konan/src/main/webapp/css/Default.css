@@ -1,5 +1,3 @@
-@charset "UTF-8";
-
 /* 
  * Nanum Gothic (Korean) http://www.google.com/webfonts/earlyaccess
  */
@@ -33,14 +31,18 @@
          url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-ExtraBold.woff) format('woff'),
          url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-ExtraBold.ttf) format('truetype');
   }
-  
+
+/* 컬러팔래트 */
+
+/* 기본 태그 */
 body{
     font-family: 'Nanum Gothic';
 }
 
 .container{
+  position: relative;
   margin: 0 auto;/*위아래 여백 없이 가운데 정렬*/
-  width: 700px;
+  width: 70%;
   min-width: 700px;
   padding: 10px;
 }
