@@ -10,9 +10,7 @@ import javax.servlet.http.HttpSession;
 import com.konan.model.Member;
 import com.konan.model.MemberDAO;
 
-/**
- * Servlet implementation class JoinController
- */
+
 public class JoinController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -22,12 +20,17 @@ public class JoinController extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 		
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		String tel = request.getParameter("tel");
-		String address = request.getParameter("address");
+		String user_id = request.getParameter("id");
+		String user_pw = request.getParameter("pw");
+		String email = request.getParameter("email");
+		String name = request.getParameter("name");
+		String phone_number = request.getParameter("phone_number");
+		String region = request.getParameter("region");
+		String gender = request.getParameter("gender");
+		String propic = request.getParameter("propic");
 		
-		Member member = new Member(id,pw,tel,address);
+		
+		Member member = new Member(user_id,user_pw,email,name,phone_number,region,gender,propic);
 		int rownum = dao.join(member);
 		System.out.println(rownum);
 		
