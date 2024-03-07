@@ -14,7 +14,7 @@ public class MemberDAO {
 	public int join(Member member){
 		SqlSession sqlsession = sqlsessionFactory.openSession(true);
 		
-		int rownum = sqlsession.insert(memberMapper+"join",member);
+		int rownum = sqlsession.insert("com.konan.database.MemberMapper.join",member);
 		sqlsession.close();
 		
 		return rownum;
@@ -23,7 +23,7 @@ public class MemberDAO {
 	public Member login(Member member){
 		SqlSession sqlsession = sqlsessionFactory.openSession(true);
 		
-		Member user = sqlsession.selectOne(memberMapper+"select", member);
+		Member user = sqlsession.selectOne(memberMapper+"login", member);
 		sqlsession.close();
 		
 		return user;
@@ -54,10 +54,10 @@ public class MemberDAO {
 		return user;
 	}
 	
-	public boolean checkId(String id) {
+	public boolean idCheck(String user_id) {
 		SqlSession sqlsession = sqlsessionFactory.openSession(true);
 		boolean isExist = false;
-		Member user = sqlsession.selectOne(memberMapper+"checkId", id);
+		Member user = sqlsession.selectOne("com.konan.database.MemberMapper.idCheck", user_id);
 		if (user != null) {
 			isExist = true;
 			System.out.println("사용할 수 없는 아이디");

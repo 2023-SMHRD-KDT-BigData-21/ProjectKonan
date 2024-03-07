@@ -16,7 +16,7 @@
 		boolean isSuccess = (boolean)session.getAttribute("isSuccess");
 	    if(isSuccess==true){
 		    Member user = (Member)session.getAttribute("user");%>
-		    <h3><%=user.getId()%>님 환영합니다!</h3>
+		    <h3><%=user.getUser_id()%>님 환영합니다!</h3>
 	<%    }
 	  }catch (Exception e){
 		  e.printStackTrace();
@@ -35,7 +35,7 @@
 				for(Member user: userList){
 					try {
 						%>
-						<p><span><%= user.getId()%></span>|<span><%= user.getTel()%></span>|<span><%= user.getAddress()%></span>|<a href="DeleteController?id=<%=user.getId()%>">삭제</a></p>
+						<p><span><%= user.getUser_id()%></span>|<span><%= user.getPhone_number()%></span>|<span><%= user.getRegion()%></span>|<a href="DeleteController?id=<%=user.getUser_id()%>">삭제</a></p>
 						<%
 					} catch (Exception e){
 						System.out.println("삭제 반영 안됨");

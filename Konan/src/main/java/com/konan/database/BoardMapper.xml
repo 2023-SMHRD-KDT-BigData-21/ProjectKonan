@@ -5,7 +5,7 @@
 		select * from board
 	</select>
 	<insert id="insert" parameterType="Board">
-		insert into board values(board_seq.NEXTVAL, #{title}, #{content}, #{writer}, #{img} ,sysdate)
+		insert into board values(board_seq.NEXTVAL, #{title}, #{content}, #{writer},sysdate, #{img})
 	</insert>
 	<select id="selectOne" parameterType="int" resultType="Board">
 		select * from board where idx = #{idx}

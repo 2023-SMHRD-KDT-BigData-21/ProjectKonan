@@ -8,13 +8,13 @@
   	<servlet-name>JoinController</servlet-name>
   	<display-name>JoinController</display-name>
   	<description></description>
-  	<servlet-class>com.konan.controller.JoinController</servlet-class>
+  	<servlet-class>com.konan.controller.member.JoinController</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>LoginController</servlet-name>
   	<display-name>LoginController</display-name>
   	<description></description>
-  	<servlet-class>com.konan.controller.LoginController</servlet-class>
+  	<servlet-class>com.konan.controller.member.LoginController</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>DeleteController</servlet-name>
@@ -26,7 +26,7 @@
   	<servlet-name>IdCheckController</servlet-name>
   	<display-name>IdCheckController</display-name>
   	<description></description>
-  	<servlet-class>com.konan.controller.IdCheckController</servlet-class>
+  	<servlet-class>com.konan.controller.member.IdCheckController</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>BoardInsertController</servlet-name>

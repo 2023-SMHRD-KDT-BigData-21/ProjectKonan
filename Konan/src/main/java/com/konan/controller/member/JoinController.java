@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 
 import com.konan.model.Member;
 import com.konan.model.MemberDAO;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 
 public class JoinController extends HttpServlet {
@@ -20,14 +22,22 @@ public class JoinController extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 		
-		String user_id = request.getParameter("id");
-		String user_pw = request.getParameter("pw");
-		String email = request.getParameter("email");
-		String name = request.getParameter("name");
-		String phone_number = request.getParameter("phone_number");
-		String region = request.getParameter("region");
-		String gender = request.getParameter("gender");
-		String propic = request.getParameter("propic");
+		String savePath=request.getServletContext().getRealPath("/upload");
+		int sizeLimit = 5*1024*1024; //5메가 제한 넘어서면 예외발생
+		System.out.println(savePath);
+		MultipartRequest multi = new MultipartRequest(request, savePath, sizeLimit, "UTF-8", new DefaultFileRenamePolicy());
+		
+		String user_id = multi.getParameter("user_id");
+		String user_pw = multi.getParameter("user_pw");
+		String email = multi.getParameter("email");
+		String name = multi.getParameter("name");
+		String phone_number = multi.getParameter("phone_number");
+		String region = multi.getParameter("region");
+		String gender = multi.getParameter("gender");
+		String propic = multi.getOriginalFileName("propic");
+
+		
+		
 		
 		
 		Member member = new Member(user_id,user_pw,email,name,phone_number,region,gender,propic);

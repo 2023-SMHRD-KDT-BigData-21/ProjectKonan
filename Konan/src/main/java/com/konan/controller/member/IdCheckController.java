@@ -17,11 +17,11 @@ public class IdCheckController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		System.out.println(id);
+		String user_id = request.getParameter("user_id");
+		System.out.println(user_id);
 		
 		MemberDAO dao = new MemberDAO();
-		boolean isExist = dao.checkId(id);
+		boolean isExist = dao.idCheck(user_id);
 		
 		PrintWriter out = response.getWriter();
 		if (isExist) {

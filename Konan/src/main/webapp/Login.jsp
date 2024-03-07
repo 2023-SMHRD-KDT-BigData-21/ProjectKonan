@@ -30,8 +30,8 @@
 			  		  e.printStackTrace();
 		      	  }%>
 				<form class = "login-form" action="LoginController" method="post">
-				 	<input type="text" name="id" placeholder="아이디를 입력하세요">
-					<input type="password" name = "pw" placeholder="PW를 입력하세요">
+				 	<input type="text" name="user_id" placeholder="아이디를 입력하세요">
+					<input type="password" name = "user_pw" placeholder="PW를 입력하세요">
 					<input type="submit" value="LogIn" class="login_btn">
 				</form>
 			</div>

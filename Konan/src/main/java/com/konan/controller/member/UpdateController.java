@@ -26,13 +26,13 @@ public class UpdateController extends HttpServlet {
 		
 		//2.input 태그 활용
 		//	1) update.jsp에서 <input type="hidden"> 추가
-		String id = request.getParameter("id");
+		String user_id = request.getParameter("user_id");
 		
-		String pw = request.getParameter("pw");
-		String tel = request.getParameter("tel");
-		String address = request.getParameter("address");
+		String user_pw = request.getParameter("user_pw");
+		String phone_number = request.getParameter("phone_number");
+		String region = request.getParameter("region");
 		
-		Member member = new Member(id,pw,tel,address);
+		Member member = new Member(user_id,user_pw,phone_number,region);
 		
 		MemberDAO dao = new MemberDAO();
 		int res = dao.update(member);

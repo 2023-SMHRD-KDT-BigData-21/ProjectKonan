@@ -19,16 +19,16 @@ public class LoginController extends HttpServlet {
 
 		response.setContentType("text/html;charset=UTF-8");
 		
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw"); 
+		String user_id = request.getParameter("user_id");
+		String user_pw = request.getParameter("user_pw"); 
 		
-		Member member = new Member(id, pw);
+		Member member = new Member(user_id, user_pw);
 		Member user = dao.login(member);
 		
 		HttpSession session = request.getSession();		
 		try {
 			if(user != null) {
-				System.out.println(user.getId());
+				System.out.println(member.getUser_id());
 				session.setAttribute("user", user);
 				session.setAttribute("isSuccess", true);
 				response.sendRedirect("Main.jsp");
