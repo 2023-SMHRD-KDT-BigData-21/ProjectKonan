@@ -10,37 +10,13 @@
 	<div class="actions vertical">
 		<h5>회원가입</h5>
 		<form action="JoinController" method="post">
-			<table>
-				<tr>
-					<td><input type="text" name = "id" id="id" placeholder="아이디를 입력하세요" ></td>
-					<td><input type="button" name="" value="아이디 중복 확인" onclick="checkId()"><br>
-					<span id="errorMessage"></span></td>
-				</tr>
-				<tr>
-					<td><input type="password" name = "pw" placeholder="PW를 입력하세요" ></td>
-				</tr>
-				
-				<tr>
-					<td><input type="email" name="email" placeholder="e_mail을 입력하세요"></td>
-				</tr>
-				<tr>
-					<td><input type="email" name="name" placeholder="성함을 입력하세요"></td>
-				</tr>
-				<tr>
-					<td><input type="text" name = "tel" placeholder="전화번호를 입력하세요" ></td>
-				</tr>
-				<tr>
-					<td><input type="text" name = "gender" placeholder="성별 입력하세요" ></td>
-				</tr>
-				<tr>
-					<td><input type="file" name = "img" id="photo" ></td>
-				</tr>
-				<tr>
-					<td><input type="submit" value="JoinUs" class="button fit"></td>
-				</tr>
-				
-				
-			</table>
+			<input type="text" name = "id" id="id" placeholder="아이디를 입력하세요" >
+			<input type="button" name="" value="아이디 중복 확인" onclick="checkId()">
+			<span id="errorMessage"></span>
+			<input type="password" name = "pw" placeholder="PW를 입력하세요" >
+			<input type="text" name = "tel" placeholder="전화번호를 입력하세요" >
+			<input type="text" name = "address" placeholder="집주소를 입력하세요" >
+			<input type="submit" value="JoinUs" class="button fit">
 		</form>
 	</div>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>

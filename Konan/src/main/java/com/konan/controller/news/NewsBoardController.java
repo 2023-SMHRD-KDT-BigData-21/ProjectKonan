@@ -1,4 +1,4 @@
-package com.konan.controller.member;
+package com.konan.controller.news;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class EmailCheck
+ * Servlet implementation class NewsBoardController
  */
-public class EmailCheck extends HttpServlet {
+public class NewsBoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
