@@ -1,7 +1,7 @@
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="java.util.List"%>
-<%@page import="com.konan.model.BoardDAO"%>
-<%@page import="com.konan.model.Board"%>
+<%@page import="com.konan.model.PostDAO"%>
+<%@page import="com.konan.model.Post"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
     
@@ -19,8 +19,8 @@
 </head>
 <body>
 <%
-	BoardDAO dao = new BoardDAO();
-	List<Board> boardList = dao.boardList();
+PostDAO dao = new PostDAO();
+	//List<Post> boardList = dao.boardList();
 	pageContext.setAttribute("boardList",boardList);//jstl, el표기로 사용하려면 자바변수를 페이지 내부에 저장해야함
 	System.out.print(boardList.size());
 %>

@@ -1,4 +1,4 @@
-package com.konan.controller.boardreact;
+package com.konan.controller.postwrite;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class LikeController
+ * Servlet implementation class BoardDeleteController
  */
-public class LikeController extends HttpServlet {
+public class PostDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**

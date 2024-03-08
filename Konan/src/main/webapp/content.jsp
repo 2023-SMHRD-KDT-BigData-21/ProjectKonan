@@ -1,5 +1,5 @@
-<%@page import="com.konan.model.BoardDAO"%>
-<%@page import="com.konan.model.Board"%>
+<%@page import="com.konan.model.PostDAO"%>
+<%@page import="com.konan.model.Post"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"  isELIgnored="false"%>
 <!DOCTYPE html>
@@ -14,10 +14,10 @@
 </head>
 <body>
 <%
-	int idx= Integer.parseInt(request.getParameter("idx"));
-	BoardDAO dao = new BoardDAO();
-	Board content = dao.getBoard(idx);
-	pageContext.setAttribute("content",content);
+int idx= Integer.parseInt(request.getParameter("idx"));
+	PostDAO dao = new PostDAO();
+	//Post content = dao.getBoard(idx);
+	//pageContext.setAttribute("content",content);
 	//pageContext.setAttribute(content);
 %>
 

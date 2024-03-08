@@ -1,4 +1,4 @@
-package com.konan.controller.boardwrite;
+package com.konan.controller.postwrite;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class BoardUpdateController
+ * Servlet implementation class BoardInsert
  */
-public class BoardUpdateController extends HttpServlet {
+public class PostInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**

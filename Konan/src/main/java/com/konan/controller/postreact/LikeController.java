@@ -1,4 +1,4 @@
-package com.konan.controller.boardview;
+package com.konan.controller.postreact;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class PagingController
+ * Servlet implementation class LikeController
  */
-public class PagingController extends HttpServlet {
+public class LikeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**

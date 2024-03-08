@@ -1,4 +1,4 @@
-package com.konan.controller.boardview;
+package com.konan.controller.postview;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SearchController
+ * Servlet implementation class SortController
  */
-public class SearchController extends HttpServlet {
+public class SortController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**

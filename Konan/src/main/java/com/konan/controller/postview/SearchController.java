@@ -1,4 +1,4 @@
-package com.konan.controller.boardreact;
+package com.konan.controller.postview;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class BookmarkController
+ * Servlet implementation class SearchController
  */
-public class BookmarkController extends HttpServlet {
+public class SearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
