@@ -24,20 +24,19 @@ public class LoginController extends HttpServlet {
 		
 		UserInfo member = new UserInfo(userId, userPw);
 		
+		UserInfo user = dao.login(member); //에러
+		//널값이 나옴
+		//
 		
-		// 세션 생성
+		
 		HttpSession session = request.getSession();		
 		try {
-			//가끔 오류 나서 try 구문 안에 넣음
-			UserInfo user = dao.login(member);
-
-			if(user.getUser_id() != null) {	
+			if(user.getUser_id() != null) {
 				System.out.println("로그인 컨트롤러, 로그인 아이디:"+user.getUser_id());
-				if(session.getAttribute("userInfo")==null || session.getAttribute("userInfo")=="") {
-					session.setAttribute("userInfo", user);
-					session.setAttribute("isSuccess", true);
-					response.sendRedirect("Main.jsp");									
-				}
+				session.setAttribute("loginId", user);
+				session.setAttribute("isSuccess", true);
+				response.sendRedirect("Main.jsp");
+				
 			}else {
 				System.out.println("로그인 실패");
 				session.setAttribute("isSuccess", false);
