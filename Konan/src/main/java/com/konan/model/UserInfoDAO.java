@@ -20,13 +20,15 @@ public class UserInfoDAO {
 	}
 	
 	public UserInfo login(UserInfo userInfo){
+		//반환되는 객체: 아이디, 비번만 담은 객체로 반환
 		SqlSession sqlsession = sqlsessionFactory.openSession(true);
-		
 		UserInfo user = sqlsession.selectOne(userInfoMapper+"login", userInfo);
+		System.out.println("로그인 시도 | 아이디: "+userInfo.getUser_id());
+		System.out.println("로그인 db 반환 | 아이디: "+user.getUser_id());
 		sqlsession.close();
-		
 		return user;
 		}
+	
 	public Integer delete(String id){
 		SqlSession sqlsession = sqlsessionFactory.openSession(true);
 		
@@ -43,14 +45,15 @@ public class UserInfoDAO {
 		return res;
 	}
 	
-	public List<UserInfo> getAllMember(){
+	public List<FollowerInfo> getFollower(String userId){
 		SqlSession sqlsession = sqlsessionFactory.openSession(true);
 		
-		List<UserInfo> user = sqlsession.selectList(userInfoMapper+"selectAll");
+		System.out.println("팔로우) 유저 아이디:"+userId);
+		List<FollowerInfo> follower = sqlsession.selectList(userInfoMapper+"selectFollower", userId);
 		
 		sqlsession.close();
 		
-		return user;
+		return follower;
 	}
 	
 	public boolean idCheck(String userId) {

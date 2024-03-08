@@ -31,11 +31,12 @@
             </div>
             <!-- 만일 자신의 프로필이라면 visibility을 hidden에서 visible로 변경 -->
             
-        
+        	
             <div class = "relation-container">
-                <button>팔로잉&nbsp;<span name = "following"></span></button>
+                <a href="Following.jsp"><button >팔로잉&nbsp;<span name = "following" ></span></button></a>
                 <span>&nbsp;&nbsp;&nbsp;</span>
-                <button>팔로워&nbsp;<span name = "follower"></span></button>
+                
+                <a href="Follower.jsp"><button >팔로워&nbsp;<span name = "follower" ></span></button></a>
             </div>
 
             <br>

@@ -23,13 +23,17 @@ public class LoginController extends HttpServlet {
 		String userPw = request.getParameter("userPw"); 
 		
 		UserInfo member = new UserInfo(userId, userPw);
-		UserInfo user = dao.login(member);
+		
+		UserInfo user = dao.login(member); //에러
+		//널값이 나옴
+		//
+		
 		
 		HttpSession session = request.getSession();		
 		try {
-			if(user != null) {
-				System.out.println(member.getUserId());
-				session.setAttribute("user", user);
+			if(user.getUser_id() != null) {
+				System.out.println("로그인 컨트롤러, 로그인 아이디:"+user.getUser_id());
+				session.setAttribute("loginId", user);
 				session.setAttribute("isSuccess", true);
 				response.sendRedirect("Main.jsp");
 				

@@ -1,3 +1,4 @@
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="java.util.List"%>
 <%@page import="com.konan.model.UserInfoDAO"%>
 <%@page import="com.konan.model.UserInfo"%>
@@ -12,21 +13,21 @@
 <body>
 
 <div class="container">
-	<%
+	<%UserInfo user = (UserInfo)session.getAttribute("loginInfo");
 	
-		 try{ 
-		boolean isSuccess = (boolean)session.getAttribute("isSuccess");
-			    if(isSuccess==true){
-			    	  UserInfo user = (UserInfo)session.getAttribute("user");
 	%>
-		    <h3><%=user.getUserId()%>님 환영합니다!</h3>
-	<%
 	
-		    }
-			  }catch (Exception e){
-		  e.printStackTrace();
-			  }
-	%>
+	<%if(user==null){%>
+	
+	<a href="Join.jsp"><button>회원가입</button></a>
+	<a href="Login.jsp"><button>로그인</button></a>
+	
+	<%}else{%>
+		<%=user.getName() %>
+		<a href="LogoutController"><button>로그아웃</button></a>
+		<a href="Profile.jsp"><button>프로필</button></a>
+	<%} %>
+	
 	
 </div>
 

@@ -2,16 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.konan.database.UserInfoMapper">
 	<insert id="join" parameterType="UserInfo">
-		insert into user_info values(#{userId}, #{userPw},#{email},#{name},#{phoneNumber},#{region},#{gender},sysdate,#{propic},(null))
+		insert into user_info values(#{user_id}, #{user_pw},#{email},#{name},#{phone_number},#{region},#{gender},sysdate,#{propic},(null))
 	</insert>
 	<select id = "idCheck" parameterType="String" resultType="UserInfo">
-		select user_id from user_info where user_id = #{userId}
+		select user_id from user_info where user_id = #{user_id}
 	</select>
 	<select id="login" parameterType="UserInfo" resultType ="UserInfo">
-		Select user_id, user_pw, email, name, phone_number, region, gender, propic from user_info where user_id = #{userId} and user_pw = #{userPw}
+		select user_id, user_pw from user_info where user_id = #{user_id} and user_pw = #{user_pw}
 	</select>
-	<select id="selectAll" parameterType="UserInfo" resultType="UserInfo">
-      select * from user_info
+	<select id="selectFollower" parameterType="String" resultType="UserInfo">
+        select target_id from user_following where user_id=#{user_id} 
     </select>
-	
 </mapper>

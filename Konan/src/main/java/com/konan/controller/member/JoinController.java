@@ -35,18 +35,14 @@ public class JoinController extends HttpServlet {
 		String region = multi.getParameter("region");
 		String gender = multi.getParameter("gender");
 		String propic = multi.getOriginalFileName("propic");
-
 		
-		
-		
-		
-		UserInfo member = new UserInfo(userId,userPw,email,name,phoneNumber,region,gender,propic);
-		int rownum = dao.join(member);
+		UserInfo userInfo = new UserInfo(userId,userPw,email,name,phoneNumber,region,gender,propic);
+		int rownum = dao.join(userInfo);
 		System.out.println(rownum);
 		
 		if(rownum > 0) {
 			HttpSession session = request.getSession();
-			session.setAttribute("Member", member);
+			session.setAttribute("userInfo", userInfo);
 			response.sendRedirect("JoinSuccess.jsp");
 		}else {
 			response.sendRedirect("Join.jsp");
