@@ -9,44 +9,44 @@ import javax.servlet.http.HttpSession;
 
 import com.konan.model.UserInfo;
 import com.konan.model.UserInfoDAO;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 
 public class JoinController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void service(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-		
-		UserInfoDAO dao = new UserInfoDAO();
-
 		request.setCharacterEncoding("UTF-8");
 		
-		String savePath=request.getServletContext().getRealPath("/upload");
-		int sizeLimit = 5*1024*1024; //5메가 제한 넘어서면 예외발생
-		System.out.println(savePath);
-		MultipartRequest multi = new MultipartRequest(request, savePath, sizeLimit, "UTF-8", new DefaultFileRenamePolicy());
+		//html에서 가져오기
+		String user_id = request.getParameter("user_id");
+		String user_pw = request.getParameter("user_pw");
+		String email = request.getParameter("email");
+		String name = request.getParameter("name");
+		String phone_number = request.getParameter("phone_number");
+					
+		System.out.println("user_id: "+user_id);
+		System.out.println("user_pw: "+user_pw);
+		System.out.println("email: "+email);
+		System.out.println("name: "+name);
+		System.out.println("phone_number: "+phone_number);
+				
+			
+			
+		UserInfoDAO dao = new UserInfoDAO();
 		
-		String userId = multi.getParameter("userId");
-		String userPw = multi.getParameter("userPw");
-		String email = multi.getParameter("email");
-		String name = multi.getParameter("name");
-		String phoneNumber = multi.getParameter("phoneNumber");
-		String region = multi.getParameter("region");
-		String gender = multi.getParameter("gender");
-		String propic = multi.getOriginalFileName("propic");
-		
-		UserInfo userInfo = new UserInfo(userId,userPw,email,name,phoneNumber,region,gender,propic);
-		int rownum = dao.join(userInfo);
+		UserInfo userInfo = new UserInfo(user_id,user_pw,email,name,phone_number);
+		int rownum = dao.joinDefault(userInfo);
 		System.out.println(rownum);
 		
 		if(rownum > 0) {
+			//가입 성공시
 			HttpSession session = request.getSession();
 			session.setAttribute("userInfo", userInfo);
+			System.out.println(userInfo.getUser_id());
 			response.sendRedirect("JoinSuccess.jsp");
 		}else {
+			//가입 실패시
 			response.sendRedirect("Join.jsp");
 		}
     }
-
 }

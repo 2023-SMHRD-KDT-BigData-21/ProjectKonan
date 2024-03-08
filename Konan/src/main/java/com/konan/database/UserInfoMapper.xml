@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.konan.database.UserInfoMapper">
-	<insert id="join" parameterType="UserInfo">
-		insert into user_info values(#{user_id}, #{user_pw},#{email},#{name},#{phone_number},#{region},#{gender},sysdate,#{propic},(null))
+
+<!-- 
+컬럼 순서
+USER_ID, USER_PW, EMAIL, NAME, PHONE_NUMBER, REGION, GENDER, INDATE, PROPIC, OUTDATE
+ -->
+
+	<!-- not null 조건이 걸린 값을 넣음 -->
+	<insert id="joinDefault" parameterType="UserInfo">
+		insert into 
+			user_info(USER_ID, USER_PW, EMAIL, NAME, PHONE_NUMBER, INDATE) 
+		values
+			(#{user_id}, #{user_pw},#{email},#{name},#{phone_number},sysdate)
 	</insert>
+	
+	
+	
+	<!-- id 중복 확인 -->
 	<select id = "idCheck" parameterType="String" resultType="UserInfo">
 		select user_id from user_info where user_id = #{user_id}
 	</select>
+	
+	<!-- 로그인 -->
 	<select id="login" parameterType="UserInfo" resultType ="UserInfo">
 		select user_id, user_pw from user_info where user_id = #{user_id} and user_pw = #{user_pw}
 	</select>
+	
+	<!-- 팔로워 확인 -->
 	<select id="selectFollower" parameterType="String" resultType="UserInfo">
         select target_id from user_following where user_id=#{user_id} 
     </select>

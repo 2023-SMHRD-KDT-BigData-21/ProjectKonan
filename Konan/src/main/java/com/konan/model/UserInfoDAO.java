@@ -10,10 +10,10 @@ public class UserInfoDAO {
 	SqlSessionFactory sqlsessionFactory = SqlSessionManager.getSqlSessionFactory();
 	String userInfoMapper= "com.konan.database.UserInfoMapper.";
 	
-	public int join(UserInfo userInfo){
+	public int joinDefault(UserInfo userInfo){
 		SqlSession sqlsession = sqlsessionFactory.openSession(true);
 		
-		int rownum = sqlsession.insert(userInfoMapper+"join",userInfo);
+		int rownum = sqlsession.insert(userInfoMapper+"joinDefault",userInfo);
 		sqlsession.close();
 		
 		return rownum;
