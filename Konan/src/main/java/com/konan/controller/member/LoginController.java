@@ -22,13 +22,13 @@ public class LoginController extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String userPw = request.getParameter("userPw"); 
 		
-		UserInfo userInfo = new UserInfo(userId, userPw);
-		UserInfo user = dao.login(userInfo);
+		UserInfo member = new UserInfo(userId, userPw);
+		UserInfo user = dao.login(member);
 		
 		HttpSession session = request.getSession();		
 		try {
 			if(user != null) {
-				System.out.println(userInfo.getUserId());
+				System.out.println(member.getUserId());
 				session.setAttribute("user", user);
 				session.setAttribute("isSuccess", true);
 				response.sendRedirect("Main.jsp");

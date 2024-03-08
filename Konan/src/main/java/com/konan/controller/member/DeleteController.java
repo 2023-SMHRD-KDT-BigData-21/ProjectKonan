@@ -21,14 +21,14 @@ public class DeleteController extends HttpServlet {
 
 		response.setContentType("text/html;charset=UTF-8");
 		
-		String id = request.getParameter("id");
+		String userId = request.getParameter("userId");
 		
-		Integer user = dao.delete(id);	
+		Integer user = dao.delete(userId);	
 		System.out.println(user);
 		
 		try {
 			if(user != null) {
-				System.out.println(id);
+				System.out.println(userId);
 			}else {
 				System.out.println("삭제 실패");
 			}

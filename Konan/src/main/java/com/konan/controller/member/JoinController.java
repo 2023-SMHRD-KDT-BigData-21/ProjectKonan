@@ -40,14 +40,13 @@ public class JoinController extends HttpServlet {
 		
 		
 		
-		UserInfo userInfo = new UserInfo(userId,userPw,email,name,phoneNumber,region,gender,propic);
-		int rownum = dao.join(userInfo);
-		System.out.println(userInfo);
+		UserInfo member = new UserInfo(userId,userPw,email,name,phoneNumber,region,gender,propic);
+		int rownum = dao.join(member);
 		System.out.println(rownum);
 		
 		if(rownum > 0) {
 			HttpSession session = request.getSession();
-			session.setAttribute("UserInfo", userInfo);
+			session.setAttribute("Member", member);
 			response.sendRedirect("JoinSuccess.jsp");
 		}else {
 			response.sendRedirect("Join.jsp");

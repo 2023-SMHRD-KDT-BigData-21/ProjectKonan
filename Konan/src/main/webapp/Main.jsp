@@ -13,14 +13,16 @@
 
 <div class="container">
 	<%
-	try{ 
+	
+		 try{ 
 		boolean isSuccess = (boolean)session.getAttribute("isSuccess");
 			    if(isSuccess==true){
-		    UserInfo user = (UserInfo)session.getAttribute("user");
+			    	  UserInfo user = (UserInfo)session.getAttribute("user");
 	%>
 		    <h3><%=user.getUserId()%>님 환영합니다!</h3>
 	<%
-	}
+	
+		    }
 			  }catch (Exception e){
 		  e.printStackTrace();
 			  }

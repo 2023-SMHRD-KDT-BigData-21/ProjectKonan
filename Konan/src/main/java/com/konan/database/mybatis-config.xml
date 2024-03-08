@@ -4,28 +4,28 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-	<!-- db 연결을 위한 정보를 담은 파일 삽입 -->
-	<properties resource="com/konan/database/db.properties"></properties>
-	
-	<!-- 경로 별명을 지어주는 것, controller에서 요긴하게 사용 -->
-  	<typeAliases>
-  		<typeAlias type="com.konan.model.UserInfo" alias="UserInfo"/>
-  		<typeAlias type="com.konan.model.Board" alias="Board"/>
-  	</typeAliases>
-  	
-	  <environments default="development">
-	    <environment id="development">
-	      <transactionManager type="JDBC"/>
-	      <dataSource type="POOLED">
-	        <property name="driver" value="${driver}"/>
-	        <property name="url" value="${url}"/>
-	        <property name="username" value="${username}"/>
-	        <property name="password" value="${password}"/>
-	      </dataSource>
-	    </environment>
-	  </environments>
-	  
-	  <mappers>
+   <!-- db 연결을 위한 정보를 담은 파일 삽입 -->
+   <properties resource="com/konan/database/db.properties"></properties>
+   
+   <!-- 경로 별명을 지어주는 것, controller에서 요긴하게 사용 -->
+     <typeAliases>
+        <typeAlias type="com.konan.model.UserInfo" alias="UserInfo"/>
+        <typeAlias type="com.konan.model.Board" alias="Board"/>
+     </typeAliases>
+     
+     <environments default="development">
+       <environment id="development">
+         <transactionManager type="JDBC"/>
+         <dataSource type="POOLED">
+           <property name="driver" value="${driver}"/>
+           <property name="url" value="${url}"/>
+           <property name="username" value="${username}"/>
+           <property name="password" value="${password}"/>
+         </dataSource>
+       </environment>
+     </environments>
+     
+     <mappers>
     <mapper resource="com/konan/database/UserInfoMapper.xml"/><!-- membermapper랑 매치해줘야함, .은 /로 변경 -->
     <mapper resource="com/konan/database/BoardMapper.xml"/><!-- membermapper랑 매치해줘야함, .은 /로 변경 -->
   </mappers>

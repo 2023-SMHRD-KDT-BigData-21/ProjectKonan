@@ -1,4 +1,3 @@
-<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="com.konan.model.UserInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -19,10 +18,7 @@
 
 <body style="text-align: center;">
     <%
-    
-
-        UserInfo user = (UserInfo)session.getAttribute("UserInfo");
-        System.out.print(user);
+    UserInfo user = (UserInfo)session.getAttribute("user");
     %>
 	<!-- Wrapper -->
 	<div id="wrapper">
@@ -35,7 +31,7 @@
 		<table>
 			<tr>
 				<td>아이디</td>
-				<td><%=user.getUserId() %></td>
+				<td><%=user.getUserId()%></td>
 			</tr>
 		</table>
 		<a href="main.jsp"><input type="button" value="메인페이지로"></a> </nav>

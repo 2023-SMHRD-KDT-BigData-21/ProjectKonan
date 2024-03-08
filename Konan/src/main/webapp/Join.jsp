@@ -12,7 +12,7 @@
 		<form action="JoinController" method="post" enctype="multipart/form-data"]>
 			<table>
 				<tr>
-					<td><input type="text" name = "userId" id="userId" placeholder="아이디를 입력하세요" "아이디를 입력하세요"></td>
+					<td><input type="text" name = "userId" id="userId" placeholder="아이디를 입력하세요" ></td>
 					<td><input type="button" name="" value="아이디 중복 확인" onclick="checkId()">
 					<span id="errorMessage"></span></td>
 				</tr>
@@ -60,7 +60,7 @@
 			url : "IdCheckController", // 요청할 서버url    
 			async : true,  // 비동기화 여부 (default : true)    
 			dataType : "text", // 데이터 타입 (html, xml, json, text 등등), 여러개 보낼 땐 보통 json으로 보냄
-			data : {"userId" : userId.value},
+			data : {"userId" : user_id.value},
 			success : function(result) { // 성공 콜백함수        
 						console.log(result);
 						if(result == "true"){
