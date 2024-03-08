@@ -36,13 +36,38 @@
 
 /* 기본 태그 */
 body{
-    font-family: 'Nanum Gothic';
+  font-family: 'Nanum Gothic';
 }
 
 .container{
   position: relative;
   margin: 0 auto;/*위아래 여백 없이 가운데 정렬*/
   width: 70%;
+  max-width: 1500px;
   min-width: 700px;
   padding: 10px;
+}
+
+.shadow-div{
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+
+.align-item{
+  /* div 안에 아이템 간격 동일하게 정렬 */
+  padding: 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  text-align: center;
+}
+
+.clicked-bold {
+  font-weight: bold;
 }

@@ -1,0 +1,148 @@
+h3{
+    margin-bottom: 5px;
+}
+hr {
+    border-width: 1px; /* 선의 두께 변경 */
+    border-style: solid;
+    border-color: lightgray;
+}
+
+/* class */
+.normal{
+    font-weight: normal;
+}
+
+.upper{
+    margin: 0, auto;
+    text-align: center;
+
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.propic{
+    width: 100px;
+    height: 100px;
+    
+    border-radius: 50%;
+    overflow: hidden;
+}
+.upper > hr {
+    border-width: 2px; /* 선의 두께 변경 */
+    border-style: solid;
+    border-color: gray;
+    width: 10px;
+}
+
+.info-container{
+    padding: 10px;
+    padding-bottom: 30px;
+    border-radius: 20px;
+}
+/*사용자 등급 정보*/
+.mytier{
+    position: relative;
+    width: calc(100%-20px);
+    min-height: 100px;
+
+    /* 요소를 가로 정렬*/
+    display: flex;
+    flex-direction: row;
+
+    /*정렬*/
+    padding: 10px 20px 10px 20px;
+    margin-bottom: 1em;
+}
+.tier-image{
+    margin-top:10px;
+    width: 100px;
+    height: 100px;
+}
+
+.user-info{
+    margin-top:10px;
+    padding: 10px;
+    height: 100%;
+}
+.user-info > h3{
+    margin-top: 0px;
+}
+.user-info > p{
+    margin: 2px;
+    font-size: 0.8em;
+    color: gray;
+}
+.tier-info{
+    position: relative;
+    width: calc(100%-20px);
+    min-height: 100px;
+
+    text-align: center;
+    margin: 10px auto;
+    padding: 20px;
+}  
+
+/*내가 쓴 글 모아보기 컨테이너*/
+.page-btn-container{
+    /* border: 1px solid lightgray; */
+    align-items: center;
+    padding-left: 10%;
+    padding-right: 10%;
+    border-radius: 20px;
+}
+/* 페이지 넘어가는 버튼 */
+.page-btn{
+    font-size: 1.2em;
+    background-color: white;
+    border: none;
+    transition: width 0.3s ease;
+}
+
+/* 수직 hr 태그 */
+.vertical{
+    border-left: 1px solid lightgray;
+    height: 40px;
+  }
+  
+
+.chart{
+    position: relative;
+    margin: 0 auto;
+}
+
+/* 비동기 게시물 페이지*/
+.comment-container{
+    /*100% 넘어가지 않게*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;  
+    box-sizing: border-box; 
+
+    width: 100%;
+
+    position: relative;
+    margin-top: 30px;
+}
+.comment{
+    /*100% 넘어가지 않게*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;  
+    box-sizing: border-box; 
+
+    width: 100%;
+    height: 120px;
+
+    border: 1px solid lightgray;
+    border-radius: 10px;
+
+    position: relative;
+    margin: 10px 0px;
+
+    padding: 20px;
+    text-align: left;
+}
+.comment>a{
+    text-decoration:none;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin: 0px;
+}
+
