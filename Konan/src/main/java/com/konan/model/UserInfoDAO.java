@@ -19,8 +19,10 @@ public class UserInfoDAO {
 		return rownum;
 	}
 	
+	//로그인
 	public UserInfo login(UserInfo userInfo){
 		//반환되는 객체: 아이디, 비번만 담은 객체로 반환
+		System.out.println("userInfoDAO");
 		SqlSession sqlsession = sqlsessionFactory.openSession(true);
 		UserInfo user = sqlsession.selectOne(userInfoMapper+"login", userInfo);
 		System.out.println("로그인 시도 | 아이디: "+userInfo.getUser_id());
@@ -43,17 +45,6 @@ public class UserInfoDAO {
 		int res = sqlSession.update(userInfoMapper+"update", userInfo);
 		sqlSession.close();
 		return res;
-	}
-	
-	public List<FollowerInfo> getFollower(String userId){
-		SqlSession sqlsession = sqlsessionFactory.openSession(true);
-		
-		System.out.println("팔로우) 유저 아이디:"+userId);
-		List<FollowerInfo> follower = sqlsession.selectList(userInfoMapper+"selectFollower", userId);
-		
-		sqlsession.close();
-		
-		return follower;
 	}
 	
 	public boolean idCheck(String userId) {
