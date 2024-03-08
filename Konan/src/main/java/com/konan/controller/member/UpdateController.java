@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.konan.model.Member;
-import com.konan.model.MemberDAO;
+import com.konan.model.UserInfo;
+import com.konan.model.UserInfoDAO;
 
 public class UpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -32,9 +32,9 @@ public class UpdateController extends HttpServlet {
 		String phone_number = request.getParameter("phone_number");
 		String region = request.getParameter("region");
 		
-		Member member = new Member(user_id,user_pw,phone_number,region);
+		UserInfo member = new UserInfo(user_id,user_pw,phone_number,region);
 		
-		MemberDAO dao = new MemberDAO();
+		UserInfoDAO dao = new UserInfoDAO();
 		int res = dao.update(member);
 		
 		if(res>0) {

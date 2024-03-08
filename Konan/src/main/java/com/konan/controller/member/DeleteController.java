@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.konan.model.Member;
-import com.konan.model.MemberDAO;
+import com.konan.model.UserInfo;
+import com.konan.model.UserInfoDAO;
 
 /**
  * Servlet implementation class DeleteController
@@ -17,7 +17,7 @@ public class DeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		MemberDAO dao = new MemberDAO();
+		UserInfoDAO dao = new UserInfoDAO();
 
 		response.setContentType("text/html;charset=UTF-8");
 		

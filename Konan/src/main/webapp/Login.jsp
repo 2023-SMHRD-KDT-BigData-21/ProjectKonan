@@ -1,6 +1,6 @@
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
-<%@page import="com.konan.model.Member"%>
-<%@page import="com.konan.model.MemberDAO"%>
+<%@page import="com.konan.model.UserInfo"%>
+<%@page import="com.konan.model.UserInfoDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -30,8 +30,8 @@
 			  		  e.printStackTrace();
 		      	  }%>
 				<form class = "login-form" action="LoginController" method="post">
-				 	<input type="text" name="user_id" placeholder="아이디를 입력하세요">
-					<input type="password" name = "user_pw" placeholder="PW를 입력하세요">
+				 	<input type="text" name="userId" placeholder="아이디를 입력하세요">
+					<input type="password" name = "userPw" placeholder="PW를 입력하세요">
 					<input type="submit" value="LogIn" class="login_btn">
 				</form>
 			</div>

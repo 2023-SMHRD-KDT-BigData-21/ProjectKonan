@@ -9,7 +9,7 @@
 	
 	<!-- 경로 별명을 지어주는 것, controller에서 요긴하게 사용 -->
   	<typeAliases>
-  		<typeAlias type="com.konan.model.Member" alias="Member"/>
+  		<typeAlias type="com.konan.model.UserInfo" alias="UserInfo"/>
   		<typeAlias type="com.konan.model.Board" alias="Board"/>
   	</typeAliases>
   	
@@ -26,7 +26,7 @@
 	  </environments>
 	  
 	  <mappers>
-    <mapper resource="com/konan/database/MemberMapper.xml"/><!-- membermapper랑 매치해줘야함, .은 /로 변경 -->
+    <mapper resource="com/konan/database/UserInfoMapper.xml"/><!-- membermapper랑 매치해줘야함, .은 /로 변경 -->
     <mapper resource="com/konan/database/BoardMapper.xml"/><!-- membermapper랑 매치해줘야함, .은 /로 변경 -->
   </mappers>
 </configuration>

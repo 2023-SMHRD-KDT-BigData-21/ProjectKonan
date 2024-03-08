@@ -9,26 +9,26 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-import com.konan.model.Member;
-import com.konan.model.MemberDAO;
+import com.konan.model.UserInfo;
+import com.konan.model.UserInfoDAO;
 
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		MemberDAO dao = new MemberDAO();
+		UserInfoDAO dao = new UserInfoDAO();
 
 		response.setContentType("text/html;charset=UTF-8");
 		
-		String user_id = request.getParameter("user_id");
-		String user_pw = request.getParameter("user_pw"); 
+		String userId = request.getParameter("userId");
+		String userPw = request.getParameter("userPw"); 
 		
-		Member member = new Member(user_id, user_pw);
-		Member user = dao.login(member);
+		UserInfo userInfo = new UserInfo(userId, userPw);
+		UserInfo user = dao.login(userInfo);
 		
 		HttpSession session = request.getSession();		
 		try {
 			if(user != null) {
-				System.out.println(member.getUser_id());
+				System.out.println(userInfo.getUserId());
 				session.setAttribute("user", user);
 				session.setAttribute("isSuccess", true);
 				response.sendRedirect("Main.jsp");

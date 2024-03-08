@@ -5,59 +5,58 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import com.konan.database.SqlSessionManager;
-import com.konan.model.Member;
 
-public class MemberDAO {
+public class UserInfoDAO {
 	SqlSessionFactory sqlsessionFactory = SqlSessionManager.getSqlSessionFactory();
-	String memberMapper= "com.konan.database.MemberMapper.";
+	String userInfoMapper= "com.konan.database.UserInfoMapper.";
 	
-	public int join(Member member){
+	public int join(UserInfo userInfo){
 		SqlSession sqlsession = sqlsessionFactory.openSession(true);
 		
-		int rownum = sqlsession.insert("com.konan.database.MemberMapper.join",member);
+		int rownum = sqlsession.insert(userInfoMapper+"join",userInfo);
 		sqlsession.close();
 		
 		return rownum;
 	}
 	
-	public Member login(Member member){
+	public UserInfo login(UserInfo userInfo){
 		SqlSession sqlsession = sqlsessionFactory.openSession(true);
 		
-		Member user = sqlsession.selectOne(memberMapper+"login", member);
+		UserInfo user = sqlsession.selectOne(userInfoMapper+"login", userInfo);
 		sqlsession.close();
 		
 		return user;
-	}
-	
+		}
 	public Integer delete(String id){
 		SqlSession sqlsession = sqlsessionFactory.openSession(true);
 		
-		Integer user = sqlsession.delete(memberMapper+"delete", id);
+		Integer user = sqlsession.delete(userInfoMapper+"delete", id);
 		sqlsession.close();
 		
 		return user;
 	}
 	
-	public int update(Member member) {
+	public int update(UserInfo userInfo) {
 		SqlSession sqlSession = sqlsessionFactory.openSession(true);
-		int res = sqlSession.update("com.smhrd.database.MemberMapper.update", member);
+		int res = sqlSession.update(userInfoMapper+"update", userInfo);
 		sqlSession.close();
 		return res;
 	}
 	
-	public List<Member> getAllMember(){
+	public List<UserInfo> getAllMember(){
 		SqlSession sqlsession = sqlsessionFactory.openSession(true);
 		
-		List<Member> user = sqlsession.selectList(memberMapper+"selectAll");
+		List<UserInfo> user = sqlsession.selectList(userInfoMapper+"selectAll");
+		
 		sqlsession.close();
 		
 		return user;
 	}
 	
-	public boolean idCheck(String user_id) {
+	public boolean idCheck(String userId) {
 		SqlSession sqlsession = sqlsessionFactory.openSession(true);
 		boolean isExist = false;
-		Member user = sqlsession.selectOne("com.konan.database.MemberMapper.idCheck", user_id);
+		UserInfo user = sqlsession.selectOne(userInfoMapper+"idCheck", userId);//error
 		if (user != null) {
 			isExist = true;
 			System.out.println("사용할 수 없는 아이디");

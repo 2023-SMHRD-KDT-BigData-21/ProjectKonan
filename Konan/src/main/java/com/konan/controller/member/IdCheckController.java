@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.konan.model.MemberDAO;
+import com.konan.model.UserInfoDAO;
 
 /**
  * Servlet implementation class IdCheckController
@@ -17,11 +17,11 @@ public class IdCheckController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String user_id = request.getParameter("user_id");
-		System.out.println(user_id);
+		String userId = request.getParameter("userId");
+		System.out.println(userId);
 		
-		MemberDAO dao = new MemberDAO();
-		boolean isExist = dao.idCheck(user_id);
+		UserInfoDAO dao = new UserInfoDAO();
+		boolean isExist = dao.idCheck(userId); //error
 		
 		PrintWriter out = response.getWriter();
 		if (isExist) {

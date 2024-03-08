@@ -12,12 +12,12 @@
 		<form action="JoinController" method="post" enctype="multipart/form-data"]>
 			<table>
 				<tr>
-					<td><input type="text" name = "user_id" id="user_id" placeholder="아이디를 입력하세요" ></td>
+					<td><input type="text" name = "userId" id="userId" placeholder="아이디를 입력하세요" "아이디를 입력하세요"></td>
 					<td><input type="button" name="" value="아이디 중복 확인" onclick="checkId()">
 					<span id="errorMessage"></span></td>
 				</tr>
 				<tr>
-					<td><input type="password" name = "user_pw" placeholder="PW를 입력하세요" ></td>
+					<td><input type="password" name = "userPw" placeholder="PW를 입력하세요" ></td>
 				</tr>
 				<tr>
 					<td><input type="text" name = "email" placeholder="email을 입력하세요" ></td>
@@ -26,7 +26,7 @@
 					<td><input type="text" name = "name" placeholder="이름을 입력하세요" ></td>
 				</tr>
 				<tr>
-					<td><input type="text" name = "phone_number" placeholder="전화번호를 입력하세요" ></td>
+					<td><input type="text" name = "phoneNumber" placeholder="전화번호를 입력하세요" ></td>
 				</tr>
 				<tr>
 					<td><input type="text" name = "region" placeholder="집주소를 입력하세요" ></td>
@@ -52,7 +52,7 @@
 	<script>
 		function checkId(){
 			
-			let user_id = document.getElementById("user_id")
+			let user_id = document.getElementById("userId")
 			console.log(user_id.value)
 			
 			$.ajax({    
@@ -60,7 +60,7 @@
 			url : "IdCheckController", // 요청할 서버url    
 			async : true,  // 비동기화 여부 (default : true)    
 			dataType : "text", // 데이터 타입 (html, xml, json, text 등등), 여러개 보낼 땐 보통 json으로 보냄
-			data : {"user_id" : user_id.value},
+			data : {"userId" : userId.value},
 			success : function(result) { // 성공 콜백함수        
 						console.log(result);
 						if(result == "true"){
