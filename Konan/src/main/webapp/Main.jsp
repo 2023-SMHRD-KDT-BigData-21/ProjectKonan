@@ -11,11 +11,10 @@
 <title>메인페이지</title>
 </head>
 <body>
+<%@ include file="Header.jsp" %>
 
 <div class="container">
-	<%UserInfo user = (UserInfo)session.getAttribute("loginInfo");
-	
-	%>
+
 	
 	<%if(user==null){%>
 	

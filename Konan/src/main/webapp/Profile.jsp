@@ -1,3 +1,4 @@
+<%@page import="com.konan.model.UserInfoDAO"%>
 <%@page import="com.konan.model.UserInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -24,6 +25,12 @@
     <link rel="stylesheet" href="./css/Profile.css">
 </head>
 <body>
+<%
+	String targetId = request.getParameter("targetId");
+	UserInfoDAO dao = new UserInfoDAO();
+	UserInfo targetInfo = dao.getUser(targetId);//
+	pageContext.setAttribute("targetInfo",targetInfo);
+%>
 	<%@ include file="Header.jsp" %>
     <div class = "container">
         <!-- 동현씨 -->
@@ -39,9 +46,9 @@
                 <button class = "update_btn"></button>
                 <!-- 이름, 아이디 -->                
                 <div class = "user-info"></div>
-                    <strong name="user_name">${name}</strong>
+                    <strong name="user_name">${targetInfo.getName()}</strong>
                     <br>
-                    <span>@<span name="user_id">${userId}</span></span>
+                    <span>@<span name="user_id">${targetInfo.getUser_id()}</span></span>
 	        	<!-- 팔로잉/팔로워 버튼 -->
 	            <div class = "relation-container">
 	                <a href="Following.jsp">

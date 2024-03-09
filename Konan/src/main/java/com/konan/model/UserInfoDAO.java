@@ -60,4 +60,17 @@ public class UserInfoDAO {
 		sqlsession.close();
 		return isExist;
 	}
+	
+	
+	//특정 회원 정보 가져오기
+	public UserInfo getUser(String userId){
+		//반환되는 객체: 아이디, 비번만 담은 객체로 반환
+		System.out.println("userInfoDAO");
+		SqlSession sqlsession = sqlsessionFactory.openSession(true);
+		UserInfo user = sqlsession.selectOne(userInfoMapper+"selectUser", userId);
+		System.out.println("db 반환 | 아이디: "+user.getUser_id());
+		sqlsession.close();
+		return user;
+	}
+	
 }
