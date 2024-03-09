@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>국민탐정</title>
+    <link rel="stylesheet" href="./css/Default.css">
     <link rel="stylesheet" href="./css/Header.css" type="text/css">
 </head>
 <%
@@ -22,6 +23,14 @@
 <body>
     <div class="navigation">
         <ul>
+        	<%if(user==null){%>
+            <li class="list">
+                <a href="Login.jsp">
+                    <span class="icon"><ion-icon name="log-in-outline"></ion-icon></span>
+                    <span class="title">로그인</span>
+                </a>
+            </li>
+        	<%}%>
             <li class="list active_header">
                 <a href="Main.jsp">
                     <span class="icon"><ion-icon name="home-outline"></ion-icon></span>

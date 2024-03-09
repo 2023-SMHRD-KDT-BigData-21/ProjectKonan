@@ -9,10 +9,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
-public class FollowerInfo {
+public class UserFollowing {
 	String userId;
 	String targetId;
-	public FollowerInfo(String userId) {
+	public UserFollowing(String userId) {
 		this.userId=userId;
 	}
 	

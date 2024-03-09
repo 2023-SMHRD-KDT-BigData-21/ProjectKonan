@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="com.konan.model.UserFollowing"%>
+<%@page import="com.konan.model.UserFollowingDAO"%>
 <%@page import="com.konan.model.UserInfoDAO"%>
 <%@page import="com.konan.model.UserInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -15,25 +18,32 @@
 	pageContext.setAttribute("propic", propic);
 --%>
 
+<%
+	String targetId = request.getParameter("targetId");
+	pageContext.setAttribute("targetId", targetId);
+	UserInfoDAO dao = new UserInfoDAO();
+	UserInfo targetInfo = dao.getUser(targetId);//
+	pageContext.setAttribute("targetInfo",targetInfo);
+	
+	UserFollowingDAO followDao = new UserFollowingDAO();
+	List<UserFollowing> targetFollowings = followDao.getFollowings(targetId);
+	pageContext.setAttribute("targetFollowings",targetFollowings);
+
+	List<UserFollowing> targetFollowers = followDao.getFollowers(targetId);
+	pageContext.setAttribute("targetFollowers",targetFollowers);
+%>
 <!DOCTYPE html>
 <html lang="kor">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S{userName}님의 프로필</title>
+    <title>${targetId}님의 프로필</title>
     <link rel="stylesheet" href="./css/Default.css">
     <link rel="stylesheet" href="./css/Profile.css">
 </head>
 <body>
-<%
-	String targetId = request.getParameter("targetId");
-	UserInfoDAO dao = new UserInfoDAO();
-	UserInfo targetInfo = dao.getUser(targetId);//
-	pageContext.setAttribute("targetInfo",targetInfo);
-%>
 	<%@ include file="Header.jsp" %>
     <div class = "container">
-        <!-- 동현씨 -->
         <!-- 프로필 컨테이터 -->
         <div class = "profile-contain">
             <div class = "profile-background"></div>
@@ -50,13 +60,13 @@
                     <br>
                     <span>@<span name="user_id">${targetInfo.getUser_id()}</span></span>
 	        	<!-- 팔로잉/팔로워 버튼 -->
-	            <div class = "relation-container">
-	                <a href="Following.jsp">
-	                	<button class="relation-btn">팔로잉&nbsp;<span name="following">${followingCnt}</span></button>
+	            <div class = "relation-container" style="text-decoration: none;">
+	                <a href="Following.jsp?targetId=${targetId}">
+	                	<button class="relation-btn" style="text-decoration: none;">팔로잉&nbsp;<span name="following">${targetFollowings.size()}</span></button>
 	                </a>
 	                <span>&nbsp;&nbsp;&nbsp;</span>
-	                <a href="Follower.jsp">
-	                	<button class="relation-btn">팔로워&nbsp;<span name="follower">S{follwerCnt}</span></button>
+	                <a href="Follower.jsp?targetId=${targetId}">
+	                	<button class="relation-btn">팔로워&nbsp;<span name="follower">${targetFollowers.size()}</span></button>
 	                </a>
 	            </div>
            </div>

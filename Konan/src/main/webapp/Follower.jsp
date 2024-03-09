@@ -1,4 +1,4 @@
-<%@page import="com.konan.model.FollowerInfo"%>
+<%@page import="com.konan.model.UserFollowing"%>
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="java.util.List"%>
 <%@page import="com.konan.model.UserInfoDAO"%>
@@ -13,9 +13,8 @@
 </head>
 <body>
 	<%
-	UserInfo userInfo = (UserInfo)session.getAttribute("loginId"); 
-	System.out.print(userInfo);
-	System.out.print(userInfo.getUser_id());
+		String targetId = request.getParameter("targetId"); 
+	
 	%>
 	
 	<div class="upper">

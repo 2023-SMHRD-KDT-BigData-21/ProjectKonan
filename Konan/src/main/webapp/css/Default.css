@@ -41,13 +41,15 @@ body{
   font-family: 'Nanum Gothic';
   background-color:white;
 }
-
+a{
+	text-decoration: none;
+}
 .container{
   position: relative;
   margin: 0 auto;/*위아래 여백 없이 가운데 정렬*/
   
   width: 60%;
-  
+  min-width: 600px;  
   padding: 10px;
   
   height:auto;
