@@ -30,8 +30,8 @@
 		
 		<table>
 			<tr>
-				<td>아이디</td>
-				<td><%=user.getUserId()%></td>
+				<td>환영합니당</td>
+				<td><%=user.getName()%></td>
 			</tr>
 		</table>
 		<a href="Main.jsp"><input type="button" value="메인페이지로"></a> </nav>

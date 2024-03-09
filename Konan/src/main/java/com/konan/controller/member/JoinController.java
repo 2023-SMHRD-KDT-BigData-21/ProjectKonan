@@ -43,7 +43,7 @@ public class JoinController extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("userInfo", userInfo);
 			System.out.println(userInfo.getUser_id());
-			response.sendRedirect("JoinSuccess.jsp");
+			response.sendRedirect("JoinAsDetective.jsp");
 		}else {
 			//가입 실패시
 			response.sendRedirect("Join.jsp");
