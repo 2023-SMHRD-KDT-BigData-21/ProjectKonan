@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.konan.database.DetectiveInfoMapper">
+
+	<!-- not null 조건이 걸린 값을 넣음 -->
+	<insert id="joinReq" parameterType="DetectiveInfo">
+		insert into 
+			detective_info 
+		values
+			(#{user_id},'F',#{proof_shot},sysdate)
+	</insert>
+	
+	<!-- id로 정보 전부 가져오기 -->
+	<select id = "getDetectiveInfo" parameterType="String" resultType="DetectiveInfo">
+		select * from detective_info where user_id = #{user_id}
+	</select>
+	
+</mapper>
