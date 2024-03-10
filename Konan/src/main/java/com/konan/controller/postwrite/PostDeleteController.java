@@ -6,17 +6,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class BoardDeleteController
- */
+import com.smhrd.model.MemberDAO;
+
 public class PostDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
+		String postId = request.getParameter("postId");
+		String postType = request.getParameter("postType");
+		
+		PostDAO dao = new PostDAO();
+		int row = dao.delete(postId,postType);
 
+		if(postType.equals("C"))
+			response.sendRedirect("CommuList.jsp");
+		else
+			response.sendRedirect("QnaList.jsp");
+	}
 }

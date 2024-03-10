@@ -1,5 +1,5 @@
-<%@page import="com.konan.model.Post"%>
 <%@page import="java.util.List"%>
+<%@page import="com.konan.model.Post"%>
 <%@page import="com.konan.model.PostDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -13,6 +13,21 @@
 
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="">
+    
+    <style>
+        .js-load {
+            display: none;
+        }
+        .js-load.active {
+            display: block;
+        }
+        .js-load:after {
+            display: none;
+        }
+        .btn-wrap {
+            display: block;
+        }
+    </style>
 
 </head>
 
@@ -21,14 +36,14 @@
 	PostDAO dao = new PostDAO();
 	
 	int qCount = dao.qpostCount(); // 총 질문 개수
-	
 	int showNum = 15; // 한 페이지에 보여줄 글 개수(고정)
+	
 	int btnNum = qCount / showNum; // 더보기 버튼이 몇 번 나올지
-	int now; // 현재 페이지에서 보여줄 글 개수(변수)
-	int remainNum = qCount % showNum; // 더보기 이후 마지막 페이지 게시글 개수
+	int first = btnNum==0?qCount:showNum; // 첫번째 페이지에서 보여줄 글 개수
 	
 	List<Post> list = dao.QpostList();
 %>
+<form action="#">
     <div class="container">
         <div class="search-container">
             <div class="search-icon"></div>
@@ -40,18 +55,16 @@
             <div class="content-box"></div>
 
             <!-- 글쓰기 버튼 -->
-            <div class="post-button"></div>
+            <div class="post-button">글쓰기</div>
         </div>
 
         <div class="waiting-questions-container">
             <div class="question-container-cover" style="border-bottom: 1px solid;">답변을 기다리는 질문</div>
             <%
-            	now = btnNum==0?qCount:showNum; // 첫 번째 페이지에 보여줄 게시글 개수
-
-            	for(int i=0; i<now; i++){
+            	for(int i=0; i<qCount; i++){
             		Post post=list.get(i);
             %>
-          		<div class="question-container-inside" >
+          		<div class="question-container-inside js-load" >
           		    <div class="question-title">
           		    <a href="CommuContent.jsp?idx=<%=post.getPost_id()%>"><%=post.getTitle() %>
           		    </a></div>
@@ -64,19 +77,80 @@
                 	</div>
                 	<div class="response-container">
                 		<span>답변 <%=dao.ansCount(post.getPost_id()) %></span>
-                		<span>좋아요 <%= %></span>
+                		<span>좋아요 </span>
                 	</div>
                 </div>
             <%}%>
         </div>
-        
-        <% if(btnNum>0){%>
-                <button id="more-btn">
+        <div>
+         	<button id="js-btn-wrap" class="more">
                 <span>더 보기</span>
-            	</button>
-        <%}%>
+            </button>
+		</div>
     </div>
+</form>
+
+   	<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js" /></script>
     
+    <script> // (동기)더보기 이후 게시글을 보여줄 로직 구현
+    	function moreList(){
+    		$.ajax({
+    			url : "/admin/jsonlist",
+    			type : "POST",
+    			cache : false,
+    			dataType: 'json',
+    			data : "conectType="+conectType +"&eDate="+eDate+"&sDate="+sDate+"&codeId="+codeId+"&limit="+limit,
+    			success : function(data){
+    				console.log(data);
+    				var content="";
+    				for(var i=0; i<data.hashMapList.length; i++){
+    					content +=
+    						"<tr>"+"<td>"+data.hashMapList[i].area+"</td>"+
+    						"<td>"+data.hashMapList[i].name+"</td>"+
+    						"<td>"+data.hashMapList[i].gubun+"</td>"+
+    						"<td>"+data.hashMapList[i].cnt+"</td>"+
+    						"</tr>";
+    						}
+    				content+="<tr id='addbtn'><td colspan='5'><div class='btns'><a href='javascript:moreList();' class='btn'>더보기</a></div>  </td></tr>";
+    				$('#addbtn').remove();//remove btn
+    				$(content).appendTo("#table");
+    			}, error:function(request,status,error){
+    				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    				}
+    			});
+    		};
+    </script>
+    }
+    
+    <script> // (비동기)더보기 이후 게시글을 보여줄 로직 구현
+    
+		var showNum = "<%=showNum%>"; // 한 페이지에 보여줄 글 개수(고정)
+	
+        function load(id, showNum, btn) {
+            let remain = id + " .js-load:not(.active)"; // 아직 안 보여준 게시글
+            let length = $(content).length; // 남은 게시글 개수
+            let more; // 더보기 클릭 시 보여줄 게시글 개수
+            if (length > showNum) {
+                more = showNum;
+            } else { // 남은 게시글 개수가 showNum보다 적을 경우
+                more = length;
+                $(btn).hide();
+            }
+            $(remain + ":lt(" + more + ")").addClass("active");
+        }
+		
+        $(window).on('load', function () {
+        	// 초기
+            load('#js-load', showNum);
+        
+            // 더보기 버튼 클릭 시
+            $("#js-btn-wrap").on("click", function () {
+                load('#js-load', showNum, '#js-btn-wrap');
+            })
+        });
+    </script>
+    
+    <!-- 
     <script> // 더보기 이후 게시글을 보여줄 로직 구현
 		let qCount = "<%=qCount-15%>"; // 남은 질문 개수
 		var showNum = "<%=showNum%>"; // 한 페이지에 보여줄 글 개수(고정)
@@ -139,6 +213,7 @@
         }
         moreBtn.addEventListener("click", getPostList);
 	</script>
+	 -->
 
 </body>
 </html>
