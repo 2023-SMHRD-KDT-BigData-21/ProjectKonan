@@ -1,9 +1,12 @@
 package com.konan.model;
 
+import java.io.File;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+
+import com.konan.converter.ImageToBase64;
 import com.konan.database.SqlSessionManager;
 
 public class UserInfoDAO {
@@ -73,4 +76,23 @@ public class UserInfoDAO {
 		return user;
 	}
 	
+	//프사 보여주기
+	public UserInfo propicContent(String userId) {
+		SqlSession sqlSession = sqlsessionFactory.openSession(true);
+		UserInfo user = sqlSession.selectOne(userInfoMapper+"selectUser",userId);
+		sqlSession.close();
+		
+		//img : 파일의 제목.확장자 -> 지정한 경로에서 해당 파일을 가져와야 함
+		//		가지고 온 파일 -> 텍스트 형태로 변환(converter - base64 라이브러리 pom.xml에 추가)
+		//경로 사람마다 다를 삘임 뭔가
+		//찬우: C:\\workplace\\git\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\konan\\upload\\
+		File file = new File("C:\\workplace\\git\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\konan\\upload\\"+user.getPropic());
+		ImageToBase64 converter = new ImageToBase64();
+		String fileStringValue = converter.convert(file);
+		
+		user.setPropic(fileStringValue); //파일제목 -> 이미지 파일 문자열
+		System.out.println(fileStringValue);
+		
+		return user;
+	}
 }

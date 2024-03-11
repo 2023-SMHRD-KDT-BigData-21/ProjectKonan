@@ -5,26 +5,17 @@
 <%@page import="com.konan.model.UserInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- 
-	// 로그인 한 회원 정보 뽑아오기
-	UserInfo user = (UserInfo)session.getAttribute("targetInfo");
-	
-	String userId = user.getUser_id();
-	String name = user.getName();
-	String propic = user.getPropic();
-		
-	pageContext.setAttribute("userId", userId);
-	pageContext.setAttribute("name", name);
-	pageContext.setAttribute("propic", propic);
---%>
-
 <%
 	String targetId = request.getParameter("targetId");
 	pageContext.setAttribute("targetId", targetId);
 	
 	UserInfoDAO dao = new UserInfoDAO();
-	UserInfo targetInfo = dao.getUser(targetId);//
+	
+	UserInfo targetInfo = dao.propicContent(targetId);
 	pageContext.setAttribute("targetInfo",targetInfo);
+	
+	String targetPropic = targetInfo.getPropic();
+	pageContext.setAttribute("targetPropic",targetInfo.getPropic());	
 	
 	UserFollowingDAO followDao = new UserFollowingDAO();
 	List<UserFollowing> targetFollowings = followDao.getFollowings(targetId);
@@ -52,7 +43,10 @@
             <!-- 프로필 페이지 상단 유저 정보 담은 부분 -->
             <div class = "user-container shadow-div">
                 <!-- 프사 -->
-                <div class = "propic shadow-div" style="border-radius: 50%;"></div>
+                <%if(targetPropic==null){%>
+                <div class = "propic shadow-div" style="border-radius: 50%;"></div>                	
+                <%}%>
+                <div class = "propic shadow-div" style="border-radius: 50%; background-image: url('data:image/jpg;base64,${targetPropic}')"></div>
                 <!-- 이름, 아이디 -->                
                 <div class = "user-info"></div>
                     <h3 name="user_name" style="margin:0px; padding:0px;">${targetInfo.getName()}</h3>

@@ -32,7 +32,7 @@
             </li>
         	<%}%>
             <li class="list active_header">
-                <a href="Main.jsp">
+                <a href="Main.js p">
                     <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                     <span class="title">메인페이지</span>
                 </a>

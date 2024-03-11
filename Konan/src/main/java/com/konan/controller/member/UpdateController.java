@@ -52,8 +52,8 @@ public class UpdateController extends HttpServlet {
 		if(res>0) {
 			userInfo = dao.getUser(user_id);
 			session.setAttribute("userInfo", userInfo);
-			response.sendRedirect("Profile.jsp");
+			response.sendRedirect("Profile.jsp?targetId="+user_id);
 		}else
-			response.sendRedirect("Profile.jsp");
+			response.sendRedirect("Profile.jsp?targetId="+user_id);
 	}
 }
