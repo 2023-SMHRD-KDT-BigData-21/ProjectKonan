@@ -51,7 +51,7 @@ public class PostInsertController extends HttpServlet {
 
 		
 		// 작성된 글 보여주는 페이지로 넘겨주기
-		BigDecimal postId = dao.RecentPost(userId);
+		BigDecimal postId = dao.recentPost(userId);
 		
 		if(postType.equals("C"))
 			response.sendRedirect("CommuContent.jsp?idx="+postId);

@@ -16,8 +16,8 @@ public class Post {
 	private String title;
 	private String post_content;
 	private String is_rewrite = "F"; //포스팅 수정시만
-	private Date write_date;
-	private int report_cnt = 0; //신고시
+	private java.sql.Timestamp write_date;
+	private BigDecimal report_cnt = BigDecimal.valueOf(0); //신고시
 	private String is_adopted = "F"; //채택 포스팅 채택시만
 	private String is_anonymous = "F"; //질문 포스팅 작성시만
 	
@@ -33,7 +33,7 @@ public class Post {
 	}
 	
 	// 답변 포스팅
-	public Post(String postType, BigDecimal questionId, String userId, String title, String postContent, int reportCnt) {
+	public Post(String postType, BigDecimal questionId, String userId, String title, String postContent, BigDecimal reportCnt) {
 		this.post_type = postType;
 		this.question_id = questionId;
 		this.user_id = userId;

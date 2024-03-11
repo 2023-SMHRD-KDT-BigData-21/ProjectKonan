@@ -16,7 +16,7 @@ public class PostDAO {
 	
 	//공통
 	// 특정 포스팅 조회
-	public Post PostContent(BigDecimal post_id) {
+	public Post postContent(BigDecimal post_id) {
 		SqlSession sqlSession = sessionFactory.openSession(true);
 		Post post = sqlSession.selectOne(postMapper+"select", post_id);
 		sqlSession.close();
@@ -24,7 +24,7 @@ public class PostDAO {
 	}
 	
 	// 최근 작성 포스팅 조회(작성,수정 후 보여줄 상세페이지)
-	public BigDecimal RecentPost(String user_id) {
+	public BigDecimal recentPost(String user_id) {
 		SqlSession sqlSession = sessionFactory.openSession(true);
 		BigDecimal post_id = sqlSession.selectOne(postMapper+"selectRecent", user_id);
 		sqlSession.close();
@@ -33,9 +33,9 @@ public class PostDAO {
 	
 	
 	
-	//QnaList
+	//Main, 
 	// 질문 포스팅 목록 조회
-	public List<Post> QpostList() {
+	public List<Post> qpostList() {
 		SqlSession sqlSession = sessionFactory.openSession(true);
 		List<Post> resultList = sqlSession.selectList(postMapper+"selectQpost");
 		sqlSession.close();
