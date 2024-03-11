@@ -37,11 +37,11 @@
 	<%@ include file="Header.jsp" %>
     <div class = "container">
         <!-- 프로필 컨테이터 -->
-        <div class = "profile-container">
+        <div class = "profile-container shadow-div">
             <div class = "profile-background"></div>
 
             <!-- 프로필 페이지 상단 유저 정보 담은 부분 -->
-            <div class = "user-container shadow-div">
+            <div class = "user-container" style="border-top-left-radius: 0 0;border-top-right-radius: 0 0;">
                 <!-- 프사 -->
                 <!-- 프사가 없을 때 -->
                 <%if(targetPropic==null){%>
@@ -52,7 +52,7 @@
                 <!-- 이름, 아이디 -->                
                 <div class = "user-info"></div>
                     <h3 name="user_name" style="margin:0px; padding:0px;">${targetInfo.getName()}</h3>
-                    <span style="font-size:0.8em;">@<span name="user_id">${targetInfo.getUser_id()}</span></span>
+                    <span style="font-size:0.8em;">@<span name="user_id">${targetInfo.getUser_id()}</span></span>  
 	        	<!-- 팔로잉/팔로워 버튼 -->
 	            <div class = "relation-container" style="text-decoration: none;">
 	                <a href="Following.jsp?targetId=${targetId}">
