@@ -29,8 +29,16 @@ public class FollowController extends HttpServlet {
 		UserFollowingDAO dao = new UserFollowingDAO();
 		Integer result = (Integer)dao.isFollowing(userFollowing);
 		System.out.println("result: " + result);
+		
 		if(result!= 0) { //사용할 수 없는 아이디 (NN)
 			System.out.println("팔로잉 중");
+			int rownum = dao.unfollow(userFollowing);
+			if (rownum >0){
+				System.out.println("row num: "+rownum);
+				System.out.println("언팔로우");
+			}else {
+				System.out.println("언팔로우 실패");				
+			}//else			
 		}else { //사용할 수 있는 아이디 (YY)
 			System.out.println("팔로잉하지않음");
 			int rownum = dao.following(userFollowing);

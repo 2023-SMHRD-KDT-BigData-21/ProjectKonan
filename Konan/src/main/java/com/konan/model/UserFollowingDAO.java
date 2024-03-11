@@ -11,7 +11,7 @@ public class UserFollowingDAO {
 	SqlSessionFactory sqlsessionFactory = SqlSessionManager.getSqlSessionFactory();
 	String UserFollowingMapper= "com.konan.database.UserFollowingMapper.";
 	
-	//내가 팔로잉하고 있는 사람 목록
+	//팔로잉
 	public int following(UserFollowing userFollowing){
 		System.out.println("UserFollowingDAO > Following");
 		SqlSession sqlsession = sqlsessionFactory.openSession(true);
@@ -20,6 +20,16 @@ public class UserFollowingDAO {
 		sqlsession.close();
 		return rownum;	
 	}
+	
+	//언팔로잉
+	public int unfollow(UserFollowing userFollowing){
+		System.out.println("UserFollowingDAO > unfollow");
+		SqlSession sqlsession = sqlsessionFactory.openSession(true);
+	
+		int rownum = sqlsession.delete(UserFollowingMapper+"unfollow", userFollowing);
+		sqlsession.close();
+		return rownum;	
+	}	
 	
 	//내가 팔로잉하고 있는 사람 목록
 	public List<UserFollowing> getFollowings(String userId){
@@ -39,6 +49,7 @@ public class UserFollowingDAO {
 		sqlsession.close();
 		return followers;	
 	}
+	
 	//내가 팔로잉하고있는지 확인
 	public int isFollowing(UserFollowing userFollowing) {
 		System.out.println("UserFollowingDAO > isFollowing");

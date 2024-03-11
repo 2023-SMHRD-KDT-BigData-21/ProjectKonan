@@ -78,13 +78,21 @@
 		       </div>	       
 	       <%}else{%>
 	       	   <!-- following_btn은 자바스크립트 함수를 위해 만듦! -->
-	       	   <button id="following_btn" class="fix-btn" type="button">팔로잉</button>
-	       <%}
-	       }else{
+	       	   <%
+	       	   UserFollowing userFollowing = new UserFollowing(user.getUser_id(),targetId);
+	       	   if(followDao.isFollowing(userFollowing)>0){%>
+	       	      <button id="following_btn" class="fix-btn active-btn" type="button">팔로잉</button>
+	       <%}//if
+	       	   else{ %>
+	       	      <button id="following_btn" class="fix-btn" type="button">팔로우</button>	       		   
+	       	 <%}
+	       	   }//else
+	       }//if
+	       else{
 	       %>
 	       	   <!-- following_btn은 자바스크립트 함수를 위해 만듦! -->
 	       	   <button id="following_btn" class="fix-btn" type="button">팔로잉</button>
-	       <%}%>
+	       <%}//else%>
 	       <!-- 회원 정보 수정 -->
 	       
 	       
@@ -129,7 +137,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script src="./js/Profile.js"></script>
     <script> 
-    	//팔로잉 버튼 누르기
+    	//팔로잉 버튼 누르기 
     	let btn = document.getElementById("following_btn");
     	btn.addEventListener('click', function() {
     		const url = new URL(window.location.href);
@@ -142,6 +150,11 @@
     		
     		console.log("눌림!");
     		this.classList.toggle('active-btn');
+    		
+    		//if(){
+    			// 팔로잉 팔로우 글자 바꾸기 클래스 유무로 
+    		//}
+    		
 			$.ajax({    
 				type : "post", // 타입 (get, post, put 등등)    
 				url : "FollowController", // 요청할 서버url    
