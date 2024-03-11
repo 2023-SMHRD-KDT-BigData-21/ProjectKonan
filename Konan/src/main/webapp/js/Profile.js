@@ -15,3 +15,5 @@ for(let i=0;i<tabsPane.length;i++){
     tabIndicator.style.left = `calc(calc(100% / 3) * ${i})`;
   });
 }
+
+

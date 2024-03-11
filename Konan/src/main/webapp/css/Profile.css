@@ -1,4 +1,6 @@
 /* 상단부 유저 정보 넣는 곳 */
+
+
 .profile-background{
 	border-top-left-radius: 15px 15px;
 	border-top-right-radius: 15px 15px;
@@ -11,6 +13,7 @@
 }
 .user-container{
     padding: 40px;
+    padding-top: 30px;
 }
 .propic{
     /* 프사 지정한 사용자면 db상 주소로 보내주기 */
@@ -28,25 +31,11 @@
     left: 40px;
     position: absolute;
 }
-.update_btn{
-    background-color: transparent;
-    background-image: url(../img/modifyIcon.png);
-    background-repeat : no-repeat;
-    background-size : cover;
-    position: absolute;
-
-    border: none;
-    width: 20px;
-    height: 20px;
-    top: 325px;
-    left: 150px;
-}
-
 .user-info{
     width: fit-content;
     height: fit-content;
 
-    padding-top: 30px;
+    padding-top: 20px;
 
     text-align: left;
     position: relative;
@@ -66,6 +55,25 @@
 	border:0px;
 	padding: 0;
 	background-color: white;
+}
+
+.fix-btn {
+	position: absolute;
+	top: 250px;
+	right:40px;
+	
+	border:0px;
+	width: 100px;
+	height: 30px;
+	
+	padding: 0px;
+	border-radius: 20px;
+	background-color: white;
+  	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.fix-btn:active {
+    box-shadow: inset 1px 1px 2px  rgba(0, 0, 0, 0.1), inset -1px -1px 2px white;
 }
 
 /*게시글 컨테이너*/

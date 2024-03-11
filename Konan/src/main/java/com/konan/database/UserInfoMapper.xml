@@ -31,4 +31,14 @@ USER_ID, USER_PW, EMAIL, NAME, PHONE_NUMBER, REGION, GENDER, INDATE, PROPIC, OUT
 	<select id="selectUser" parameterType="String" resultType="UserInfo">
         select * from user_info where user_id=#{user_id} 
     </select>
+    
+    <update id="update" parameterType="UserInfo">
+    	UPDATE user_info
+      	SET USER_PW = #{user_pw},
+          EMAIL = #{email},
+          NAME = #{name},
+          PHONE_NUMBER = #{phone_number},
+          propic = #{propic}
+       	WHERE user_id = #{user_id}
+    </update>
 </mapper>

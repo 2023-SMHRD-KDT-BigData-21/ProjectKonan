@@ -21,6 +21,7 @@
 <%
 	String targetId = request.getParameter("targetId");
 	pageContext.setAttribute("targetId", targetId);
+	
 	UserInfoDAO dao = new UserInfoDAO();
 	UserInfo targetInfo = dao.getUser(targetId);//
 	pageContext.setAttribute("targetInfo",targetInfo);
@@ -45,19 +46,16 @@
 	<%@ include file="Header.jsp" %>
     <div class = "container">
         <!-- 프로필 컨테이터 -->
-        <div class = "profile-contain">
+        <div class = "profile-container">
             <div class = "profile-background"></div>
 
             <!-- 프로필 페이지 상단 유저 정보 담은 부분 -->
-            <div class = "user-container">
+            <div class = "user-container shadow-div">
                 <!-- 프사 -->
-                <div class = "propic"></div>
-                <!-- 프사수정 -->
-                <button class = "update_btn"></button>
+                <div class = "propic shadow-div" style="border-radius: 50%;"></div>
                 <!-- 이름, 아이디 -->                
                 <div class = "user-info"></div>
-                    <strong name="user_name">${targetInfo.getName()}</strong>
-                    <br>
+                    <h3 name="user_name" style="margin:0px; padding:0px;">${targetInfo.getName()}</h3>
                     <span>@<span name="user_id">${targetInfo.getUser_id()}</span></span>
 	        	<!-- 팔로잉/팔로워 버튼 -->
 	            <div class = "relation-container" style="text-decoration: none;">
@@ -68,11 +66,32 @@
 	                <a href="Follower.jsp?targetId=${targetId}">
 	                	<button class="relation-btn">팔로워&nbsp;<span name="follower">${targetFollowers.size()}</span></button>
 	                </a>
-	            </div>
-           </div>
+	       </div><!-- user-container -->
+	       
+	       <!-- user = target00 -->
+	       
+	       <%
+	       if(user != null){
+	           if(user.getUser_id().equals(targetId)){%>
+		       <button onclick="openModal()" class="fix-btn">프로필 수정</button>
+		       <div id="modal" style="display:none; z-index:1;">
+		           <form action="UpdateController" method="post" enctype="multipart/form-data">
+                        <input type="file" name="propic">
+                        <button type="submit" class="btn btn-primary">사진변경</button>
+                   </form>
+		       </div>	       
+	       <%  }
+	       }else{
+	       %>
+	       	   <button class="fix-btn" type="button">팔로잉</button>
+	       <%}%>
+	       <!-- 회원 정보 수정 -->
+	       
+	       
+       </div><!-- profile-contain -->
 	        	
 	</div>
-            <!-- 만일 자신의 프로필이라면 visibility을 hidden에서 visible로 변경 -->
+    <!-- 만일 자신의 프로필이라면 visibility을 hidden에서 visible로 변경 -->
             
 
             <br>
@@ -109,7 +128,7 @@
 	</div>
 </div>
 	<script src="./js/Profile.js"></script>
-    <script>
+    <script> 
 		function showPostsByType(){
 			
 			let post_type = document.getElementById("post_type")//post 아이디로 가져옴
@@ -133,6 +152,18 @@
 					}
 			})
 		}
+		
+		// 모달 열기
+		function openModal() {
+			
+		    document.getElementById("modal").style.display = "block";  
+		  }
+		// 모달 닫기
+		function closeModal() {
+		    var modal = document.getElementById("modal");
+		    modal.style.display = "none";
+		  }
+		  
     </script>
 </body>
 </html>
