@@ -41,7 +41,7 @@
 	//int btnNum = qCount / showNum; // 더보기 버튼이 몇 번 나올지
 	//int first = btnNum==0?qCount:showNum; // 첫번째 페이지에서 보여줄 글 개수
 	
-	List<Post> list = dao.QpostList();
+	//List<Post> list = dao.qpostList();
 %>
 <form action="#">
     <div class="container">

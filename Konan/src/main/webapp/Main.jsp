@@ -61,7 +61,6 @@
 	<%} %>
 </div>
 
-<form action="#">
     <div class="container">
         <div class="search-container">
             <div class="search-icon"></div>
@@ -73,7 +72,7 @@
             <div class="content-box"></div>
 
             <!-- 글쓰기 버튼 -->
-            <div class="post-button">글쓰기</div>
+            <div class="post-button"><a href="QnaForm.jsp">글쓰기</a></div>
         </div>
 
         <div class="waiting-questions-container">
@@ -105,11 +104,10 @@
                 <span>더 보기</span>
             </button>
 		</div>
-    </div>
-</form>
+	</div>
 
    	<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js" /></script>
-    
+    <!-- 
     <script> // (동기)더보기 이후 게시글을 보여줄 로직 구현
     	function moreList(){
     		$.ajax({
@@ -139,14 +137,15 @@
     		};
     </script>
     }
-    
+     -->
+    <!-- 
     <script> // (비동기)더보기 이후 게시글을 보여줄 로직 구현
     
 		var showNum = "<%=showNum%>"; // 한 페이지에 보여줄 글 개수(고정)
 	
         function load(id, showNum, btn) {
             let remain = id + " .js-load:not(.active)"; // 아직 안 보여준 게시글
-            let length = $(content).length; // 남은 게시글 개수
+            let length = $(remain).length; // 남은 게시글 개수
             let more; // 더보기 클릭 시 보여줄 게시글 개수
             if (length > showNum) {
                 more = showNum;
@@ -166,13 +165,15 @@
                 load('#js-load', showNum, '#js-btn-wrap');
             })
         });
+        
     </script>
+     -->
     
     <!-- 
     <script> // 더보기 이후 게시글을 보여줄 로직 구현
-		let qCount = "<%=qCount-15%>"; // 남은 질문 개수
-		var showNum = "<%=showNum%>"; // 한 페이지에 보여줄 글 개수(고정)
-		let btnNum = "<%=btnNum%>"; // 더보기 버튼이 몇 번 나올지
+		let qCount = "qCount-15%>"; // 남은 질문 개수
+		var showNum = "showNum%>"; // 한 페이지에 보여줄 글 개수(고정)
+		let btnNum = "btnNum%>"; // 더보기 버튼이 몇 번 나올지
     	let now;
 		
     	let more-btn = document.getElementById("more-btn");

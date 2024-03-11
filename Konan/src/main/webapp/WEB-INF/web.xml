@@ -35,12 +35,6 @@
   	<servlet-class>com.konan.controller.member.IdCheckController</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>BoardInsertController</servlet-name>
-  	<display-name>BoardInsertController</display-name>
-  	<description></description>
-  	<servlet-class>com.konan.controller.BoardInsertController</servlet-class>
-  </servlet>
-  <servlet>
   	<servlet-name>AcceptController</servlet-name>
   	<display-name>AcceptController</display-name>
   	<description></description>
@@ -65,22 +59,22 @@
   	<servlet-class>com.konan.controller.boardreact.ReportController</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>BoardInsert</servlet-name>
-  	<display-name>BoardInsert</display-name>
+  	<servlet-name>PostInsertController</servlet-name>
+  	<display-name>PostInsertController</display-name>
   	<description></description>
-  	<servlet-class>com.konan.controller.boardview.BoardInsert</servlet-class>
+  	<servlet-class>com.konan.controller.postview.PostInsertController</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>BoardUpdateController</servlet-name>
-  	<display-name>BoardUpdateController</display-name>
+  	<servlet-name>PostUpdateController</servlet-name>
+  	<display-name>PostUpdateController</display-name>
   	<description></description>
-  	<servlet-class>com.konan.controller.boardwrite.BoardUpdateController</servlet-class>
+  	<servlet-class>com.konan.controller.postwrite.PostUpdateController</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>BoardDeleteController</servlet-name>
-  	<display-name>BoardDeleteController</display-name>
+  	<servlet-name>PostDeleteController</servlet-name>
+  	<display-name>PostDeleteController</display-name>
   	<description></description>
-  	<servlet-class>com.konan.controller.boardwrite.BoardDeleteController</servlet-class>
+  	<servlet-class>com.konan.controller.postwrite.PostDeleteController</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>AdoptController</servlet-name>
@@ -130,12 +124,6 @@
   	<description></description>
   	<servlet-class>com.konan.controller.member.JoinAsDetectiveController</servlet-class>
   </servlet>
-  <servlet>
-  	<servlet-name>Post</servlet-name>
-  	<display-name>Post</display-name>
-  	<description></description>
-  	<servlet-class>com.konan.controller.postwrite.Post</servlet-class>
-  </servlet>
   <servlet-mapping>
   	<servlet-name>JoinController</servlet-name>
   	<url-pattern>/JoinController</url-pattern>
@@ -177,16 +165,16 @@
   	<url-pattern>/ReportController</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>BoardInsert</servlet-name>
-  	<url-pattern>/BoardInsert</url-pattern>
+  	<servlet-name>PostInsertController</servlet-name>
+  	<url-pattern>/PostInsertController</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>BoardUpdateController</servlet-name>
-  	<url-pattern>/BoardUpdateController</url-pattern>
+  	<servlet-name>PostUpdateController</servlet-name>
+  	<url-pattern>/PostUpdateController</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>BoardDeleteController</servlet-name>
-  	<url-pattern>/BoardDeleteController</url-pattern>
+  	<servlet-name>PostDeleteController</servlet-name>
+  	<url-pattern>/PostDeleteController</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>AdoptController</servlet-name>

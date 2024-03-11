@@ -37,7 +37,7 @@ public class PostUpdateController extends HttpServlet {
 			post = new Post(postType,userId,title,postContent,isAnonymous);
 		}else if(postType.equals("A")) { //답변 포스팅 시
 			BigDecimal questionId = BigDecimal.valueOf(Double.valueOf(request.getParameter("questionId")));
-			post = new Post(postType,questionId,userId,title,postContent,0);
+			post = new Post(postType,questionId,userId,title,postContent,BigDecimal.valueOf(0));
 		}
 		else { //커뮤니티 포스팅일 경우
 			post = new Post(postType,userId,title,postContent);

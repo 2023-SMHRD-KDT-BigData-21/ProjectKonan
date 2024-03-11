@@ -21,6 +21,9 @@
 	                <input type="text" name="postContent" class="user-question-content" placeholder="본문입력">
 	            </div>
 	        </div>
+	        
+	        <!-- 질문하기 버튼 -->
+	        <button type="submit" class="question-btn">질문등록</button>
 	        </form>
 	
 	        <!-- 사진추가 박스 
@@ -40,9 +43,6 @@
 	        	<input type="text" id="tag">
 	        </form>
 	        -->
-	           
-	        <!-- 질문하기 버튼 -->
-	        <button type="submit" class="question-btn">질문등록</button>
 	</div>
 </body>
 </html>
