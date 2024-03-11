@@ -79,11 +79,19 @@ public class PostDAO {
 	
 	
 
-	//QnaForm,
-	// 포스팅 작성
+	//QnaForm, CommuForm
+	// (C,Q)포스팅 작성
 	public int insert(Post post) {
 		SqlSession sqlSession = sessionFactory.openSession(true);
 		int rownum = sqlSession.insert(postMapper+"insert", post);
+		sqlSession.close();
+		return rownum;
+	}
+	
+	// (A)포스팅 작성
+	public int insertAnswer(Post post) {
+		SqlSession sqlSession = sessionFactory.openSession(true);
+		int rownum = sqlSession.insert(postMapper+"insertAnswer", post);
 		sqlSession.close();
 		return rownum;
 	}

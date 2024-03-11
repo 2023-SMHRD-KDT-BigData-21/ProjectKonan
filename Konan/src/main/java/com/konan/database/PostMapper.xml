@@ -10,8 +10,8 @@
 	</select>
 	
 	<!-- 최근 작성 포스팅 조회(작성,수정 후 보여줄 상세페이지) -->
-	<select id="selectRecent" parameterType="BigDecimal" resultType="Post">
-		select max(post_id) where user_id=#{user_id}
+	<select id="selectRecent" parameterType="String" resultType="BigDecimal">
+		select max(post_id) from post where user_id=#{user_id}
 	</select>
 	
 	
@@ -49,6 +49,10 @@
 	<!-- QnaForm, -->
 	<!-- 포스팅 작성 -->
 	<insert id="insert" parameterType="Post">
+		insert into post values(post_id_seq.NEXTVAL, (null), #{post_type}, #{user_id}, #{title}, #{post_content}, #{is_rewrite}, sysdate, #{report_cnt}, #{is_adopted}, #{is_anonymous})
+	</insert>
+	
+	<insert id="insertAnswer" parameterType="Post">
 		insert into post values(post_id_seq.NEXTVAL, #{question_id}, #{post_type}, #{user_id}, #{title}, #{post_content}, #{is_rewrite}, sysdate, #{report_cnt}, #{is_adopted}, #{is_anonymous})
 	</insert>
 	

@@ -17,21 +17,6 @@
 	<link rel="stylesheet" href="">
     <link rel="stylesheet" href="">
     
-    <style>
-        .js-load {
-            display: none;
-        }
-        .js-load.active {
-            display: block;
-        }
-        .js-load:after {
-            display: none;
-        }
-        .btn-wrap {
-            display: block;
-        }
-    </style>
-    
 </head>
 
 <body>
@@ -40,10 +25,12 @@
 	PostDAO dao = new PostDAO();
 	
 	int qCount = dao.qpostCount(); // 총 질문 개수
-	int showNum = 15; // 한 페이지에 보여줄 글 개수(고정)
+	int showNum = 5; // 한 페이지에 보여줄 글 개수(고정)
 	
 	int btnNum = qCount / showNum; // 더보기 버튼이 몇 번 나올지
 	int first = btnNum==0?qCount:showNum; // 첫번째 페이지에서 보여줄 글 개수
+	
+	int now; //남은 보여줄 글 개수
 	
 	List<Post> list = dao.qpostList();
 %>
@@ -57,7 +44,7 @@
 	<%}else{%>
 		<%=user.getName() %>
 		<a href="LogoutController"><button>로그아웃</button></a>
-		<a href="Profile.jsp"><button>프로필</button></a>
+		<a href="Profile.jsp?targetId=${userId}"><button>프로필</button></a>
 	<%} %>
 </div>
 
@@ -78,16 +65,16 @@
         <div class="waiting-questions-container">
             <div class="question-container-cover" style="border-bottom: 1px solid;">답변을 기다리는 질문</div>
             <%
-            	for(int i=0; i<qCount; i++){
+            	for(int i=0; i<first; i++){
             		Post post=list.get(i);
             %>
-          		<div class="question-container-inside js-load" >
+          		<div class="question-container-inside" >
           		    <div class="question-title">
           		    <a href="CommuContent.jsp?idx=<%=post.getPost_id()%>"><%=post.getTitle() %>
           		    </a></div>
           		    <div class="question-content">
           		    <%if(post.getPost_content().length()>30){ 
-          		    	out.print(post.getPost_content().substring(0,30));
+          		    	out.print(post.getPost_content().substring(0,30)+"...");
           		    	}else{
           		    	out.print(post.getPost_content());
           		    	}%>
@@ -99,23 +86,52 @@
                 </div>
             <%}%>
         </div>
+        <%if(first==showNum){ 
+ 			       
+        %>
         <div>
-         	<button id="js-btn-wrap" class="more">
+         	<button class="more">
                 <span>더 보기</span>
             </button>
 		</div>
+		<%} %>
 	</div>
 
    	<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js" /></script>
-    <!-- 
+
+	<script>
+		function idCheck(){
+			var input = document.getElementById("input");
+			console.log(input.value)
+					
+			$.ajax({
+				type : "get", //요청 방식
+				data : {"id":input.value}, //요청 데이터
+				url : "IdCheckController", //요청 경로
+				dataType : "text", //응답받을 데이터 형식("json")
+				success : function(data){ //data : 서버에서 응답한 데이터
+					if(data=="YY"){ //사용할 수 있는 아이디
+						$("#sp").text("사용할 수 있는 아이디입니다.")
+					}else //"NN" 사용할 수 없는 아이디
+						$("#sp").text("사용할 수 없는 아이디입니다.")
+				},
+				error : function(){
+					console.log("통신 실패!")
+				}
+			})
+		}
+	</script>
+	
+	
     <script> // (동기)더보기 이후 게시글을 보여줄 로직 구현
     	function moreList(){
     		$.ajax({
-    			url : "/admin/jsonlist",
-    			type : "POST",
+    			type : "get",
+    			data : {"postId",},
+    			url : "PagingController"
     			cache : false,
-    			dataType: 'json',
-    			data : "conectType="+conectType +"&eDate="+eDate+"&sDate="+sDate+"&codeId="+codeId+"&limit="+limit,
+    			dataType: 'text',
+    				},
     			success : function(data){
     				console.log(data);
     				var content="";
@@ -137,37 +153,6 @@
     		};
     </script>
     }
-     -->
-    <!-- 
-    <script> // (비동기)더보기 이후 게시글을 보여줄 로직 구현
-    
-		var showNum = "<%=showNum%>"; // 한 페이지에 보여줄 글 개수(고정)
-	
-        function load(id, showNum, btn) {
-            let remain = id + " .js-load:not(.active)"; // 아직 안 보여준 게시글
-            let length = $(remain).length; // 남은 게시글 개수
-            let more; // 더보기 클릭 시 보여줄 게시글 개수
-            if (length > showNum) {
-                more = showNum;
-            } else { // 남은 게시글 개수가 showNum보다 적을 경우
-                more = length;
-                $(btn).hide();
-            }
-            $(remain + ":lt(" + more + ")").addClass("active");
-        }
-		
-        $(window).on('load', function () {
-        	// 초기
-            load('#js-load', showNum);
-        
-            // 더보기 버튼 클릭 시
-            $("#js-btn-wrap").on("click", function () {
-                load('#js-load', showNum, '#js-btn-wrap');
-            })
-        });
-        
-    </script>
-     -->
     
     <!-- 
     <script> // 더보기 이후 게시글을 보여줄 로직 구현

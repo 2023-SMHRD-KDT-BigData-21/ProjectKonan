@@ -21,7 +21,7 @@ public class PostInsertController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession(); 
 		
-		UserInfo user = (UserInfo)session.getAttribute("loginInfo");
+		UserInfo user = (UserInfo)session.getAttribute("userInfo");
 		
 		String postType = request.getParameter("postType");
 		String userId = user.getUser_id();
@@ -49,13 +49,14 @@ public class PostInsertController extends HttpServlet {
 		else
 			System.out.println("작성 실패...");
 
+		response.sendRedirect("Main.jsp");
 		
 		// 작성된 글 보여주는 페이지로 넘겨주기
 		BigDecimal postId = dao.recentPost(userId);
 		
-		if(postType.equals("C"))
-			response.sendRedirect("CommuContent.jsp?idx="+postId);
-		else
-			response.sendRedirect("QnaContent.jsp?idx="+postId);
+//		if(postType.equals("C"))
+//			response.sendRedirect("CommuContent.jsp?idx="+postId);
+//		else
+//			response.sendRedirect("QnaContent.jsp?idx="+postId);
 	}
 }

@@ -14,8 +14,8 @@
 	        <div class="question-container">
 	            <div class="user-question">질문 작성</div>
 	            <div class="user-question-container">
-	            	<input type="radio" name="isAnonymous"> 실명
-	            	<input type="radio" name="isAnonymous"> 익명
+	            	<input type="radio" name="isAnonymous" value="F"> 실명
+	            	<input type="radio" name="isAnonymous" value="T"> 익명
 	            	<input type="hidden" name="postType" value="Q">
 	                <input type="text" name="title" class="user-question-title" placeholder="제목입력" style="border-bottom: 1px solid;">
 	                <input type="text" name="postContent" class="user-question-content" placeholder="본문입력">
