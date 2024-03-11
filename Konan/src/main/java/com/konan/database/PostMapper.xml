@@ -3,55 +3,57 @@
 <mapper namespace="com.konan.database.PostMapper">
 	
 	
-	<!-- 공통 -->
+	<!-- 공통 조회 기능 -->
 	<!-- 특정 포스팅 조회 -->
 	<select id="select" parameterType="BigDecimal" resultType="Post">
 		select * from post where post_id=#{post_id}
 	</select>
 	
-	<!-- 최근 작성 포스팅 조회(작성,수정 후 보여줄 상세페이지) -->
+	<!-- 작성자의 최근 작성 포스팅 조회(작성,수정 후 보여줄 상세페이지) -->
 	<select id="selectRecent" parameterType="String" resultType="BigDecimal">
 		select max(post_id) from post where user_id=#{user_id}
 	</select>
 	
-	
-	<!-- Main -->
-	<!-- 질문 포스팅 목록 조회 -->
-	<select id="selectQpost" resultType="Post">
-		select * from post where post_type='Q'
+	<!-- 타입별 포스팅 개수 세기 (최신순 정렬) -->
+	<select id="selectMaxRow" parameterType="String" resultType="int">
+		select max(rownum) from post where post_type=#{post_type}
 	</select>
 	
-	<!-- 질문 포스팅 개수 세기 -->
-	<select id="qpostCount" resultType="int">
-		select count(*) from post where post_type='Q'
+	<!-- 타입별 포스팅 목록 조회 -->
+	<select id="selectList" parameterType="String" resultType="Post">
+		select * from post where post_type=#{post_type}
+	</select>
+	
+	<!-- 더보기 버튼으로 보여줄 포스팅 목록 조회 -->
+	<select id="selectMore" parameterType="java.util.Map" resultType="java.util.Map">
+		select * from (select *, rownum as rnum from
+		(select * from post where post_type=#{post_type})
+		where rownum &lt;= #{start} + #{cnt})
+		where rnum > #{start}
+	</select>
+
+
+
+	<!-- Main -->
+	<!-- 더보기 버튼으로  -->
+	<select id="">
+		select * from(select * from post where post_type=#{post_type}) where rownum
 	</select>
 	
 	<!-- 답변 포스팅 개수 세기 -->
-	<select id="ansCount" parameterType="BigDecimal" resultType="int">
-		select count(*) from post where question_id={question_id}
-	</select>
-	
-	
-	
-	<!-- CommuList -->
-	<!-- 커뮤니티 포스팅 목록 조회 -->
-	<select id="selectPost" resultType="Post">
-		select * from post where post_type='C'
-	</select>
-	
-	<!-- 커뮤니티 포스팅 개수 세기 -->
-	<select id="postCount" resultType="int">
-		select count(*) from post where post_type='C'
-	</select>
-	
+    <select id="ansCount" parameterType="BigDecimal" resultType="int">
+        select count(*) from post where question_id={question_id}
+    </select>
+
 
 	
-	<!-- QnaForm, -->
-	<!-- 포스팅 작성 -->
+	<!-- QnaForm, CommuForm -->
+	<!-- (C,Q)포스팅 작성 -->
 	<insert id="insert" parameterType="Post">
 		insert into post values(post_id_seq.NEXTVAL, (null), #{post_type}, #{user_id}, #{title}, #{post_content}, #{is_rewrite}, sysdate, #{report_cnt}, #{is_adopted}, #{is_anonymous})
 	</insert>
 	
+	<!-- (A)포스팅 작성 -->
 	<insert id="insertAnswer" parameterType="Post">
 		insert into post values(post_id_seq.NEXTVAL, #{question_id}, #{post_type}, #{user_id}, #{title}, #{post_content}, #{is_rewrite}, sysdate, #{report_cnt}, #{is_adopted}, #{is_anonymous})
 	</insert>

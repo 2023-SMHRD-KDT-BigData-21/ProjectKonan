@@ -24,15 +24,15 @@
 <%
 	PostDAO dao = new PostDAO();
 	
-	int qCount = dao.qpostCount(); // 총 질문 개수
+	int qCount = dao.maxRow("Q"); // 총 질문 개수
 	int showNum = 5; // 한 페이지에 보여줄 글 개수(고정)
 	
 	int btnNum = qCount / showNum; // 더보기 버튼이 몇 번 나올지
 	int first = btnNum==0?qCount:showNum; // 첫번째 페이지에서 보여줄 글 개수
 	
-	int now; //남은 보여줄 글 개수
+	int now = qCount; //남은 보여줄 글 개수
 	
-	List<Post> list = dao.qpostList();
+	List<Post> list = dao.postList("Q");
 %>
 
 <div class="container">
@@ -65,7 +65,7 @@
         <div class="waiting-questions-container">
             <div class="question-container-cover" style="border-bottom: 1px solid;">답변을 기다리는 질문</div>
             <%
-            	for(int i=0; i<first; i++){
+            	for(int i=qCount-1; i>qCount-6; i--){
             		Post post=list.get(i);
             %>
           		<div class="question-container-inside" >
@@ -73,8 +73,8 @@
           		    <a href="CommuContent.jsp?idx=<%=post.getPost_id()%>"><%=post.getTitle() %>
           		    </a></div>
           		    <div class="question-content">
-          		    <%if(post.getPost_content().length()>30){ 
-          		    	out.print(post.getPost_content().substring(0,30)+"...");
+          		    <%if(post.getPost_content().length()>50){ 
+          		    	out.print(post.getPost_content().substring(0,30)+"⋯");
           		    	}else{
           		    	out.print(post.getPost_content());
           		    	}%>
@@ -87,10 +87,10 @@
             <%}%>
         </div>
         <%if(first==showNum){ 
- 			       
+        	now -= 15;
         %>
         <div>
-         	<button class="more">
+         	<button id="morebtn">
                 <span>더 보기</span>
             </button>
 		</div>
@@ -98,7 +98,51 @@
 	</div>
 
    	<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js" /></script>
+	
+	<script>
+	moreList();	
+	function moreList() {
+ 
+		const questionContainers = document.querySelectorAll('.question-container-inside');
+		var startNum = questionContainers.length+1; //더보기 전 게시글 수를 알아내기 위해서 해당 div의 length를 구함.
+		//console.log("startNum", startNum);
+		
+    	var addListHtml = "";  
+    	console.log("startNum", startNum); //콘솔로그로 startNum에 값이 들어오는지 확인
+ 
+     	$.ajax({
+        	url : "/study/getfilmList",
+        	type : "post",
+        	dataType : "json",
+        	data : {"startNum":startNum},
+        
+        	success : function(data) {
+            	if(data.length < 10){
+                	$("#addBtn").remove();   // 더보기 버튼을 div 클래스로 줘야 할 수도 있음
+            	}else{
+            	var addListHtml ="";
+            	if(data.length > 0){
+                
+                	for(var i=0; i<data.length;i++) {
+                    var idx = Number(startNum)+Number(i)+1;   
+                    // 글번호 : startNum 이  10단위로 증가되기 때문에 startNum +i (+1은 i는 0부터 시작하므로 )
+                    addListHtml += "<tr>";
+                    addListHtml += "<td>"+ idx + "</td>";
+                    addListHtml += "<td>"+ data[i].title + "</td>";
+                    addListHtml += "<td>"+ data[i].description + "</td>";
+                    addListHtml += "</tr>";
+                }
+                $("#listBody").append(addListHtml);
+            }
+            }
+        }
+    });
+ 
+}
+	</script>
+	
 
+<!-- 
 	<script>
 		function idCheck(){
 			var input = document.getElementById("input");
@@ -144,7 +188,7 @@
     						"</tr>";
     						}
     				content+="<tr id='addbtn'><td colspan='5'><div class='btns'><a href='javascript:moreList();' class='btn'>더보기</a></div>  </td></tr>";
-    				$('#addbtn').remove();//remove btn
+    				$('#morebtn').remove();//remove btn
     				$(content).appendTo("#table");
     			}, error:function(request,status,error){
     				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -153,8 +197,7 @@
     		};
     </script>
     }
-    
-    <!-- 
+
     <script> // 더보기 이후 게시글을 보여줄 로직 구현
 		let qCount = "qCount-15%>"; // 남은 질문 개수
 		var showNum = "showNum%>"; // 한 페이지에 보여줄 글 개수(고정)
