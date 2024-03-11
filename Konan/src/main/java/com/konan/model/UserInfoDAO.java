@@ -86,7 +86,11 @@ public class UserInfoDAO {
 		//		가지고 온 파일 -> 텍스트 형태로 변환(converter - base64 라이브러리 pom.xml에 추가)
 		//경로 사람마다 다를 삘임 뭔가
 		//찬우: C:\\workplace\\git\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\konan\\upload\\
-		File file = new File("C:\\workplace\\git\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\konan\\upload\\"+user.getPropic());
+		//지호: C:\\Users\\USER\\Desktop\\WebServer\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\konan\\upload\\
+
+		String chanu = "C:\\workplace\\git\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\konan\\upload\\";
+		String jiho = "C:\\Users\\USER\\Desktop\\WebServer\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\konan\\upload\\";
+		File file = new File(chanu + user.getPropic());
 		ImageToBase64 converter = new ImageToBase64();
 		String fileStringValue = converter.convert(file);
 		

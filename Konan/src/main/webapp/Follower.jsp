@@ -1,3 +1,4 @@
+<%@page import="com.konan.model.UserFollowingDAO"%>
 <%@page import="com.konan.model.UserFollowing"%>
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="java.util.List"%>
@@ -8,6 +9,13 @@
 	<%
 		String targetId = request.getParameter("targetId"); 
 		pageContext.setAttribute("targetId", targetId);
+		
+		UserInfoDAO dao = new UserInfoDAO();
+		UserFollowingDAO followDao = new UserFollowingDAO();
+		
+		List<UserFollowing> targetFollowers = followDao.getFollowers(targetId);
+		pageContext.setAttribute("targetFollowers",targetFollowers);
+		System.out.println(targetFollowers.size());
 	%>
 <!DOCTYPE html>
 <html>
@@ -19,22 +27,39 @@
 <body>
 	<%@ include file="Header.jsp" %>
     <div class="container">
+        <div class="upper">
+            <h2><span name="username">${targetId}</span>님<span class="normal">의 팔로워 정보</span></h2>
+            <hr>
+        </div>
+    	<div class="follow-container">
+            <div class="follow-list shadow-div">
         
-
-            <div class="follow-container">
-                <h1>Follower List</h1>
                 <!-- 여기에 팔로워 리스트 동적 구현-->
-                <div class="follow-list shadow-div">
+                <% for(int i = 0; i < targetFollowers.size(); i++){
+                		UserFollowing follower = targetFollowers.get(i);
+                		String followerId = follower.getUser_id();
+                		System.out.print(followerId+"!");
+                		UserInfo followerInfo = dao.propicContent(followerId);
+                		pageContext.setAttribute("followerInfo",followerInfo);
+                %>
+                	
                     <div class="follow">
                         <div class="user-container">
-                            <img src="./img/defaulPropic.png" alt="프로필 사진">
+                            <%if(followerInfo.getPropic()==null){%>
+                				<div class = "propic shadow-div" style="border-radius: 50%; background-image: url('./img/defaultPropic.png')"></div>                	
+                			<%}else{%>
+                				<div class = "propic shadow-div" style="border-radius: 50%; background-image: url('data:image/jpg;base64,${followerInfo.getPropic()}')"></div>
+                			<%} %>
                             <div class="user-info">
-                                <strong name="user_name" class="user-name">User1</strong>
-                                <br>
-                                <span class="user-id">@<span name="user_id">user1Id</span></span>
+                                <a href="Profile.jsp?targetId=${followerInfo.getUser_id()}" style="text-decoration: none;"><h3 name="user_name" class="user-name">${followerInfo.getName()}</h3></a>
+                                <span class="user-id">@<span name="user_id">${followerInfo.getUser_id()}</span></span>
                             </div>
                         </div>
-                    </div>
+                	</div>
+                	<%
+                	
+                } %>
+                    
                 </div>
             </div>
 

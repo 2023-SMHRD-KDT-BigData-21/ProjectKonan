@@ -6,15 +6,29 @@
 컬럼 순서
 USER_ID, USER_PW, EMAIL, NAME, PHONE_NUMBER, REGION, GENDER, INDATE, PROPIC, OUTDATE
  -->
+ 	<!-- insert 문 -->
+ 	<!-- id로 팔로잉 중인지 조회 -->
+	<insert id = "following" parameterType="UserFollowing">
+		insert into user_following values(#{user_id}, #{target_id}) 
+	</insert>
+	
+	<!-- delete 문 -->
+	<delete id = "unfollow" parameterType="UserFollowing">
+		delete from user_following where user_id = #{user_id} and target_id = #{target_id}
+	</delete>	
+	
 	
 	<!-- id로 팔로잉 리스트 가져오기 -->
-	<select id = "selectFollowings" parameterType="String" resultType="UserInfo">
+	<select id = "selectFollowings" parameterType="String" resultType="UserFollowing">
 		select target_id from user_following where user_id = #{user_id}
 	</select>
 
 	<!-- id로 팔로워 리스트 가져오기 -->
-	<select id = "selectFollowers" parameterType="String" resultType="UserInfo">
+	<select id = "selectFollowers" parameterType="String" resultType="UserFollowing">
 		select user_id from user_following where target_id = #{user_id}
 	</select>
-
+	<!-- id로 팔로잉 중인지 조회 -->
+	<select id = "isFollowing" parameterType="UserFollowing" resultType="int">
+		select count(*) from user_following where target_id = #{target_id} and user_id = #{user_id} 
+	</select>
 </mapper>
