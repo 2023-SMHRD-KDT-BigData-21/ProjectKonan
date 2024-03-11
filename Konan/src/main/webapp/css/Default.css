@@ -59,7 +59,13 @@ a{
 .shadow-div{
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.shadow-div-in{
+  background-color: #fafafa;
+  border-radius: 20px;
+   box-shadow: inset 2px 2px 4px  rgba(0, 0, 0, 0.1), inset -1px -1px 2px white;
 }
 
 .align-item{

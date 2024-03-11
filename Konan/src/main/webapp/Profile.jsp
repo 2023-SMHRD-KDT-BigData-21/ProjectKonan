@@ -45,7 +45,7 @@
                 <!-- 프사 -->
                 <!-- 프사가 없을 때 -->
                 <%if(targetPropic==null){%>
-                	<div class = "propic shadow-div" style="border-radius: 50%; background-image: url('../img/defaultPropic.png'')"></div>                	
+                	<div class = "propic shadow-div" style="border-radius: 50%; background-image: url('./img/defaultPropic.png')"></div>                	
                 <%}else{%>
                 	<div class = "propic shadow-div" style="border-radius: 50%; background-image: url('data:image/jpg;base64,${targetPropic}')"></div>
                 <%} %>
