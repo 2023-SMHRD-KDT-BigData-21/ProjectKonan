@@ -12,8 +12,10 @@
     position: relative;
 }
 .user-container{
+	border-top-left-radius: 0 0;
+	border-top-right-radius: 0 0;
     padding: 40px;
-    padding-top: 30px;
+    padding-top: 50px;
 }
 .propic{
     /* 프사 지정한 사용자면 db상 주소로 보내주기 */

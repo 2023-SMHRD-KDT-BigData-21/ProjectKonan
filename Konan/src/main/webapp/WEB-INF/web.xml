@@ -62,7 +62,7 @@
   	<servlet-name>PostInsertController</servlet-name>
   	<display-name>PostInsertController</display-name>
   	<description></description>
-  	<servlet-class>com.konan.controller.postview.PostInsertController</servlet-class>
+  	<servlet-class>com.konan.controller.postwrite.PostInsertController</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>PostUpdateController</servlet-name>
@@ -145,10 +145,6 @@
   	<url-pattern>/IdCheckController</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>BoardInsertController</servlet-name>
-  	<url-pattern>/BoardInsertController</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
   	<servlet-name>AcceptController</servlet-name>
   	<url-pattern>/AcceptController</url-pattern>
   </servlet-mapping>
@@ -207,9 +203,5 @@
   <servlet-mapping>
   	<servlet-name>JoinAsDetectiveController</servlet-name>
   	<url-pattern>/JoinAsDetectiveController</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>Post</servlet-name>
-  	<url-pattern>/Post</url-pattern>
   </servlet-mapping>
 </web-app>

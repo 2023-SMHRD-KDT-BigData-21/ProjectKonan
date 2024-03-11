@@ -10,10 +10,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 public class UserFollowing {
-	String userId;
-	String targetId;
+	String user_id;
+	String target_id;
 	public UserFollowing(String userId) {
-		this.userId=userId;
+		this.user_id=userId;
 	}
 	
 }
