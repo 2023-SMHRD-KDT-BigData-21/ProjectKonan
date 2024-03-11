@@ -37,11 +37,11 @@
 	<%@ include file="Header.jsp" %>
     <div class = "container">
         <!-- 프로필 컨테이터 -->
-        <div class = "profile-container">
+        <div class = "profile-container shadow-div">
             <div class = "profile-background"></div>
 
             <!-- 프로필 페이지 상단 유저 정보 담은 부분 -->
-            <div class = "user-container shadow-div">
+            <div class = "user-container" style="border-top-left-radius: 0 0;border-top-right-radius: 0 0;">
                 <!-- 프사 -->
                 <!-- 프사가 없을 때 -->
                 <%if(targetPropic==null){%>
@@ -52,7 +52,7 @@
                 <!-- 이름, 아이디 -->                
                 <div class = "user-info"></div>
                     <h3 name="user_name" style="margin:0px; padding:0px;">${targetInfo.getName()}</h3>
-                    <span style="font-size:0.8em;">@<span name="user_id">${targetInfo.getUser_id()}</span></span>
+                    <span style="font-size:0.8em;">@<span name="user_id">${targetInfo.getUser_id()}</span></span>  
 	        	<!-- 팔로잉/팔로워 버튼 -->
 	            <div class = "relation-container" style="text-decoration: none;">
 	                <a href="Following.jsp?targetId=${targetId}">
@@ -76,11 +76,23 @@
                         <button type="submit" class="btn btn-primary">사진변경</button>
                    </form>
 		       </div>	       
-	       <%  }
-	       }else{
+	       <%}else{%>
+	       	   <!-- following_btn은 자바스크립트 함수를 위해 만듦! -->
+	       	   <%
+	       	   UserFollowing userFollowing = new UserFollowing(user.getUser_id(),targetId);
+	       	   if(followDao.isFollowing(userFollowing)>0){%>
+	       	      <button id="following_btn" class="fix-btn active-btn" type="button">팔로잉</button>
+	       <%}//if
+	       	   else{ %>
+	       	      <button id="following_btn" class="fix-btn" type="button">팔로우</button>	       		   
+	       	 <%}
+	       	   }//else
+	       }//if
+	       else{
 	       %>
-	       	   <button class="fix-btn" type="button">팔로잉</button>
-	       <%}%>
+	       	   <!-- following_btn은 자바스크립트 함수를 위해 만듦! -->
+	       	   <button id="following_btn" class="fix-btn" type="button">팔로잉</button>
+	       <%}//else%>
 	       <!-- 회원 정보 수정 -->
 	       
 	       
@@ -113,45 +125,58 @@
   	
   		<!--  내용 넣는 곳, onclick으로 비동기 페이지 전환 -->
   		<div class="tab-body">
-  		
-    		<div>
-      			<h2>This is code section</h2>
-      			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error neque saepe commodi blanditiis fugiat nisi aliquam ratione porro quibusdam in, eveniet accusantium cumque. Dolore officia reprehenderit perferendis quod libero omnis.</p>
+    		<div class="post-container">
+      			<h2>제목</h2>
+      			<p>내용</p>
     		</div>
   		</div>
   		
   		
 	</div>
 </div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script src="./js/Profile.js"></script>
     <script> 
-		function showPostsByType(){
-			
-			let post_type = document.getElementById("post_type")//post 아이디로 가져옴
-			console.log(post_type.value)//C/A/Q 중 하나
-			
+    	//팔로잉 버튼 누르기 
+    	let btn = document.getElementById("following_btn");
+    	btn.addEventListener('click', function() {
+    		const url = new URL(window.location.href);
+    		const urlParameter = window.location.search;
+    		const urlParams = url.searchParams;
+
+    		const targetId = urlParams.get('targetId');
+    		
+    		console.log(targetId);
+    		
+    		console.log("눌림!");
+    		this.classList.toggle('active-btn');
+    		
+    		//if(){
+    			// 팔로잉 팔로우 글자 바꾸기 클래스 유무로 
+    		//}
+    		
 			$.ajax({    
-			type : "", // 타입 (get, post, put 등등)    
-			url : "", // 요청할 서버url    
-			async : true,  // 비동기화 여부 (default : true)    
-			dataType : "", // 데이터 타입 (html, xml, json, text 등등), 여러개 보낼 땐 보통 json으로 보냄
-			data : {"" : post_type.value},
-			success : function(result) { 
-				// 성공 콜백함수        
-						
-					},    
-			error : function(request, status, error) { 
-						//에러 콜백함수        
-						console.log("중복체크 실패")    
-						console.log(request.responseText)    
-						console.log(error)    
-					}
-			})
-		}
+				type : "post", // 타입 (get, post, put 등등)    
+				url : "FollowController", // 요청할 서버url    
+				async : true,  // 비동기화 여부 (default : true)    
+				dataType : "", // 데이터 타입 (html, xml, json, text 등등), 여러개 보낼 땐 보통 json으로 보냄
+				data : {"targetId" : targetId},
+				success : function(result) { 
+							// 성공 콜백함수        
+							console.log("btn 성공")
+						},    
+				error : function(request, status, error) { 
+							//에러 콜백함수        
+							console.log("btn 실패")
+							btn.classList.toggle('active-btn')
+							console.log(request.responseText)    
+							console.log(error)    
+						}
+				})//ajax
+    	});//addEventListener
 		
 		// 모달 열기
 		function openModal() {
-			
 		    document.getElementById("modal").style.display = "block";  
 		  }
 		// 모달 닫기

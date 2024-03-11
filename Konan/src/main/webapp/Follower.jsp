@@ -43,7 +43,7 @@
                 		pageContext.setAttribute("followerInfo",followerInfo);
                 %>
                 	
-                    <div class="follow shadow-div-in">
+                    <div class="follow">
                         <div class="user-container">
                             <%if(followerInfo.getPropic()==null){%>
                 				<div class = "propic shadow-div" style="border-radius: 50%; background-image: url('./img/defaultPropic.png')"></div>                	
@@ -51,15 +51,15 @@
                 				<div class = "propic shadow-div" style="border-radius: 50%; background-image: url('data:image/jpg;base64,${followerInfo.getPropic()}')"></div>
                 			<%} %>
                             <div class="user-info">
-                                <h3 name="user_name" class="user-name">${followerInfo.getName()}</h3>
+                                <a href="Profile.jsp?targetId=${followerInfo.getUser_id()}" style="text-decoration: none;"><h3 name="user_name" class="user-name">${followerInfo.getName()}</h3></a>
                                 <span class="user-id">@<span name="user_id">${followerInfo.getUser_id()}</span></span>
                             </div>
                         </div>
-                	
+                	</div>
                 	<%
                 	
                 } %>
-                    </div>
+                    
                 </div>
             </div>
 
