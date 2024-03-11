@@ -2,37 +2,65 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.konan.database.PostMapper">
 	
-	<!-- 커뮤니티 포스팅 목록 조회 -->
-	<select id="selectPost" resultType="Post">
-		select * from post where post_type='C'
+	
+	<!-- 공통 -->
+	<!-- 특정 포스팅 조회 -->
+	<select id="select" parameterType="BigDecimal" resultType="Post">
+		select * from post where post_id=#{post_id}
 	</select>
 	
+	<!-- 최근 작성 포스팅 조회(작성,수정 후 보여줄 상세페이지) -->
+	<select id="selectRecent" parameterType="BigDecimal" resultType="Post">
+		select max(post_id) where user_id=#{user_id}
+	</select>
+	
+	
+	<!-- QnaList -->
 	<!-- 질문 포스팅 목록 조회 -->
 	<select id="selectQpost" resultType="Post">
 		select * from post where post_type='Q'
 	</select>
 	
-	<!-- 커뮤니티 포스팅 개수 세기 -->
-	<select id="postCount">
-		select count(*) from post where post_type='C'
-	</select>
-	
 	<!-- 질문 포스팅 개수 세기 -->
-	<select id="qpostCount">
+	<select id="qpostCount" resultType="int">
 		select count(*) from post where post_type='Q'
 	</select>
 	
-	<!-- 답변 개수 세기 -->
-	<select id="ansCount" parameterType="BigDecimal">
+	<!-- 답변 포스팅 개수 세기 -->
+	<select id="ansCount" parameterType="BigDecimal" resultType="int">
 		select count(*) from post where question_id={question_id}
 	</select>
 	
 	
+	
+	<!-- CommuList -->
+	<!-- 커뮤니티 포스팅 목록 조회 -->
+	<select id="selectPost" resultType="Post">
+		select * from post where post_type='C'
+	</select>
+	
+	<!-- 커뮤니티 포스팅 개수 세기 -->
+	<select id="postCount" resultType="int">
+		select count(*) from post where post_type='C'
+	</select>
+	
+
+	
+	<!-- QnaForm, -->
+	<!-- 포스팅 작성 -->
 	<insert id="insert" parameterType="Post">
-		insert into post values(post_id_seq.NEXTVAL, #{question_id}, #{post_type}, #{user_id}, #{title}, #{post_content}, #{is_rewrite}, sysdate, #{report_cnt}, 'F', #{is_anonymous})
+		insert into post values(post_id_seq.NEXTVAL, #{question_id}, #{post_type}, #{user_id}, #{title}, #{post_content}, #{is_rewrite}, sysdate, #{report_cnt}, #{is_adopted}, #{is_anonymous})
 	</insert>
 	
-	<select id="selectOne" parameterType="int" resultType="Post">
-		select * from post where post_id = #{post_id}
-	</select>
+	<!-- 포스팅 수정 -->
+	<update id="update" parameterType="Post">
+		update post set title=#{title}, post_content=#{post_content}, is_rewrite='T' where post_id=#{post_id}
+	</update>
+	
+	<!-- 포스팅 삭제 -->
+	<delete id="delete" parameterType="BigDecimal">
+		delete from post where post_id=#{post_id}
+	</delete>
+
+
 </mapper>

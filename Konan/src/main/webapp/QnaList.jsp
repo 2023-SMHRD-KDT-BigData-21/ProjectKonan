@@ -38,8 +38,8 @@
 	int qCount = dao.qpostCount(); // 총 질문 개수
 	int showNum = 15; // 한 페이지에 보여줄 글 개수(고정)
 	
-	int btnNum = qCount / showNum; // 더보기 버튼이 몇 번 나올지
-	int first = btnNum==0?qCount:showNum; // 첫번째 페이지에서 보여줄 글 개수
+	//int btnNum = qCount / showNum; // 더보기 버튼이 몇 번 나올지
+	//int first = btnNum==0?qCount:showNum; // 첫번째 페이지에서 보여줄 글 개수
 	
 	List<Post> list = dao.QpostList();
 %>
@@ -55,7 +55,7 @@
             <div class="content-box"></div>
 
             <!-- 글쓰기 버튼 -->
-            <div class="post-button">글쓰기</div>
+            <div class="post-button"><a href="QnaForm">글쓰기</a></div>
         </div>
 
         <div class="waiting-questions-container">

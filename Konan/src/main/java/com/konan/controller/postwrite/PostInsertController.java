@@ -1,15 +1,17 @@
 package com.konan.controller.postwrite;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.smhrd.model.Board;
-import com.smhrd.model.BoardDAO;
+import com.konan.model.Post;
+import com.konan.model.PostDAO;
+import com.konan.model.UserInfo;
 
 public class PostInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -17,23 +19,27 @@ public class PostInsertController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession(); 
+		
 		UserInfo user = (UserInfo)session.getAttribute("loginInfo");
 		
 		String postType = request.getParameter("postType");
-		String userId = user.getUserId();
+		String userId = user.getUser_id();
 		String title = request.getParameter("title");
 		String postContent = request.getParameter("postContent");
 		
+		Post post = null;
 		
 		if(postType.equals("Q")) { //질문 포스팅 시
 			String isAnonymous = request.getParameter("isAnonymous");
-			Post question = new Post(postType,userId,title,postContent,isAnonymous);
+			post = new Post(postType,userId,title,postContent,isAnonymous);
 		}else if(postType.equals("A")) { //답변 포스팅 시
-			String questionId = request.getParameter("questionId");
-			Post answer = new Post(postType,questionId,userId,title,postContent,0);
+			BigDecimal questionId = BigDecimal.valueOf(Double.valueOf(request.getParameter("questionId")));
+			post = new Post(postType,questionId,userId,title,postContent,0);
 		}
-		else //커뮤니티 포스팅일 경우
-			Post commu = new Post(postType,userId,title,postContent);
+		else { //커뮤니티 포스팅일 경우
+			post = new Post(postType,userId,title,postContent);
+		}
 		
 		PostDAO dao = new PostDAO();
 		int row = dao.insert(post);

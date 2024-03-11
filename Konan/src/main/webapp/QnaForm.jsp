@@ -16,13 +16,14 @@
 	            <div class="user-question-container">
 	            	<input type="radio" name="isAnonymous"> 실명
 	            	<input type="radio" name="isAnonymous"> 익명
+	            	<input type="hidden" name="postType" value="Q">
 	                <input type="text" name="title" class="user-question-title" placeholder="제목입력" style="border-bottom: 1px solid;">
 	                <input type="text" name="postContent" class="user-question-content" placeholder="본문입력">
 	            </div>
 	        </div>
 	        </form>
 	
-	        <!-- 사진추가 박스 -->
+	        <!-- 사진추가 박스 
 	        <form action="#">
 	        <div class="add-photo-container">
 	            <div class="add-photo-text">사진추가</div>
@@ -31,11 +32,14 @@
 	            </div>
 	        </div>
 	        </form>
+	        -->
 	        
-	        <!-- 해시태그 -->
+	        
+	        <!-- 해시태그
 	        <form action="#">
 	        	<input type="text" id="tag">
 	        </form>
+	        -->
 	           
 	        <!-- 질문하기 버튼 -->
 	        <button type="submit" class="question-btn">질문등록</button>

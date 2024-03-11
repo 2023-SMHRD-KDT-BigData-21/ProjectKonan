@@ -33,7 +33,7 @@ public class Post {
 	}
 	
 	// 답변 포스팅
-	public Post(String postType, String questionId, String userId, String title, String postContent, int reportCnt) {
+	public Post(String postType, BigDecimal questionId, String userId, String title, String postContent, int reportCnt) {
 		this.post_type = postType;
 		this.question_id = questionId;
 		this.user_id = userId;
