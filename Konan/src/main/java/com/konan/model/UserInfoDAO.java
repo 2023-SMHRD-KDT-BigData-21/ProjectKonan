@@ -90,12 +90,18 @@ public class UserInfoDAO {
 
 		String chanu = "C:\\workplace\\git\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\konan\\upload\\";
 		String jiho = "C:\\Users\\USER\\Desktop\\WebServer\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\konan\\upload\\";
-		File file = new File(chanu + user.getPropic());
-		ImageToBase64 converter = new ImageToBase64();
-		String fileStringValue = converter.convert(file);
-		
-		user.setPropic(fileStringValue); //파일제목 -> 이미지 파일 문자열
-		System.out.println(fileStringValue);
+		try {
+			if(user.getPropic()!=null) {				
+				File file = new File(chanu + user.getPropic());
+				ImageToBase64 converter = new ImageToBase64();
+				String fileStringValue = converter.convert(file);
+				
+				user.setPropic(fileStringValue); //파일제목 -> 이미지 파일 문자열
+				System.out.println(fileStringValue);
+			}
+		} catch (Exception e) {
+			
+		}
 		
 		return user;
 	}

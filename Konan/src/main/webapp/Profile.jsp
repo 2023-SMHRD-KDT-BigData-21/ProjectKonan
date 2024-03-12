@@ -67,8 +67,11 @@
 	       <!-- user = target00 -->
 	       
 	       <%
+	       //로그인 되어있을 때
 	       if(user != null){
+	    	   //내 프로필 일 때
 	           if(user.getUser_id().equals(targetId)){%>
+	           <!-- 팔로잉 버튼 대신 프로필 수정 버튼 생성 -->
 		       <button onclick="openModal()" class="fix-btn">프로필 수정</button>
 		       <div id="modal" style="display:none; z-index:1;">
 		           <form action="UpdateController" method="post" enctype="multipart/form-data">
@@ -76,22 +79,27 @@
                         <button type="submit" class="btn btn-primary">사진변경</button>
                    </form>
 		       </div>	       
-	       <%}else{%>
+	       <%}
+	    	   //내 프로필이 아닐때
+	           else{%>
 	       	   <!-- following_btn은 자바스크립트 함수를 위해 만듦! -->
 	       	   <%
 	       	   UserFollowing userFollowing = new UserFollowing(user.getUser_id(),targetId);
+	       	   //이미 팔로잉 중인 사용자일때
 	       	   if(followDao.isFollowing(userFollowing)>0){%>
 	       	      <button id="following_btn" class="fix-btn active-btn" type="button">팔로잉</button>
 	       <%}//if
+	       	  //팔로우 하지 않은 사용자일때
 	       	   else{ %>
 	       	      <button id="following_btn" class="fix-btn" type="button">팔로우</button>	       		   
 	       	 <%}
 	       	   }//else
 	       }//if
+	       
+	       //로그인 안되어있을때
 	       else{
 	       %>
-	       	   <!-- following_btn은 자바스크립트 함수를 위해 만듦! -->
-	       	   <button id="following_btn" class="fix-btn" type="button">팔로잉</button>
+	       	   <button class="fix-btn" type="button">팔로잉</button>
 	       <%}//else%>
 	       <!-- 회원 정보 수정 -->
 	       

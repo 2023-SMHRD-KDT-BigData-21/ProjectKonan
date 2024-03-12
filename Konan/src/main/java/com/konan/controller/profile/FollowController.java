@@ -15,13 +15,15 @@ import com.konan.model.UserInfo;
 public class FollowController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	//버튼 누를때마다 팔로우/언팔로우하게끔
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("FollowController");
 		
 		HttpSession session = request.getSession();
+		//1. 유저 아이디 가져오기
 		UserInfo userInfo = (UserInfo)session.getAttribute("userInfo");
-		
+		//2. 타겟 아이디 가져오기
 		String targetId = request.getParameter("targetId");
 		System.out.println(targetId);
 		
