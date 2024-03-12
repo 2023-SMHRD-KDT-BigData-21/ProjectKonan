@@ -147,13 +147,19 @@
     		const targetId = urlParams.get('targetId');
     		
     		console.log(targetId);
-    		
     		console.log("눌림!");
+    		
+    		if(btn.matches('.active-btn')){
+    			// 팔로잉 팔로우 글자 바꾸기 클래스 유무로 
+    			console.log("언팔로우");
+    			btn.innerHTML = "팔로우"
+    		}else{
+    			console.log("팔로잉");
+    			btn.innerHTML = "팔로잉"
+    		}
+    		
     		this.classList.toggle('active-btn');
     		
-    		//if(){
-    			// 팔로잉 팔로우 글자 바꾸기 클래스 유무로 
-    		//}
     		
 			$.ajax({    
 				type : "post", // 타입 (get, post, put 등등)    
