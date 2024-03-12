@@ -124,6 +124,18 @@
   	<description></description>
   	<servlet-class>com.konan.controller.member.JoinAsDetectiveController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ImageInsertController</servlet-name>
+  	<display-name>ImageInsertController</display-name>
+  	<description></description>
+  	<servlet-class>com.konan.controller.postwrite.ImageInsertController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>PostImageController</servlet-name>
+  	<display-name>PostImageController</display-name>
+  	<description></description>
+  	<servlet-class>com.konan.controller.postwrite.PostImageController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>JoinController</servlet-name>
   	<url-pattern>/JoinController</url-pattern>
@@ -203,5 +215,13 @@
   <servlet-mapping>
   	<servlet-name>JoinAsDetectiveController</servlet-name>
   	<url-pattern>/JoinAsDetectiveController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ImageInsertController</servlet-name>
+  	<url-pattern>/ImageInsertController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>PostImageController</servlet-name>
+  	<url-pattern>/PostImageController</url-pattern>
   </servlet-mapping>
 </web-app>
