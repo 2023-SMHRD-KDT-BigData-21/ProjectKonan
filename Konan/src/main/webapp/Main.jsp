@@ -14,7 +14,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>메인페이지</title>
 
-<link rel="stylesheet" href="">
+<link rel="stylesheet" href="./css/PostList.css">
 <link rel="stylesheet" href="">
 
 </head>
@@ -35,53 +35,40 @@
 	List<Post> list = dao.postList("Q");
 	%>
 
-	<div class="container">
-		<%
-		if (user == null) {
-		%>
-
-		<a href="Join.jsp"><button>회원가입</button></a> <a href="Login.jsp"><button>로그인</button></a>
-
-		<%
-		} else {
-		%>
-		<%=user.getName()%>
-		<a href="LogoutController"><button>로그아웃</button></a> <a
-			href="Profile.jsp?targetId=${userId}"><button>프로필</button></a>
-		<%
-		}
-		%>
-	</div>
 
 	<div class="container">
+		<!-- 검색창 -->
 		<div class="search-container">
-			<div class="search-icon"></div>
+			<span class="search-icon"><ion-icon name="search-outline"></ion-icon></span>
 			<input type="text" class="search-input">
 		</div>
 
-		<div class="most-viewed-questions">
-			인기 질문
-			<div class="content-box"></div>
+		<!-- 글쓰기 버튼 -->
+		<a href="QnaForm.jsp">
+		<div class="post-button">
+			<ion-icon class="post-icon" name="pencil"></ion-icon>
+		</div>
+		</a>
 
-			<!-- 글쓰기 버튼 -->
-			<div class="post-button">
-				<a href="QnaForm.jsp">글쓰기</a>
-			</div>
+		<!-- 인기게시물 -->
+		<div class="most-viewed-questions-container">
+			<div class="content-box"></div>
 		</div>
 
-		<div class="waiting-questions-container">
-			<div class="question-container-cover"
-				style="border-bottom: 1px solid;">답변을 기다리는 질문</div>
+
+		<!-- 답변을 기다리는 질문 -->
+		<div class="quest-container-cov">답변을 기다리는 질문</div>
+		<div class="wait-quest-container shadow-div">
+			<!-- db에서 질문 리스트 불러오기 -->
 			<%
 			for (int i = qCount - 1; i > qCount - 6; i--) {
 				Post post = list.get(i);
 			%>
-			<div class="question-container-inside">
-				<div class="question-title">
-					<a href="CommuContent.jsp?idx=<%=post.getPost_id()%>"><%=post.getTitle()%>
-					</a>
-				</div>
-				<div class="question-content">
+			<div class="quest-container-in">
+				<div class="quest-title">
+					<a href="CommuContent.jsp?idx=<%=post.getPost_id()%>"><%=post.getTitle()%></a>
+				</div><!-- quest-title -->
+				<div class="quest-content">
 					<%
 					if (post.getPost_content().length() > 50) {
 						out.print(post.getPost_content().substring(0, 30) + "⋯");
@@ -89,27 +76,29 @@
 						out.print(post.getPost_content());
 					}
 					%>
-				</div>
-				<div class="response-container">
-					<span>답변 <!--dao.ansCount(post.getPost_id()) %> --></span> <span>좋아요
-					</span>
-				</div>
-			</div>
+				</div><!-- quest-content -->
+				<div class="res-container">
+					<span>답변</span> 
+					<span class="res-icon"><ion-icon name="chatbox-outline"></ion-icon></span>
+					<span><!--dao.ansCount(post.getPost_id()) %> --></span>
+					<span>&nbsp;&nbsp;</span>
+					<span>좋아요</span>
+					<span class="res-icon"><ion-icon name="heart-outline"></ion-icon></span>
+					<span><!--dao.ansCount(post.getPost_id()) %> --></span><!-- like -->
+				</div><!-- res-container -->
+			</div><!-- quest-container-in -->
 			<%}%>
-		</div>
 		<%
 		if (first == showNum) {
 			now -= 15;
 		%>
-		<div id="btn-area">
-			<button id="more-btn" onclick="moreList();">
-				<span>더 보기</span>
-			</button>
-		</div>
-		<%
-		}
-		%>
-	</div>
+		
+		<button id="more-btn" class="more-button" onclick="moreList();">
+			<ion-icon name="chevron-down-circle-outline"></ion-icon>
+		</button>
+		
+		<%}%>
+	</div><!-- wait-quest-container -->
 
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-1.10.2.min.js" /></script>
