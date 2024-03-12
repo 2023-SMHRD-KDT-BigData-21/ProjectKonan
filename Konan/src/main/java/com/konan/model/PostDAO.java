@@ -50,15 +50,14 @@ public class PostDAO {
 	}
 	
 	// 더보기 버튼으로 보여줄 포스팅 목록 조회
-	public List<Map<String, Object>> moreList(int start) throws Exception { 
+	public List<Post> moreList(String post_type, int idx){ 
 		SqlSession sqlSession = sessionFactory.openSession(true);		 
 		Map<String, Object> map = new HashMap<>(); 
-		
-		int cnt = 5; 
-		map.put("start", start); 
+		int cnt = 5;
+		map.put("post_type", post_type);
+		map.put("idx", idx); 
 		map.put("cnt", cnt); 
-		 
-		List<Map<String, Object>> list = sqlSession.selectList(postMapper+"selectMore", map); 
+		List<Post> list = sqlSession.selectList(postMapper+"selectMore", map); 
 		return list; 
 	}
 	

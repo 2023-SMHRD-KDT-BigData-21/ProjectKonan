@@ -116,7 +116,7 @@
   	<servlet-name>PagingController</servlet-name>
   	<display-name>PagingController</display-name>
   	<description></description>
-  	<servlet-class>com.konan.controller.boardview.PagingController</servlet-class>
+  	<servlet-class>com.konan.controller.postview.PagingController</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>JoinAsDetectiveController</servlet-name>

@@ -25,24 +25,22 @@
 	</select>
 	
 	<!-- 더보기 버튼으로 보여줄 포스팅 목록 조회 -->
-	<select id="selectMore" parameterType="java.util.Map" resultType="java.util.Map">
-		select * from (select *, rownum as rnum from
-		(select * from post where post_type=#{post_type})
-		where rownum &lt;= #{start} + #{cnt})
-		where rnum > #{start}
+	<select id="selectMore" parameterType="java.util.Map" resultType="Post">
+		select post_id, question_id, post_type, user_id, title, post_content, is_rewrite, write_date, report_cnt, is_adopted, is_anonymous 
+		from(select rownum as rnum, sub.* 
+		from(select * from post 
+		where post_type = #{post_type}
+		order by post_id desc) sub 
+		where rownum &lt;= #{idx}+#{cnt}) 
+		where rnum > #{idx}
 	</select>
 
 
 
 	<!-- Main -->
-	<!-- 더보기 버튼으로  -->
-	<select id="">
-		select * from(select * from post where post_type=#{post_type}) where rownum
-	</select>
-	
 	<!-- 답변 포스팅 개수 세기 -->
     <select id="ansCount" parameterType="BigDecimal" resultType="int">
-        select count(*) from post where question_id={question_id}
+        select count(*) from post where question_id=#{question_id}
     </select>
 
 
