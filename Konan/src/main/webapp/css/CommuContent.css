@@ -1,0 +1,355 @@
+.container {
+    position: relative;
+    width: 75%;
+    max-height: calc(100vh - 60px);
+    min-width: 700px;
+    padding: 20px;
+    border: #333 10px solid;
+    height: auto;
+    overflow-x: auto;
+    overflow-y: auto;
+    padding-top: 5%;
+}
+
+.post-container {
+    position: relative;
+    height: auto;
+    padding-top: 10%;
+}
+
+.post-title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-bottom: 1px solid;
+    position: relative;
+    height: auto;
+    padding-bottom: 5%;
+    padding-left: 3%;
+
+
+}
+
+.hashtags-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    padding-right: 10px;
+}
+
+.hashtags span {
+    margin-right: 10px;
+    background-color: #d9ded0;
+    padding: 5px 10px;
+    /* 좌우 패딩 추가 */
+    border-radius: 5px;
+    /* 더 둥근 모양을 위한 경계 반경 추가 */
+}
+
+
+.btn-bookmark {
+    width: 35px;
+    height: 35px;
+    background-color: transparent;
+    background-image: url('../img/bookmark.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 150%;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    margin-left: 20px;
+}
+
+.post-group {
+    padding: 10px;
+    position: relative;
+    margin-top: 3%;
+}
+
+.post-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.post-author span,
+.post-date span {
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.post-question-container {
+    position: relative;
+    margin-top: 5%;
+    margin-left: 3%;
+
+}
+
+.post-question {
+    display: block;
+    /* 블록 수준으로 변경 */
+    padding-left: 20px;
+    /* 텍스트 박스에 여백 추가 (조절 가능) */
+    font-size: 20px;
+}
+
+
+.likes-replies-container {
+    display: flex;
+    /* 좋아요와 답변을 가로로 나열하는 Flexbox 추가 */
+    padding-top: 15%;
+    padding-bottom: 5px;
+}
+
+.btn-replies::before {
+    content: "";
+    background-image: url(/Konan/img/reply.png);
+    /* 이미지 경로 설정 */
+    background-size: cover;
+    margin-right: 5px;
+    /* 이미지와 텍스트 사이 여백 (선택적) */
+    width: 20px;
+    height: 20px;
+}
+
+.btn-likes::before {
+    content: "";
+    background-image: url('/Konan/img/heart_blank.png');
+    /* 이미지 경로 설정 */
+    background-size: cover;
+    margin-right: 5px;
+    /* 이미지와 텍스트 사이 여백 (선택적) */
+    width: 20px;
+    height: 20px;
+}
+
+.btn-replies {
+    font-size: 16px;
+    display: flex;
+    /* 좋아요와 답변을 가로로 나열하는 Flexbox 추가 */
+    margin-left: 40px;
+    /* 각각의 좋아요와 답변 사이의 여백 (선택적) */
+}
+
+.btn-likes {
+    font-size: 16px;
+    display: flex;
+    padding-left: 20px;
+
+}
+
+
+.post-replies-container{
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid;
+    padding-top: 5%;
+    padding-left: 3%;
+}
+
+.post-replies-text {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid;
+    padding-left: 20px;
+}
+
+
+/* 댓글 */
+
+.det-profile-containerr {
+    width: 100%;
+    height: auto;
+    /* border: 1px solid; */
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    margin-top: 5%;
+    padding: 3%;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.det-profile-img-container {
+    width: 50px;
+    height: 50px;
+    background-image: url('/Konan/img/pika.png');
+    margin-right: 5px;
+    /* 이미지와 텍스트 사이 여백 (선택적) */
+    background-size: cover;
+    background-position: center;
+}
+
+.det-info {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.det-tier{
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.btn-repliess {
+    font-size: 16px;
+    margin-left: 50%;
+    margin-top: 10px;
+    display: flex;
+}
+.btn-repliess::before {
+    content: "";
+    background-image: url(/Konan/img/reply.png);
+    /* 이미지 경로 설정 */
+    background-size: cover;
+    margin-right: 15px;
+    /* 이미지와 텍스트 사이 여백 (선택적) */    
+    width: 20px;
+    height: 20px;
+    flex-direction: row;
+}
+
+.like-heart-container {
+    content: "";
+    background-image: url('/Konan/img/heart_blank.png');
+    /* 이미지 경로 설정 */
+    background-size: cover;
+    margin-right: 5px;
+    /* 이미지와 텍스트 사이 여백 (선택적) */
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+
+
+
+/* 대댓글 */
+.re-det-profile-containerr {
+    width: 100%;
+    height: auto;
+    /* border: 1px solid; */
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    padding: 3%;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.re-det-profile-img-container {
+    width: 50px;
+    height: 50px;
+    background-image: url('/Konan/img/pika.png');
+    margin-right: 5px;
+    /* 이미지와 텍스트 사이 여백 (선택적) */
+    background-size: cover;
+    background-position: center;
+}
+
+.re-det-info {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.re-det-tier{
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.re-btn-repliess {
+    font-size: 16px;
+    margin-left: 50%;
+    margin-top: 10px;
+    display: flex;
+}
+.re-btn-repliess::before {
+    content: "";
+    background-image: url(/Konan/img/reply.png);
+    /* 이미지 경로 설정 */
+    background-size: cover;
+    margin-right: 15px;
+    /* 이미지와 텍스트 사이 여백 (선택적) */    
+    width: 20px;
+    height: 20px;
+    flex-direction: row;
+}
+
+.re-like-heart-container {
+    content: "";
+    background-image: url('/Konan/img/heart_blank.png');
+    /* 이미지 경로 설정 */
+    background-size: cover;
+    margin-right: 5px;
+    /* 이미지와 텍스트 사이 여백 (선택적) */
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+/* 댓글쓰기 박스 */
+.user-reply-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    padding: 3%;
+    position: relative;
+    margin-top: 5%;
+}
+
+.profile-img {
+    width: 50px;
+    height: 50px;
+    background-image: url('/Konan/img/pika.png');
+    margin-right: 5px;
+    background-size: cover;
+    background-position: center;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start; /* 오른쪽 정렬을 원한다면 flex-end로 변경 */
+}
+
+.post-reply {
+    margin-bottom: 10px;
+}
+
+.reply-comment {
+    width: 100%;
+    padding: 5px;
+}
+
+.reply-btn {
+    padding: 15px;
+    background-color: #cdecce;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    border-radius: 10%;
+    display: inline-block;
+    margin-top: 2%;
+    left: 85%;
+}
+
+.reply-btn button {
+    /* 버튼 스타일 제거 (선택적) */
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: inherit;
+}
