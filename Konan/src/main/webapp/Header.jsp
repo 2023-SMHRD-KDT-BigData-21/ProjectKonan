@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./css/Default.css">
     <link rel="stylesheet" href="./css/Header.css" type="text/css">
 </head>
+
 <%
 	UserInfo user = (UserInfo)session.getAttribute("userInfo");
 	if(user!=null){
@@ -21,6 +22,8 @@
 %>
 
 <body>
+
+<div class="logo"><img src = "./img/logo.png"></div>
     <div class="navigation">
         <ul>
         	<%if(user==null){%>
@@ -48,6 +51,12 @@
                 <a href="Profile.jsp?targetId=${userId}">
                     <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                     <span class="title">내 프로필</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="Bookmark.jsp">
+                    <span class="icon"><ion-icon name="bookmark-outline"></ion-icon></span>
+                    <span class="title">북마크</span>
                 </a>
             </li>
             <li class="list">

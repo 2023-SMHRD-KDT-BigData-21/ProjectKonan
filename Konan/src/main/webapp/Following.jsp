@@ -71,7 +71,7 @@
                             <!-- 로그인 중이면 -->
                             <%UserFollowing userFollowing = new UserFollowing(user.getUser_id(),followingId);
                              //이미 팔로잉 중인 사용자일 때
-                             if(followDao.isFollowing(userFollowing)>0){%>
+                             if(followDao.isFollowing(userFollowing)>0){%>  
                             <!-- active-btn 클래스 추가 -->
                             <!-- following_btn 클래스 절대 삭제하면 안됨(js와 연결 담당) -->
                             <button id="following_btn" class="following_btn active-btn" type="button" value="${followingInfo.getUser_id()}">팔로잉</button>
