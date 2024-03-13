@@ -52,6 +52,22 @@
             </div>
         </div>
 
+        <!-- 답변하기 버튼(탐정) -->
+        <div class="reply-det-container">
+            <div class="det-profile-img-container">
+                <div class="det-profile-img"></div>
+            </div>
+            <div class="reply-ad">
+                <span>000탐정님</span>
+                <span>, 답변을 남겨 답변수를 늘려보세요!</span><br>
+                <span style="color: rgb(159, 91, 222);">친절한 답변을 남기면 탐정이 아닌 사람들에게 신뢰를 높일 수 있습니다.</span>
+            </div>
+        </div>
+        <div class="reply-btn-det">
+            <button type="button">
+                <span>답변하기</span>
+            </button>
+        </div>
 
 
 
