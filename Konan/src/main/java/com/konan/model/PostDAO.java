@@ -41,12 +41,12 @@ public class PostDAO {
 		return max;
 	}
 	
-	// 타입별 포스팅 목록 조회
-	public List<Post> postList(String post_type) {
+	// 첫 페이지 타입별 포스팅 목록 조회
+	public List<Post> firstList(String post_type) {
 		SqlSession sqlSession = sessionFactory.openSession(true);
-		List<Post> resultList = sqlSession.selectList(postMapper+"selectList", post_type);
+		List<Post> list = sqlSession.selectList(postMapper+"selectFirst", post_type);
 		sqlSession.close();
-		return resultList;
+		return list;
 	}
 	
 	// 더보기 버튼으로 보여줄 포스팅 목록 조회
@@ -65,7 +65,7 @@ public class PostDAO {
 	
 	//Main
 	// 답변 포스팅 개수 조회
-	public int ansCount(String post_id) {
+	public int ansCount(BigDecimal post_id) {
 		SqlSession sqlSession = sessionFactory.openSession(true);
 		int cnt = sqlSession.selectOne(postMapper+"ansCount", post_id);
 		sqlSession.close();

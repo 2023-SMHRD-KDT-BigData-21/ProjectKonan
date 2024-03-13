@@ -20,19 +20,13 @@
 </head>
 
 <body>
-	<%@ include file="Header.jsp"%>
+<%@ include file="Header.jsp"%>
 	<%
 	PostDAO dao = new PostDAO();
 
-	int qCount = dao.maxRow("Q"); // 총 질문 개수
 	int showNum = 5; // 한 페이지에 보여줄 글 개수(고정)
-
-	int btnNum = qCount / showNum; // 더보기 버튼이 몇 번 나올지
-	int first = btnNum == 0 ? qCount : showNum; // 첫번째 페이지에서 보여줄 글 개수
-
-	int now = qCount; //남은 보여줄 글 개수
-
-	List<Post> list = dao.postList("Q");
+	
+	List<Post> list = dao.firstList("Q"); // 첫 페이지에 보여줄 글 목록 불러오기
 	%>
 
 
@@ -59,28 +53,26 @@
 		<!-- 답변을 기다리는 질문 -->
 		<div class="quest-container-cov">답변을 기다리는 질문</div>
 		<div class="wait-quest-container shadow-div">
-			<!-- db에서 질문 리스트 불러오기 -->
 			<%
-			for (int i = qCount - 1; i > qCount - 6; i--) {
+			for (int i = 0; i < list.size(); i++) {
 				Post post = list.get(i);
 			%>
 			<div class="quest-container-in">
 				<div class="quest-title">
-					<a href="CommuContent.jsp?idx=<%=post.getPost_id()%>"><%=post.getTitle()%></a>
+					<a href="QnaContent.jsp?idx=<%=post.getPost_id()%>"><%=post.getTitle()%></a>
 				</div><!-- quest-title -->
 				<div class="quest-content">
 					<%
-					if (post.getPost_content().length() > 50) {
-						out.print(post.getPost_content().substring(0, 30) + "⋯");
-					} else {
+					if (post.getPost_content().length() > 50)
+						out.print(post.getPost_content().substring(0, 50) + "⋯");
+					else
 						out.print(post.getPost_content());
-					}
 					%>
 				</div><!-- quest-content -->
 				<div class="res-container">
 					<span>답변</span> 
 					<span class="res-icon"><ion-icon name="chatbox-outline"></ion-icon></span>
-					<span><!--dao.ansCount(post.getPost_id()) %> --></span>
+					<span><%=dao.ansCount(post.getPost_id()) %></span>
 					<span>&nbsp;&nbsp;</span>
 					<span>좋아요</span>
 					<span class="res-icon"><ion-icon name="heart-outline"></ion-icon></span>
@@ -89,9 +81,10 @@
 			</div><!-- quest-container-in -->
 			<%}%>
 		<%
-		if (first == showNum) {
-			now -= 15;
+		// 첫 페이지에 보여줄 게시글이 5개 이상이면
+		if (list.size() == showNum) {
 		%>
+		<div class="more-container"></div>
 		
 		<button id="more-btn" class="more-button" onclick="moreList();">
 			<ion-icon name="chevron-down-circle-outline"></ion-icon>
@@ -104,10 +97,11 @@
 		src="https://code.jquery.com/jquery-1.10.2.min.js" /></script>
 
 	<script>
+	let div = document.getElementsByTagName("div")[0];
 		function moreList() {
-			const questionContainers = document.querySelectorAll(".question-container-inside");
-			var idx = questionContainers.length; //더보기 전 게시글 수를 알아내기 위해서 해당 div의 length를 구함.
-			//console.log("startNum", startNum); //콘솔로그로 startNum에 값이 들어오는지 확인
+			const questionContainers = document.querySelectorAll(".quest-container-in");
+			var idx = questionContainers.length; //더보기 전 게시글 수를 알아내기 위해서 해당 div의 length를 구함
+			//console.log("idx", idx); //콘솔로그로 값이 들어오는지 확인
 
 			$.ajax({
 				url : "PagingController",
@@ -118,18 +112,26 @@
 				},
 				dataType : "json",
 				success : function(data) {
-					console.log(data);
-					var itr = data.length>5?5:data.length;
+					var itr = data.length>5?5:data.length; //for문 돌아갈 횟수
+					// 더보기 클릭 후 보여줄 게시글(data)이 5개이상이면 5번, 아니면 남은 게시글 수 
 					let addHtml = "";
 					for (var i = 0; i < itr; i++) {
-						addHtml += "<div class='question-container-inside'> <div class='question-title'> <a href='CommuContent.jsp?idx=";
-						addHtml += data[i].post_id + "'>" + data[i].title;
-						addHtml += "</a></div> <div class='question-content'>";
+						var post = data[i];
+						addHtml += "<div class='quest-container-in'> <div class='quest-title'> <a href='QnaContent.jsp?idx="
+								+ post.post_id + "'>" + post.title
+								+ "</a></div> <div class='quest-content'>";
+						if (post.post_content.length > 50)
+							addHtml += post.post_content.substring(0, 50) + "⋯";
+						else
+							addHtml += post.post_content
+						addHtml += "</div> <div class='res-container'> <span>답변</span>"
+								+ "<span class='res-icon'><ion-icon name='chatbox-outline'></ion-icon></span>"
+								+ "</div> </div>";
 					} //for
-					if (data.length < 5) {
-						$("#btn-area").remove(); // 더보기 버튼을 div 클래스로 줘야 할 수도 있음
+					$(".more-container").append(addHtml);
+					if (data.length <= 5) { // 더보기 클릭 후 보여줄 게시글(data)이 5개 이하이면 더보기 버튼 없앰
+						$("#more-btn").remove();
 					}
-					$(".question-container-cover").append(addHtml);
 				} //success
 			}) //ajax
 		}; //moreList
