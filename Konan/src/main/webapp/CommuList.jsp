@@ -1,4 +1,5 @@
 <%@page import="com.konan.model.PostCommentDAO"%>
+<%@page import="com.konan.model.UserReactionDAO"%>
 <%@page import="com.konan.model.Post"%>
 <%@page import="com.konan.model.PostDAO"%>
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
@@ -32,7 +33,8 @@
 	<%
 	PostDAO dao = new PostDAO();
 	PostCommentDAO commntDao = new PostCommentDAO();
-
+	UserReactionDAO reactionDao = new UserReactionDAO();
+	
 	int showNum = 5; // 한 페이지에 보여줄 글 개수(고정)
 	
 	List<Post> list = dao.firstList("C"); // 첫 페이지에 보여줄 글 목록 불러오기
@@ -53,6 +55,7 @@
 			<%
 			for (int i = 0; i < list.size(); i++) {
 				Post post = list.get(i);
+				System.out.println(post.getPost_id());
 			%>
 			<div class="quest-container-in">
 				<div class="quest-title">
@@ -73,7 +76,7 @@
 					<span>&nbsp;&nbsp;</span>
 					<span>좋아요</span>
 					<span class="res-icon"><ion-icon name="heart-outline"></ion-icon></span>
-					<span><!--dao.ansCount(post.getPost_id()) %> --></span><!-- like -->
+					<span><%=reactionDao.countLike(post.getPost_id()) %></span><!-- like -->
 				</div><!-- res-container -->
 			</div><!-- quest-container-in -->
 			<%}%>

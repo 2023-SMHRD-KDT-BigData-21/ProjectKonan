@@ -4,30 +4,31 @@
 	
 	
 	<!-- 공통 조회 기능 -->
-	<!-- 전체 좋아요 가져오기 -->
-	<select id="selectCommentsByPostId" parameterType="BigDecimal" resultType="PostComment">
-		select * from post where post_id=#{post_id}
+	<!-- 특정 포스트의 좋아요 가져오기 -->
+	<select id="countLikeByPostId" parameterType="BigDecimal" resultType="int">
+		select max(rownum) from user_reaction where post_id=#{post_id} and type='L'
 	</select>
 	
-	<!-- 포스트별 댓글 개수 세기 -->
-	<select id="countCommentsByPostId" parameterType="BigDecimal" resultType="int">
-		select max(rownum) from post where post_id=#{post_id}
-	</select>
-
-	<!-- 작성자의 댓글 조회 (마이페이지 > 내 댓글 조회) -->
-	<select id="selectMyComment" parameterType="String" resultType="BigDecimal">
-		select * from post where user_id=#{user_id}
+	<!-- 특정 사용자의 북마크 리스트 좋아요 가져오기 -->
+	<select id="countCommentsByPostId" parameterType="BigDecimal" resultType="UserReaction">
+		select * from user_reaction where user_id=#{user_id} and type='B'
 	</select>
 	
 	
 	<!-- 좋아요 추가 -->
-	<!-- 댓글 작성 -->
-	<insert id="insert" parameterType="PostComment">
+	<insert id="like" parameterType="UserReaction">
 	</insert>
 	
 	<!-- 좋아요 삭제 -->
-	<delete id="delete" parameterType="BigDecimal">
+	<delete id="unLike" parameterType="UserReaction">
 	</delete>
 
+	<!-- 북마크 추가 -->
+	<insert id="bookMark" parameterType="UserReaction">
+	</insert>
+	
+	<!-- 북마크 삭제 -->
+	<delete id="unBookMark" parameterType="UserReaction">
+	</delete>
 
 </mapper>

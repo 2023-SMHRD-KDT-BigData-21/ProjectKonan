@@ -12,10 +12,15 @@ public class PostCommentDAO {
 	String postCommentMapper = "com.konan.database.PostCommentMapper.";
 	
 	// 포스트별 댓글 개수 세기
-	public int countComments(BigDecimal post_id) {
+	public Integer countComments(BigDecimal post_id) {
 		SqlSession sqlSession = sessionFactory.openSession(true);
-		int max = sqlSession.selectOne(postCommentMapper+"countCommentsByPostId", post_id);
+		Integer count = (Integer)sqlSession.selectOne(postCommentMapper+"countCommentsByPostId", post_id);
 		sqlSession.close();
-		return max;
-	}
+		
+		if(count==null) {
+			count = 0;
+		}
+		return count;
+		
+	}//countComments
 }

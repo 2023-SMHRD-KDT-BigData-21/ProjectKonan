@@ -6,17 +6,17 @@
 	<!-- 공통 조회 기능 -->
 	<!-- 전체 댓글 가져오기 -->
 	<select id="selectCommentsByPostId" parameterType="BigDecimal" resultType="PostComment">
-		select * from post where post_id=#{post_id}
+		select * from post_comment where post_id=#{post_id}
 	</select>
 	
 	<!-- 포스트별 댓글 개수 세기 -->
 	<select id="countCommentsByPostId" parameterType="BigDecimal" resultType="int">
-		select max(rownum) from post where post_id=#{post_id}
+		select max(rownum) from post_comment where post_id=#{post_id}
 	</select>
 
 	<!-- 작성자의 댓글 조회 (마이페이지 > 내 댓글 조회) -->
 	<select id="selectMyComment" parameterType="String" resultType="BigDecimal">
-		select * from post where user_id=#{user_id}
+		select * from post_comment where user_id=#{user_id}
 	</select>
 	
 	
