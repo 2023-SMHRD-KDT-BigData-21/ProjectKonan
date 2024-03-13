@@ -73,6 +73,7 @@
                     <div class="btn-repliess">
                         <div class="btn-likess"><span>좋아요</span></div>
                         <div class="btn-reply"><span>답글</span></div>
+                        <div class="btn-edit"><span>수정</span></div>
                         <div class="btn-delete-container">
                             <div class="btn-delete"><span>삭제</span></div>
                         </div>
@@ -93,6 +94,7 @@
                     <div class="re-btn-repliess">
                         <div class="re-btn-likess"><span>좋아요</span></div>
                         <div class="re-btn-reply"><span>답글</span></div>
+                        <div class="re-btn-edit"><span>수정</span></div>
                         <div class="re-btn-delete-container">
                             <div class="re-btn-delete"><span>삭제</span></div>
                         </div>

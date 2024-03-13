@@ -196,7 +196,9 @@
     margin-bottom: 10px;
 }
 
-/* 댓글쓰기, 수정하기, 삭제하기 버튼 */
+
+
+/* 좋아요, 답글, 수정, 삭제 버튼 */
 .btn-repliess {
     font-size: 16px;
     margin-top: 10px;
@@ -208,7 +210,7 @@
 .btn-likess {
     font-size: 16px;
     display: flex;
-    width: 25%;
+    width: 8%;
     align-items: center;
 }
 
@@ -226,7 +228,7 @@
 .btn-reply {
     font-size: 16px;
     display: flex;
-    width: 100%;
+    width: 7%;
     align-items: center;
 }
 
@@ -341,7 +343,7 @@
 }
 
 
-/* 댓글쓰기, 수정하기, 삭제하기 버튼 */
+/* 좋아요, 답글, 수정, 삭제 버튼 */
 .re-btn-repliess {
     font-size: 16px;
     margin-top: 10px;
@@ -353,7 +355,7 @@
 .re-btn-likess {
     font-size: 16px;
     display: flex;
-    width: 25%;
+    width: 8%;
     align-items: center;
 }
 
@@ -371,7 +373,7 @@
 .re-btn-reply {
     font-size: 16px;
     display: flex;
-    width: 100%;
+    width: 7%;
     align-items: center;
 }
 
