@@ -54,6 +54,11 @@ public class PostDAO {
 		SqlSession sqlSession = sessionFactory.openSession(true);		 
 		Map<String, Object> map = new HashMap<>(); 
 		int cnt = 5;
+
+		System.out.println("게시글 타입: "+post_type);
+		System.out.println("시작 인덱스: "+idx);
+		System.out.println("가져올 행 개수: "+cnt);
+		
 		map.put("post_type", post_type);
 		map.put("idx", idx); 
 		map.put("cnt", cnt); 
