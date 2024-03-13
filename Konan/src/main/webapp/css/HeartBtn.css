@@ -1,0 +1,25 @@
+
+.heart{
+  position: absolute;
+  background: url("../img/heart.png") no-repeat;
+  background-position: left;
+  background-size: 2900%;
+  height: 65px;
+  width: 65px;
+  bottom: -50px;
+  left: 5px;
+  transform: translate(-50%,-50%);
+}
+
+.heart.heart-active{
+  animation: animate .8s steps(28) 1;
+  background-position: right;
+}
+@keyframes animate {
+  0%{
+    background-position: left;
+  }
+  100%{
+    background-position: right;
+  }
+}

@@ -29,6 +29,7 @@
 /* 컬러팔래트 */
 :root {
   --maincolor : #9E32FF;
+  --lightmain: #DAC4F8;
 }
 /* 기본 태그 */
 body{
