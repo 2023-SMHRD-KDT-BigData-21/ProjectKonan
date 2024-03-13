@@ -69,13 +69,18 @@
                 </div>
                 <div class="det-info">
                     <div class="det-name"><span>강아지</span>&nbsp;&nbsp;<span>2024.03.11</span></div>
-                    <div class="det-tier"><span>댓글내용댓글내용댓글내용</span></div>
+                    <div class="det-rply-cntent"><span>댓글내용댓글내용댓글내용</span></div>
                     <div class="btn-repliess">
-                        <span>댓글쓰기</span>
+                        <div class="btn-likess"><span>좋아요</span></div>
+                        <div class="btn-reply"><span>답글</span></div>
+                        <div class="btn-delete-container">
+                            <div class="btn-delete"><span>삭제</span></div>
+                        </div>
                     </div>
                 </div>
-                <div class="like-heart-container"></div>
             </div>
+            
+            
 
             <!-- 대댓글 박스 -->
             <div class="re-det-profile-containerr">
@@ -84,13 +89,15 @@
                 </div>
                 <div class="re-det-info">
                     <div class="re-det-name"><span>강아지</span>&nbsp;&nbsp;<span>2024.03.11</span></div>
-                    <div class="re-det-tier"><span>댓글내용댓글내용댓글내용</span></div>
+                    <div class="re-det-rply-cntent"><span>댓글내용댓글내용댓글내용</span></div>
                     <div class="re-btn-repliess">
-
-                        <span>댓글쓰기</span>
+                        <div class="re-btn-likess"><span>좋아요</span></div>
+                        <div class="re-btn-reply"><span>답글</span></div>
+                        <div class="re-btn-delete-container">
+                            <div class="re-btn-delete"><span>삭제</span></div>
+                        </div>
                     </div>
                 </div>
-                <div class="re-like-heart-container"></div>
             </div>
 
             <!-- 댓글 쓰기 박스-->
@@ -106,7 +113,7 @@
                     <span>게시하기</span>
                 </button>
             </div>
-            
+
         </div>
     </div>
 
