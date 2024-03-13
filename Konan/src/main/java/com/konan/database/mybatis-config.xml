@@ -13,6 +13,7 @@
         <typeAlias type="com.konan.model.UserFollowing" alias="UserFollowing"/>
         <typeAlias type="com.konan.model.DetectiveInfo" alias="DetectiveInfo"/>
         <typeAlias type="com.konan.model.Post" alias="Post"/>
+        <typeAlias type="com.konan.model.PostComment" alias="PostComment"/>
      </typeAliases>
      
      <environments default="development">
@@ -32,5 +33,6 @@
     <mapper resource="com/konan/database/UserFollowingMapper.xml"/><!-- membermapper랑 매치해줘야함, .은 /로 변경 -->
     <mapper resource="com/konan/database/DetectiveInfoMapper.xml"/><!-- membermapper랑 매치해줘야함, .은 /로 변경 -->
     <mapper resource="com/konan/database/PostMapper.xml"/><!-- membermapper랑 매치해줘야함, .은 /로 변경 -->
+    <mapper resource="com/konan/database/PostCommentMapper.xml"/>
   </mappers>
 </configuration>
