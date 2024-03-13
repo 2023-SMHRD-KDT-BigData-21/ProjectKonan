@@ -48,14 +48,10 @@
 
 	
 	<!-- QnaForm, CommuForm -->
-	<!-- (C,Q)포스팅 작성 -->
+	<!-- 포스팅 작성 -->
 	<insert id="insert" parameterType="Post">
-		insert into post values(post_id_seq.NEXTVAL, (null), #{post_type}, #{user_id}, #{title}, #{post_content}, #{is_rewrite}, sysdate, #{report_cnt}, #{is_adopted}, #{is_anonymous})
-	</insert>
-	
-	<!-- (A)포스팅 작성 -->
-	<insert id="insertAnswer" parameterType="Post">
-		insert into post values(post_id_seq.NEXTVAL, #{question_id}, #{post_type}, #{user_id}, #{title}, #{post_content}, #{is_rewrite}, sysdate, #{report_cnt}, #{is_adopted}, #{is_anonymous})
+		insert into post (post_id, <if test="question_id != null">question_id,</if> post_type, user_id, title, post_content, is_rewrite, write_date, report_cnt, is_adopted, is_anonymous)
+    	values (post_id_seq.NEXTVAL, <if test="question_id != null">#{question_id},</if> #{post_type}, #{user_id}, #{title}, #{post_content}, #{is_rewrite}, sysdate, #{report_cnt}, #{is_adopted}, #{is_anonymous})
 	</insert>
 	
 	<!-- 포스팅 수정 -->

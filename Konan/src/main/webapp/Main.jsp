@@ -31,6 +31,7 @@
 	<%
 	PostDAO dao = new PostDAO();
 
+	int max = dao.maxRow("Q"); // 총 보여줄 글 개수
 	int showNum = 5; // 한 페이지에 보여줄 글 개수(고정)
 	
 	List<Post> list = dao.firstList("Q"); // 첫 페이지에 보여줄 글 목록 불러오기
@@ -58,8 +59,8 @@
 				</div><!-- quest-title -->
 				<div class="quest-content">
 					<%
-					if (post.getPost_content().length() > 50)
-						out.print(post.getPost_content().substring(0, 50) + "⋯");
+					if (post.getPost_content().length() > 43)
+						out.print(post.getPost_content().substring(0, 43) + "⋯");
 					else
 						out.print(post.getPost_content());
 					%>
@@ -95,6 +96,7 @@
 	let div = document.getElementsByTagName("div")[0];
 		function moreList() {
 			const questionContainers = document.querySelectorAll(".quest-container-in");
+			var max = "<%=max%>"
 			var idx = questionContainers.length; //더보기 전 게시글 수를 알아내기 위해서 해당 div의 length를 구함
 			//console.log("idx", idx); //콘솔로그로 값이 들어오는지 확인
 
@@ -107,6 +109,7 @@
 				},
 				dataType : "json",
 				success : function(data) {
+					console.log(max,data.length);
 					var itr = data.length>5?5:data.length; //for문 돌아갈 횟수
 					// 더보기 클릭 후 보여줄 게시글(data)이 5개이상이면 5번, 아니면 남은 게시글 수 
 					let addHtml = "";
@@ -115,8 +118,8 @@
 						addHtml += "<div class='quest-container-in'> <div class='quest-title'> <a href='QnaContent.jsp?idx="
 								+ post.post_id + "'>" + post.title
 								+ "</a></div> <div class='quest-content'>";
-						if (post.post_content.length > 50)
-							addHtml += post.post_content.substring(0, 50) + "⋯";
+						if (post.post_content.length > 43)
+							addHtml += post.post_content.substring(0, 43) + "⋯";
 						else
 							addHtml += post.post_content
 						addHtml += "</div> <div class='res-container'> <span>답변</span>"
@@ -124,7 +127,7 @@
 								+ "</div> </div>";
 					} //for
 					$(".more-container").append(addHtml);
-					if (data.length <= 5) { // 더보기 클릭 후 보여줄 게시글(data)이 5개 이하이면 더보기 버튼 없앰
+					if (max-idx<=5) { // 더보기 클릭 후 보여줄 게시글(data)이 5개 이하이면 더보기 버튼 없앰
 						$("#more-btn").remove();
 					}
 				} //success

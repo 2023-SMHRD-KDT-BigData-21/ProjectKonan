@@ -10,7 +10,7 @@
 <body>
 <%@ include file="Header.jsp" %> 
 	<div class="container">
-		<form method="post">
+		<form action="PostInsertController" method="post" enctype="multipart/form-data">
 	        <div class="question-container">
 	            <div class="user-question">질문 작성</div>
 	            <div class="user-question-container">
@@ -21,16 +21,12 @@
 	                <input type="text" name="postContent" formaction="PostInsertController" class="user-question-content" placeholder="본문입력">
 	            </div>
 	        </div>
-	        
+
 	        <div class="add-photo-container">
 	            <div class="add-photo-text">사진추가</div>
 	            <div class="add-photo-img-container">
-	            	<input type="file" name="img" formaction="PostImageController" class="form-control" id="photo">
-	            	<input type="file" name="img1" formaction="PostImageController" class="form-control" id="photo">
-	            	<input type="file" name="img2" formaction="PostImageController" class="form-control" id="photo">
-	            	<input type="file" name="img3" formaction="PostImageController" class="form-control" id="photo">
-	            	<input type="file" name="img4" formaction="PostImageController" class="form-control" id="photo">
-	            </div>
+	            	<input type="file" name="img" formaction="PostImageController" class="form-control" id="photo" multiple>
+	            </div> 
 	        </div>
 	        
 	        <!-- 질문하기 버튼 -->

@@ -1,8 +1,3 @@
-$(".list").on("click", function () {
-  $(".list").css('color', 'inherit');
-  $(this).css('color', '#1088a6');
-});
-
 
 const list = document.querySelectorAll('.list');
 function activeLink() {

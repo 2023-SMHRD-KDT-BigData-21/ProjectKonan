@@ -147,47 +147,50 @@
     <script> 
     	//팔로잉 버튼 누르기 
     	let btn = document.getElementById("following_btn");
-    	btn.addEventListener('click', function() {
-    		const url = new URL(window.location.href);
-    		const urlParameter = window.location.search;
-    		const urlParams = url.searchParams;
+    	//버튼이 존재할때
+    	if (btn){
+    		btn.addEventListener('click', function() {
+        		const url = new URL(window.location.href);
+        		const urlParameter = window.location.search;
+        		const urlParams = url.searchParams;
 
-    		const targetId = urlParams.get('targetId');
-    		
-    		console.log(targetId);
-    		console.log("눌림!");
-    		
-    		if(btn.matches('.active-btn')){
-    			// 팔로잉 팔로우 글자 바꾸기 클래스 유무로 
-    			console.log("언팔로우");
-    			btn.innerHTML = "팔로우"
-    		}else{
-    			console.log("팔로잉");
-    			btn.innerHTML = "팔로잉"
-    		}
-    		
-    		this.classList.toggle('active-btn');
-    		
-    		
-			$.ajax({    
-				type : "post", // 타입 (get, post, put 등등)    
-				url : "FollowController", // 요청할 서버url    
-				async : true,  // 비동기화 여부 (default : true)    
-				dataType : "", // 데이터 타입 (html, xml, json, text 등등), 여러개 보낼 땐 보통 json으로 보냄
-				data : {"targetId" : targetId},
-				success : function(result) { 
-							// 성공 콜백함수        
-							console.log("btn 성공")
-						},    
-				error : function(request, status, error) { 
-							//에러 콜백함수        
-							console.log("btn 실패")
-							btn.classList.toggle('active-btn')
-							console.log(request.responseText)    
-							console.log(error)    
-						}
-				})//ajax
-    	});//addEventListener
+        		const targetId = urlParams.get('targetId');
+        		
+        		console.log(targetId);
+        		console.log("눌림!");
+        		
+        		if(btn.matches('.active-btn')){
+        			// 팔로잉 팔로우 글자 바꾸기 클래스 유무로 
+        			console.log("언팔로우");
+        			btn.innerHTML = "팔로우"
+        		}else{
+        			console.log("팔로잉");
+        			btn.innerHTML = "팔로잉"
+        		}
+        		
+        		this.classList.toggle('active-btn');
+        		
+        		
+    			$.ajax({    
+    				type : "post", // 타입 (get, post, put 등등)    
+    				url : "FollowController", // 요청할 서버url    
+    				async : true,  // 비동기화 여부 (default : true)    
+    				dataType : "", // 데이터 타입 (html, xml, json, text 등등), 여러개 보낼 땐 보통 json으로 보냄
+    				data : {"targetId" : targetId},
+    				success : function(result) { 
+    							// 성공 콜백함수        
+    							console.log("btn 성공")
+    						},    
+    				error : function(request, status, error) { 
+    							//에러 콜백함수        
+    							console.log("btn 실패")
+    							btn.classList.toggle('active-btn')
+    							console.log(request.responseText)    
+    							console.log(error)    
+    						}
+    				})//ajax
+        	});//addEventListener
+    	}
 		
 		// 모달 열기
 		function openModal() {
