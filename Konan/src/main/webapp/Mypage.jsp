@@ -49,29 +49,45 @@
         <br>
 
         <!-- 나의 활동 컨테이터 -->
+        <!-- 나의 활동 내역(좋아요, 댓글, 차단목록 확인 버튼)
+             좋아요한 게시글 목록 확인/삭제
+             댓글 단 게시글 목록 확인/삭제 
+             차단 목록 확인/삭제
+             
+             계정관리
+             :: 아래 페이지로 이동할 수 있는 목록 정렬을 위한 페이지
+             목록 조회(아래 페이지로 이동할 수 있는)
+             비밀번호 확인 페이지(c,d,e로 이동하기 전에 거치는 페이지)
+             회원정보 수정 페이지(탐정 추후 요청)
+             비밀번호 변경 페이지
+             회원탈퇴 페이지
+             회원탈퇴 완료 
+		-->
+		
+		<h4>나의 활동 기록</h4>
         <div class="my-activity-btn-container align-item">
-            <a href = "#"><button id="answer_btn" class="page-btn">내 댓글 확인</button></a>
-            <hr class = "vertical">
-            <a href = ""><button id="check_like_list_btn" class="page-btn">좋아요 히스토리</button></a>
-            <hr class = "vertical">
-            <a href = ""><button id="check_block_list_btn" class="page-btn">차단한 사용자 확인</button></a>
+            <ul>
+            <li class="list">
+                <a href="Login.jsp">
+                    <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
+                    <span class="title">나의 좋아요 목록</span>
+                </a>
+            </li>
+            <li class="list active_header">
+                <a href="Main.jsp">
+                    <span class="icon"><ion-icon name="chatbox-ellipses-outline"></ion-icon></span>
+                    <span class="title">나의 댓글 목록</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="CommuList.jsp">
+                    <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
+                    <span class="title">커뮤니티</span>
+                </a>
+            </li>
+           </ul>
         </div>
-
-        <div class="page-btn-container align-item">
-            <button id="commu_btn" class="page-btn bold">나의 게시글</button>
-            <hr class = "vertical">
-            <button id="quest_btn" class="page-btn bold">나의 질문</button>
-            <hr class = "vertical">
-            <button id="answer_btn" class="page-btn bold">나의 답변</button>
-        </div>
-        <hr>
-        <!-- 내가 쓴 글 모아보기 컨테이너 -->
-        <div class="comment-container">
-            <div class="comment">
-                <a href="#"><strong>컨텐츠 제목</strong></a>
-                <p>내용</p>
-            </div>
-        </div>
+        
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>

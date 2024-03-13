@@ -79,7 +79,7 @@
 					<span><%=reactionDao.countLike(post.getPost_id()) %></span><!-- like -->
 				</div><!-- res-container -->
 			</div><!-- quest-container-in -->
-			<%}%>
+			<%}//for문%>
 		<%
 		// 첫 페이지에 보여줄 게시글이 5개 이상이면
 		if (list.size() == showNum) {
@@ -115,19 +115,36 @@
 					var itr = data.length>5?5:data.length; //for문 돌아갈 횟수
 					// 더보기 클릭 후 보여줄 게시글(data)이 5개이상이면 5번, 아니면 남은 게시글 수 
 					let addHtml = "";
-					for (var i = 0; i < itr; i++) {
-						var post = data[i];
-						addHtml += "<div class='quest-container-in'> <div class='quest-title'> <a href='QnaContent.jsp?idx="
-								+ post.post_id + "'>" + post.title
-								+ "</a></div> <div class='quest-content'>";
-						if (post.post_content.length > 50)
-							addHtml += post.post_content.substring(0, 50) + "⋯";
-						else
-							addHtml += post.post_content
-						addHtml += "</div> <div class='res-container'> <span>답변</span>"
-								+ "<span class='res-icon'><ion-icon name='chatbox-outline'></ion-icon></span>"
-								+ "</div> </div>";
-					} //for
+					
+					<%
+					for (int i = 0; i < list.size(); i++) {
+						Post post = list.get(i);
+						System.out.println(post.getPost_id());
+					%>
+					addHtml += `<div class="quest-container-in">
+									<div class="quest-title">
+										<a href="QnaContent.jsp?idx=<%=post.getPost_id()%>"><%=post.getTitle()%></a>
+									</div><!-- quest-title -->
+									<div class="quest-content">
+										<%
+										if (post.getPost_content().length() > 50)
+											out.print(post.getPost_content().substring(0, 50) + "⋯");
+										else
+											out.print(post.getPost_content());
+										%>
+									</div><!-- quest-content -->
+								<div class="res-container">
+									<span>댓글</span> 
+									<span class="res-icon"><ion-icon name="chatbox-outline"></ion-icon></span>
+									<span><%=commntDao.countComments(post.getPost_id()) %></span>
+									<span>&nbsp;&nbsp;</span>
+									<span>좋아요</span>
+									<span class="res-icon"><ion-icon name="heart-outline"></ion-icon></span>
+									<span><%=reactionDao.countLike(post.getPost_id()) %></span><!-- like -->
+								</div><!-- res-container -->
+							</div><!-- quest-container-in -->`
+						<%}//for문%>
+						
 					$(".more-container").append(addHtml);
 					if (data.length <= 5) { // 더보기 클릭 후 보여줄 게시글(data)이 5개 이하이면 더보기 버튼 없앰
 						$("#more-btn").remove();
