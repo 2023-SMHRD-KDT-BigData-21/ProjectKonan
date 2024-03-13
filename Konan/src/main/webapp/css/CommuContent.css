@@ -103,15 +103,10 @@
     padding-bottom: 5px;
 }
 
-.btn-replies::before {
-    content: "";
-    background-image: url(/Konan/img/reply.png);
-    /* 이미지 경로 설정 */
-    background-size: cover;
-    margin-right: 5px;
-    /* 이미지와 텍스트 사이 여백 (선택적) */
-    width: 20px;
-    height: 20px;
+.btn-likes {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
 }
 
 .btn-likes::before {
@@ -125,6 +120,19 @@
     height: 20px;
 }
 
+.btn-replies::before {
+    content: "";
+    background-image: url(/Konan/img/reply.png);
+    /* 이미지 경로 설정 */
+    background-size: cover;
+    margin-right: 5px;
+    /* 이미지와 텍스트 사이 여백 (선택적) */
+    width: 20px;
+    height: 20px;
+}
+
+
+
 .btn-replies {
     font-size: 16px;
     display: flex;
@@ -133,12 +141,7 @@
     /* 각각의 좋아요와 답변 사이의 여백 (선택적) */
 }
 
-.btn-likes {
-    font-size: 16px;
-    display: flex;
-    padding-left: 20px;
 
-}
 
 
 .post-replies-container{
@@ -166,7 +169,6 @@
     display: flex;
     align-items: center;
     border-radius: 15px;
-    margin-top: 5%;
     padding: 3%;
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
     position: relative;
@@ -189,18 +191,67 @@
     flex-direction: column;
 }
 
-.det-tier{
+.det-rply-cntent{
     margin-top: 30px;
     margin-bottom: 10px;
 }
 
+/* 댓글쓰기, 수정하기, 삭제하기 버튼 */
 .btn-repliess {
     font-size: 16px;
-    margin-left: 50%;
     margin-top: 10px;
     display: flex;
+    width: auto;
+    align-items: center;
 }
-.btn-repliess::before {
+
+.btn-likess {
+    font-size: 16px;
+    display: flex;
+    width: 25%;
+    align-items: center;
+}
+
+.btn-likess::before {
+    content: "";
+    background-image: url('/Konan/img/heart_blank.png');
+    /* 이미지 경로 설정 */
+    background-size: cover;
+    margin-right: 5px;
+    /* 이미지와 텍스트 사이 여백 (선택적) */
+    width: 20px;
+    height: 20px;
+}
+
+.btn-reply {
+    font-size: 16px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.btn-reply::before {
+    content: "";
+    background-image: url(/Konan/img/reply.png);
+    /* 이미지 경로 설정 */
+    background-size: cover;
+    margin-right: 15px;
+    /* 이미지와 텍스트 사이 여백 (선택적) */    
+    width: 20px;
+    height: 20px;
+    flex-direction: row;
+
+}
+
+.btn-edit {
+    font-size: 16px;
+    display: flex;
+    padding-left: 20px;
+    width: 100%;
+    align-items: center;
+}
+
+.btn-edit::before {
     content: "";
     background-image: url(/Konan/img/reply.png);
     /* 이미지 경로 설정 */
@@ -211,6 +262,30 @@
     height: 20px;
     flex-direction: row;
 }
+
+.btn-delete-container {
+    font-size: 16px;
+    display: flex;
+    width: 10%;
+    align-items: center;
+}
+
+
+
+.btn-delete::before {
+    content: "";
+    background-image: url(/Konan/img/reply.png);
+    /* 이미지 경로 설정 */
+    background-size: cover;
+    margin-right: 15px;
+    /* 이미지와 텍스트 사이 여백 (선택적) */    
+    width: 20px;
+    height: 20px;
+    flex-direction: row;
+}
+
+
+
 
 .like-heart-container {
     content: "";
@@ -250,6 +325,7 @@
     /* 이미지와 텍스트 사이 여백 (선택적) */
     background-size: cover;
     background-position: center;
+    margin-left: 60px;
 }
 
 .re-det-info {
@@ -259,18 +335,68 @@
     flex-direction: column;
 }
 
-.re-det-tier{
+.re-det-rply-cntent{
     margin-top: 30px;
     margin-bottom: 10px;
 }
 
+
+/* 댓글쓰기, 수정하기, 삭제하기 버튼 */
 .re-btn-repliess {
     font-size: 16px;
-    margin-left: 50%;
     margin-top: 10px;
     display: flex;
+    width: auto;
+    align-items: center;
 }
-.re-btn-repliess::before {
+
+.re-btn-likess {
+    font-size: 16px;
+    display: flex;
+    width: 25%;
+    align-items: center;
+}
+
+.re-btn-likess::before {
+    content: "";
+    background-image: url('/Konan/img/heart_blank.png');
+    /* 이미지 경로 설정 */
+    background-size: cover;
+    margin-right: 5px;
+    /* 이미지와 텍스트 사이 여백 (선택적) */
+    width: 20px;
+    height: 20px;
+}
+
+.re-btn-reply {
+    font-size: 16px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.re-btn-reply::before {
+    content: "";
+    background-image: url(/Konan/img/reply.png);
+    /* 이미지 경로 설정 */
+    background-size: cover;
+    margin-right: 15px;
+    /* 이미지와 텍스트 사이 여백 (선택적) */    
+    width: 20px;
+    height: 20px;
+    flex-direction: row;
+
+}
+
+.re-btn-edit {
+    font-size: 16px;
+    display: flex;
+    padding-left: 20px;
+    width: 100%;
+    align-items: center;
+}
+
+.re-btn-edit::before {
     content: "";
     background-image: url(/Konan/img/reply.png);
     /* 이미지 경로 설정 */
@@ -282,19 +408,35 @@
     flex-direction: row;
 }
 
-.re-like-heart-container {
+.re-btn-delete-container {
+    font-size: 16px;
+    display: flex;
+    width: 10%;
+    align-items: center;
+}
+
+
+
+.re-btn-delete::before {
     content: "";
-    background-image: url('/Konan/img/heart_blank.png');
+    background-image: url(/Konan/img/reply.png);
     /* 이미지 경로 설정 */
     background-size: cover;
-    margin-right: 5px;
-    /* 이미지와 텍스트 사이 여백 (선택적) */
+    margin-right: 15px;
+    /* 이미지와 텍스트 사이 여백 (선택적) */    
     width: 20px;
     height: 20px;
-    position: absolute;
-    top: 20px;
-    right: 20px;
+    flex-direction: row;
 }
+
+
+
+
+
+
+
+
+
 
 /* 댓글쓰기 박스 */
 .user-reply-container {
