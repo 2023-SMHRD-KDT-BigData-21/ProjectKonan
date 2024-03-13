@@ -122,9 +122,17 @@
 							addHtml += post.post_content.substring(0, 43) + "⋯";
 						else
 							addHtml += post.post_content
-						addHtml += "</div> <div class='res-container'> <span>답변</span>"
-								+ "<span class='res-icon'><ion-icon name='chatbox-outline'></ion-icon></span>"
-								+ "</div> </div>";
+						addHtml += `
+						<div class="res-container">
+							<span>답변</span> 
+							<span class="res-icon"><ion-icon name="chatbox-outline"></ion-icon></span>
+							<span>`+post.answer_cnt+`</span>
+							<span>&nbsp;&nbsp;</span>
+							<span>좋아요</span>
+							<span class="res-icon"><ion-icon name="heart-outline"></ion-icon></span>
+							<span>`+post.like_cnt+`</span>
+						</div>
+					</div></div>`
 					} //for
 					$(".more-container").append(addHtml);
 					if (max-idx<=5) { // 더보기 클릭 후 보여줄 게시글(data)이 5개 이하이면 더보기 버튼 없앰

@@ -23,4 +23,5 @@ public class Paging {
 		private String is_anonymous = "F"; //질문 포스팅 작성시만
 		private Integer like_cnt = 0;
 		private Integer comment_cnt = 0;
+		private Integer answer_cnt = 0;
 }

@@ -26,7 +26,7 @@
 	<!-- 글쓰기 버튼 -->
 	<%if(user!=null){ %>
 	<div class="post-button">
-		<a href="QnaForm.jsp"> <ion-icon class="post-icon" name="pencil"></ion-icon>
+		<a href="CommuForm.jsp"> <ion-icon class="post-icon" name="pencil"></ion-icon>
 		</a>
 	</div>
 	<%} %>
@@ -90,7 +90,7 @@
 			<div class="more-container"></div>
 
 			<button id="more-btn" class="more-button" onclick="moreList();">
-				<ion-icon name="chevron-down-circle-outline"></ion-icon>
+				<ion-icon name="add-circle-outline"></ion-icon>
 			</button>
 
 			<%}%>
