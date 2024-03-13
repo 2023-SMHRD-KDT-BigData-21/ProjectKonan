@@ -21,6 +21,13 @@
 
 <body>
 <%@ include file="Header.jsp"%>
+	<!-- 글쓰기 버튼 -->
+	<div class="post-button">
+		<a href="QnaForm.jsp">
+			<ion-icon class="post-icon" name="pencil"></ion-icon>
+		</a>
+	</div>
+
 	<%
 	PostDAO dao = new PostDAO();
 
@@ -35,18 +42,6 @@
 		<div class="search-container">
 			<span class="search-icon"><ion-icon name="search-outline"></ion-icon></span>
 			<input type="text" class="search-input">
-		</div>
-
-		<!-- 글쓰기 버튼 -->
-		<a href="QnaForm.jsp">
-		<div class="post-button">
-			<ion-icon class="post-icon" name="pencil"></ion-icon>
-		</div>
-		</a>
-
-		<!-- 인기게시물 -->
-		<div class="most-viewed-questions-container">
-			<div class="content-box"></div>
 		</div>
 
 

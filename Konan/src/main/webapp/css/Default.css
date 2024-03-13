@@ -34,6 +34,7 @@
 body{
   font-family: 'NanumBarunGothic';
   background-color:white;
+  height:auto;
 }
 a{
 	text-decoration: none;
