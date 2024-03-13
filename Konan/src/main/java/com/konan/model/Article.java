@@ -15,4 +15,7 @@ public class Article {
 	private String reported_date;
 	private String url;
 	private String img;
+	public Article() {
+		
+	}
 }

@@ -1,3 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.konan.database.ArticleMapper"></mapper>
+<mapper namespace="com.konan.database.ArticleMapper">
+
+	<select id="selectFirst"  resultType="Article">
+		select * from article where rownum &lt;= 5
+	</select>
+	<select id="selectMore" parameterType="java.util.Map" resultType="Article">
+		select article_id, title, article_content, reporter, reported_date, url, img
+		from(select rownum as rnum, sub.* 
+		from(select * from article 
+		order by article_id desc) sub 
+		where rownum &lt;= #{idx}+#{cnt}) 
+		where rnum > #{idx}
+	</select>
+	
+
+</mapper>

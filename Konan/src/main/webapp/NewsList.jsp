@@ -1,3 +1,5 @@
+<%@page import="com.konan.model.Article"%>
+<%@page import="com.konan.model.ArticleDAO"%>
 <%@page import="com.konan.model.Post"%>
 <%@page import="com.konan.model.PostDAO"%>
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
@@ -29,11 +31,11 @@
 	</div>
 
 	<%
-	PostDAO dao = new PostDAO();
+	ArticleDAO dao = new ArticleDAO();
 
 	int showNum = 5; // 한 페이지에 보여줄 글 개수(고정)
 	
-	List<Post> list = dao.firstList("Q"); // 첫 페이지에 보여줄 글 목록 불러오기
+	List<Article> list = dao.firstList(); // 첫 페이지에 보여줄 글 목록 불러오기
 	%>
 
 
@@ -50,28 +52,22 @@
 		<div class="wait-quest-container shadow-div">
 			<%
 			for (int i = 0; i < list.size(); i++) {
-				Post post = list.get(i);
+				Article article = list.get(i);
 			%>
 			<div class="quest-container-in">
 				<div class="quest-title">
-					<a href="QnaContent.jsp?idx=<%=post.getPost_id()%>"><%=post.getTitle()%></a>
+					<a href="<%=article.getUrl()%>"><%=article.getTitle()%></a>
 				</div><!-- quest-title -->
 				<div class="quest-content">
 					<%
-					if (post.getPost_content().length() > 50)
-						out.print(post.getPost_content().substring(0, 50) + "⋯");
+					if (article.getArticle_content().length() > 50)
+						out.print(article.getArticle_content().substring(0, 50) + "⋯");
 					else
-						out.print(post.getPost_content());
+						out.print(article.getArticle_content());
 					%>
 				</div><!-- quest-content -->
 				<div class="res-container">
-					<span>답변</span> 
-					<span class="res-icon"><ion-icon name="chatbox-outline"></ion-icon></span>
-					<span><%=dao.ansCount(post.getPost_id()) %></span>
-					<span>&nbsp;&nbsp;</span>
-					<span>좋아요</span>
-					<span class="res-icon"><ion-icon name="heart-outline"></ion-icon></span>
-					<span><!--dao.ansCount(post.getPost_id()) %> --></span><!-- like -->
+					
 				</div><!-- res-container -->
 			</div><!-- quest-container-in -->
 			<%}%>
@@ -101,8 +97,7 @@
 			$.ajax({
 				url : "PagingController",
 				type : "get",
-				data : {
-					"postType" : "Q",	
+				data : {	
 					"idx" : idx
 				},
 				dataType : "json",
@@ -111,11 +106,11 @@
 					// 더보기 클릭 후 보여줄 게시글(data)이 5개이상이면 5번, 아니면 남은 게시글 수 
 					let addHtml = "";
 					for (var i = 0; i < itr; i++) {
-						var post = data[i];
+						var article = data[i];
 						addHtml += "<div class='quest-container-in'> <div class='quest-title'> <a href='QnaContent.jsp?idx="
-								+ post.post_id + "'>" + post.title
+								+ article.article_id + "'>" + article.title
 								+ "</a></div> <div class='quest-content'>";
-						if (post.post_content.length > 50)
+						if (article.article_content.length > 50)
 							addHtml += post.post_content.substring(0, 50) + "⋯";
 						else
 							addHtml += post.post_content
