@@ -1,34 +1,14 @@
-<%@page import="java.util.List"%>
-<%@page import="com.konan.model.Post"%>
-<%@page import="com.konan.model.PostDAO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>  
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    
     <link rel="stylesheet" href="/Konan/css/Default2.css">
     <link rel="stylesheet" href="/Konan/css/JsikRplyAfterDet.css">
     
-    <style>
-        .js-load {
-            display: none;
-        }
-        .js-load.active {
-            display: block;
-        }
-        .js-load:after {
-            display: none;
-        }
-        .btn-wrap {
-            display: block;
-        }
-    </style>
-
 </head>
 
 <body>
