@@ -80,10 +80,8 @@
 					<span>&nbsp;&nbsp;</span> <span>좋아요</span> <span class="res-icon"><ion-icon
 							name="heart-outline"></ion-icon></span> <span><%=reactionDao.countLike(post.getPost_id()) %></span>
 					<!-- like -->
-				</div>
-				<!-- res-container -->
-			</div>
-			<!-- quest-container-in -->
+				</div><!-- res-container -->
+			</div><!-- quest-container-in -->
 			<%}//for문%>
 			<%
 		// 첫 페이지에 보여줄 게시글이 5개 이상이면
@@ -119,41 +117,33 @@
 				},
 				dataType : "json",
 				success : function(data) {
+					console.log(max,data.length);
 					var itr = data.length>5?5:data.length; //for문 돌아갈 횟수
 					// 더보기 클릭 후 보여줄 게시글(data)이 5개이상이면 5번, 아니면 남은 게시글 수 
 					let addHtml = "";
-					<% List<Post> leftList = dao.moreList("C",leftPost); %>
-					<%
-					for (int i = 0; i < leftList.size(); i++) {
-						Post post = leftList.get(i);
-						System.out.println(post.getPost_id());
-					%>
-					addHtml += `<div class="quest-container-in">
-									<div class="quest-title">
-										<a href="CommuContent.jsp?idx=<%=post.getPost_id()%>"><%=post.getTitle()%></a>
-									</div><!-- quest-title -->
-									<div class="quest-content">
-										<%
-										if (post.getPost_content().length() > 50)
-											out.print(post.getPost_content().substring(0, 50) + "⋯");
-										else
-											out.print(post.getPost_content());
-										%>
-									</div><!-- quest-content -->
-								<div class="res-container">
-									<span>댓글</span> 
-									<span class="res-icon"><ion-icon name="chatbox-outline"></ion-icon></span>
-									<span><%=commntDao.countComments(post.getPost_id()) %></span>
-									<span>&nbsp;&nbsp;</span>
-									<span>좋아요</span>
-									<span class="res-icon"><ion-icon name="heart-outline"></ion-icon></span>
-									<span><%=reactionDao.countLike(post.getPost_id()) %></span><!-- like -->
-								</div><!-- res-container -->
-							</div><!-- quest-container-in -->`
-						<%}//for문
-						leftPost += showNum;
-						%>
-						
+					for (var i = 0; i < itr; i++) {
+						var post = data[i];
+						console.log(post)
+						addHtml += "<div class='quest-container-in'> <div class='quest-title'> <a href='QnaContent.jsp?idx="
+								+ post.post_id + "'>" + post.title
+								+ "</a></div> <div class='quest-content'>";
+						if (post.post_content.length > 43)
+							addHtml += post.post_content.substring(0, 43) + "⋯";
+						else
+							addHtml += post.post_content
+							
+						addHtml += `
+						<div class="res-container">
+							<span>댓글</span> 
+							<span class="res-icon"><ion-icon name="chatbox-outline"></ion-icon></span>
+							<span>`+post.comment_cnt+`</span>
+							<span>&nbsp;&nbsp;</span>
+							<span>좋아요</span>
+							<span class="res-icon"><ion-icon name="heart-outline"></ion-icon></span>
+							<span>`+post.like_cnt+`</span>
+						</div>
+					</div></div>`
+					} //for
 					$(".more-container").append(addHtml);
 					if (max-idx<=5) { // 더보기 클릭 후 보여줄 게시글(data)이 5개 이하이면 더보기 버튼 없앰
 						$("#more-btn").remove();
