@@ -35,15 +35,14 @@ public class PostInsertController extends HttpServlet {
 		int sizeLimit = 5*1024*1024; //5메가 제한 넘어서면 예외발생
 		MultipartRequest multi = new MultipartRequest(request, savePath, sizeLimit, "UTF-8", new DefaultFileRenamePolicy());
 
+		//매개변수 가져오기
 		String postType = multi.getParameter("postType");
 		String userId = user.getUser_id();
 		String title = multi.getParameter("title");
 		String postContent = multi.getParameter("postContent");
-		
-        
-		Post post = null;
-		
+				
 		//포스팅 객체 생성
+		Post post = null;
 		if(postType.equals("Q")) { //질문 포스팅 시
 			String isAnonymous = multi.getParameter("isAnonymous");
 			post = new Post(postType,userId,title,postContent,isAnonymous);
@@ -76,13 +75,12 @@ public class PostInsertController extends HttpServlet {
         
         while (files.hasMoreElements()) {
         	String temp = files.nextElement();
-        	File file = multi.getFile(temp);
-        	System.out.println(file);
-        	if(file!=null) {
-        		String fileName = file.getName();
-        		System.out.println(fileName);
+        	System.out.println("nextElement:" + temp);
+        	String fileName = multi.getFilesystemName(temp);
+        	System.out.println(fileName);
+        	if(fileName!=null) {
             	//포스팅에 연결하여 이미지 작성
-            	PostImage img = new PostImage(postId,fileName);
+            	PostImage img = new PostImage(postId, fileName);
             	int rowImg = daoImg.insert(img);
             	if(rowImg>0)
             		System.out.println("사진 작성 성공!");

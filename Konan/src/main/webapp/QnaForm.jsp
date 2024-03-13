@@ -5,6 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+	    .add-photo-container {
+	    padding: 20px 30px;
+	    display: block;
+	    width: 200px;
+	    margin: 5vh auto;
+	    height: 200px;
+	    border: 1px solid #dbdbdb;
+	    -webkit-box-sizing: border-box;
+	    -moz-box-sizing: border-box;
+	    box-sizing: border-box;
+		}
+		
+		.form-control {
+		display: none;
+		}
+    </style>
 </head>
 
 <body>
@@ -22,12 +39,39 @@
 	            </div>
 	        </div>
 
+			<label for="img0">
+	        <div class="add-photo-container">+
+	        </div><!-- add-photo-container -->
+	        </label>
+	        <input type="file" id="img0" onchange="setThumbnail(event);" name="img0" formaction="PostImageController" class="form-control">
+	        
+	       	<div class="add-photo-container">
+	            <div class="add-photo-text">사진추가</div>
+	            <div class="add-photo-img-container">
+	            	<input type="file" onchange="setThumbnail(event);" name="img2" formaction="PostImageController" class="form-control">
+	            </div><!-- add-photo-img-container -->
+	        </div><!-- add-photo-container -->
+	        
 	        <div class="add-photo-container">
 	            <div class="add-photo-text">사진추가</div>
 	            <div class="add-photo-img-container">
-	            	<input type="file" name="img" formaction="PostImageController" class="form-control" id="photo" multiple>
-	            </div> 
-	        </div>
+	            	<input type="file" onchange="setThumbnail(event);" name="img3" formaction="PostImageController" class="form-control">
+	            </div><!-- add-photo-img-container -->
+	        </div><!-- add-photo-container -->
+	        
+	        <div class="add-photo-container">
+	            <div class="add-photo-text">사진추가</div>
+	            <div class="add-photo-img-container">
+	            	<input type="file" onchange="setThumbnail(event);" name="img4" formaction="PostImageController" class="form-control">
+	            </div><!-- add-photo-img-container -->
+	        </div><!-- add-photo-container -->
+	        
+	        <div class="add-photo-container">
+	            <div class="add-photo-img-container">
+	            	<input type="file" onchange="setThumbnail(event);" name="img5" formaction="PostImageController" class="form-control">
+	            </div><!-- add-photo-img-container -->
+	        </div><!-- add-photo-container -->
+	        
 	        
 	        <!-- 질문하기 버튼 -->
 	        <button type="submit" class="question-btn">질문등록</button>
@@ -41,5 +85,27 @@
 	        
 	</div>
 	
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js" /></script>
+	
+	<script>
+    
+	function setThumbnail(event) {
+	    var reader = new FileReader();
+
+	    reader.onload = function (event) {
+	        var img = document.createElement("img");
+	        img.setAttribute("src", event.target.result);
+	        img.setAttribute("class", "col-lg-6");
+	        
+	        // 이미지의 너비와 높이를 설정합니다.
+	        img.style.width = "200px"; // 너비를 200px로 설정
+
+
+	        document.querySelector("div.add-photo-container").appendChild(img);
+	    };
+
+	    reader.readAsDataURL(event.target.files[0]);
+	}
+	</script>
 </body>
 </html>
