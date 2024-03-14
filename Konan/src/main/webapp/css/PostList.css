@@ -10,6 +10,17 @@
 7. 더 보기 버튼
 */
 
+/* 게시글 a태그 */
+.link:link{
+	color:black;
+}
+.link:visited{
+	color:black;
+}
+.link:active{
+	color:purple;
+}
+
 /* 검색창 */
 .search-container {
     position: relative;
