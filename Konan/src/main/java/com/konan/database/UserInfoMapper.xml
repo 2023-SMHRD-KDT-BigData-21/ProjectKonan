@@ -2,43 +2,48 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.konan.database.UserInfoMapper">
 
-<!-- 
-컬럼 순서
-USER_ID, USER_PW, EMAIL, NAME, PHONE_NUMBER, REGION, GENDER, INDATE, PROPIC, OUTDATE
- -->
+	<!-- 컬럼 순서 USER_ID, USER_PW, EMAIL, NAME, PHONE_NUMBER, REGION, GENDER, 
+		INDATE, PROPIC, OUTDATE -->
 
 	<!-- not null 조건이 걸린 값을 넣음 -->
 	<insert id="joinDefault" parameterType="UserInfo">
-		insert into 
-			user_info(USER_ID, USER_PW, EMAIL, NAME, PHONE_NUMBER, INDATE) 
+		insert into
+		user_info(USER_ID, USER_PW, EMAIL, NAME, PHONE_NUMBER, INDATE)
 		values
-			(#{user_id}, #{user_pw},#{email},#{name},#{phone_number},sysdate)
+		(#{user_id}, #{user_pw},#{email},#{name},#{phone_number},sysdate)
 	</insert>
-	
-	
-	
+
+
+
 	<!-- id 중복 확인 -->
-	<select id = "idCheck" parameterType="String" resultType="UserInfo">
+	<select id="idCheck" parameterType="String"
+		resultType="UserInfo">
 		select user_id from user_info where user_id = #{user_id}
 	</select>
-	
+
 	<!-- 로그인 -->
-	<select id="login" parameterType="UserInfo" resultType ="UserInfo">
-		select * from user_info where user_id = #{user_id} and user_pw = #{user_pw}
+	<select id="login" parameterType="UserInfo"
+		resultType="UserInfo">
+		select * from user_info where user_id = #{user_id} and
+		user_pw = #{user_pw}
 	</select>
-	
+
 	<!-- 아이디로 특정 회원 정보 전부 가져오기 -->
-	<select id="selectUser" parameterType="String" resultType="UserInfo">
-        select * from user_info where user_id=#{user_id} 
-    </select>
-    
-    <update id="update" parameterType="UserInfo">
-    	UPDATE user_info
-      	SET USER_PW = #{user_pw},
-          EMAIL = #{email},
-          NAME = #{name},
-          PHONE_NUMBER = #{phone_number},
-          propic = #{propic}
-       	WHERE user_id = #{user_id}
-    </update>
+	<select id="selectUser" parameterType="String"
+		resultType="UserInfo">
+		select * from user_info where user_id=#{user_id}
+	</select>
+
+	<update id="update" parameterType="UserInfo">
+		UPDATE user_info
+		SET
+		USER_PW = #{user_pw, jdbcType=VARCHAR},
+		EMAIL = #{email, jdbcType=VARCHAR},
+		NAME = #{name, jdbcType=VARCHAR},
+		PHONE_NUMBER = #{phone_number, jdbcType=VARCHAR},
+		REGION = #{region, jdbcType=VARCHAR},
+		GENDER = #{gender, jdbcType=VARCHAR}
+		WHERE
+		user_id = #{user_id, jdbcType=VARCHAR}
+	</update>
 </mapper>

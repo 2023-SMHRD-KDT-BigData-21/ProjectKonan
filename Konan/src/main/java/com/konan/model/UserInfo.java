@@ -54,4 +54,6 @@ public class UserInfo {
 		this.indate = indate;
 		//this.propic = propic;
 	}
+	
+	
 }
