@@ -107,26 +107,41 @@
 		<%
 		for (int i = 0; i < postComments.size(); i++) {
 			CommentHierarchyView comment = postComments.get(i);
-			UserInfo commentWriter = userDao.getUser(comment.getUser_id());
+			UserInfo commentWriter = userDao.propicContent(comment.getUser_id());
 			if ((comment.getLv()).compareTo(BigDecimal.valueOf(1)) == 0) {
 		%>
 		<!-- 댓글 박스 -->
 		<div class="comments-container">
-			<div class="comment-area">
+			<div class="comment-area" style="margin-bottom: 10px;">
 				<!-- 이미 쓰여 있는 댓글 박스 -->
 				<div class="comment-container">
 
 					<!-- 댓글 작성자 -->
-					<a href="Profile.jsp?targetId=<%=commentWriter.getUser_id()%>>">
+					<a href="Profile.jsp?targetId=<%=commentWriter.getUser_id()%>"
+						class="link">
 						<div class="comment-info">
 							<!-- 댓글 작성자 프사 넣는 공간 -->
+							<%
+							if (commentWriter.getPropic() != null) {
+							%>
+							<div class="comment-propic"
+								style="background-image: url('data:image/jpg;base64,<%=commentWriter.getPropic()%>')"></div>
+							<%
+							} else {
+							%>
 							<div class="comment-propic"></div>
-							<div class="comment-name"><%=commentWriter.getName()%></div>
+							<%
+							}
+							%>
 						</div>
 					</a>
 
 
 					<div class="comment-content shadow-div">
+						<a href="Profile.jsp?targetId=<%=commentWriter.getUser_id()%>"
+							class="link">
+							<div class="comment-name"><%=commentWriter.getName()%></div>
+						</a>
 						<!-- 댓글 내용 -->
 						<span><%=comment.getComment_content()%></span>
 						<!-- 수정/삭제/신고 버튼 -->
@@ -153,22 +168,37 @@
 			%>
 
 			<!-- 대댓글 박스 -->
-			<div class="recomments-container">
+			<div class="recomments-container" style="margin-top: 0px;">
 				<div class="comment-area">
 					<!-- 이미 쓰여 있는 댓글 박스 -->
 					<div class="comment-container">
 
 						<!-- 댓글 작성자 -->
-						<a href="Profile.jsp?targetId=<%=commentWriter.getUser_id()%>>">
-						<div class="comment-info">
+						<a href="Profile.jsp?targetId=<%=commentWriter.getUser_id()%>"
+							class="link">
+							<div class="comment-info">
 							<!-- 댓글 작성자 프사 넣는 공간 -->
+							<%
+							if (commentWriter.getPropic() != null) {
+							%>
+							<div class="comment-propic"
+								style="background-image: url('data:image/jpg;base64,<%=commentWriter.getPropic()%>')"></div>
+							<%
+							} else {
+							%>
 							<div class="comment-propic"></div>
-							<div class="comment-name"><%=commentWriter.getName()%></div>
-						</div>
+							<%
+							}
+							%>
+							</div>
 						</a>
 
 						<div class="comment-content shadow-div"
 							style="background-color: lightgray">
+							<a href="Profile.jsp?targetId=<%=commentWriter.getUser_id()%>"
+								class="link">
+								<div class="comment-name"><%=commentWriter.getName()%></div>
+							</a>
 							<!-- 댓글 내용 -->
 							<span><%=comment.getComment_content()%></span>
 							<!-- 수정/삭제/신고 버튼 -->
@@ -190,30 +220,31 @@
 					</div>
 					<!-- comment-container -->
 				</div>
-				<%
-				} //else
-				} //for
-				} //if - 댓글이 0개가 아니라면
-				%>
-				<!-- 댓글 쓰기 박스-->
-				<div class="user-reply-container">
-					<div class="profile-img"></div>
-					<div class="content-container">
-						<div class="post-reply">
-							<span>댓글 쓰기</span>
-						</div>
-						<input type="text" name="reply-comment" class="reply-comment"
-							placeholder="남기고 싶은 이야기를 적으셈">
-					</div>
-				</div>
-				<div class="reply-btn">
-					<button type="submit">
-						<span>게시하기</span>
-					</button>
-				</div>
-
 			</div>
+			<%
+			} //else
+			} //for
+			} //if - 댓글이 0개가 아니라면
+			%>
+			<!-- 댓글 쓰기 박스-->
+			<div class="user-reply-container">
+				<div class="profile-img"></div>
+				<div class="content-container">
+					<div class="post-reply">
+						<span>댓글 쓰기</span>
+					</div>
+					<input type="text" name="reply-comment" class="reply-comment"
+						placeholder="남기고 싶은 이야기를 적으셈">
+				</div>
+			</div>
+			<div class="reply-btn">
+				<button type="submit">
+					<span>게시하기</span>
+				</button>
+			</div>
+
 		</div>
+	</div>
 
 
 	</div>

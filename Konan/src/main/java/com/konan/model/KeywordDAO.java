@@ -14,7 +14,7 @@ public class KeywordDAO {
 	
 	public List<Keyword> getKeyword(BigDecimal article_id) {
 		SqlSession sqlSession = sessionFactory.openSession(true);
-		List<Keyword> list = sqlSession.selectList(keywordMapper+"selectFirst", article_id);
+		List<Keyword> list = sqlSession.selectList(keywordMapper+"selectKeyword", article_id);
 		sqlSession.close();
 		return list;
 	}

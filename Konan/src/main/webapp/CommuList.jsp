@@ -62,7 +62,7 @@
 			%>
 			<div class="quest-container-in">
 				<div class="quest-title">
-					<a href="CommuContent.jsp?idx=<%=post.getPost_id()%>"><%=post.getTitle()%></a>
+					<a href="CommuContent.jsp?idx=<%=post.getPost_id()%>" class="link"><%=post.getTitle()%></a>
 				</div>
 				<!-- quest-title -->
 				<div class="quest-content">
@@ -125,7 +125,7 @@
 						var post = data[i];
 						console.log(post)
 						addHtml += "<div class='quest-container-in'> <div class='quest-title'> <a href='QnaContent.jsp?idx="
-								+ post.post_id + "'>" + post.title
+								+ post.post_id + "' class='link'>" + post.title
 								+ "</a></div> <div class='quest-content'>";
 						if (post.post_content.length > 43)
 							addHtml += post.post_content.substring(0, 43) + "⋯";
