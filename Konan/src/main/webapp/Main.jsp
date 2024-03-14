@@ -62,6 +62,25 @@
 			for (int i = 0; i < list.size(); i++) {
 				Post post = list.get(i);
 			%>
+							<!-- 채택여부 -->
+			<!-- 채택여부 -->
+			<div class="adopt-container">
+				<div class="adopt">
+					<span >
+						<%
+						String adopt = null;
+						if(post.getIs_adopted().equals("F")){
+							if(dao.ansCount(post.getPost_id())!=0)
+								adopt = "채택대기";
+							adopt = "답변대기";
+						}else{
+							adopt = "채택완료";
+						}
+						%>
+						<%=adopt %>
+					</span>
+				</div><!-- adopt -->
+			</div><!-- adopt-container -->
 			<a href="QnaContent.jsp?idx=<%=post.getPost_id()%>" class="link">
 			<div class="quest-container-in">
 				<div class="quest-title">
@@ -75,25 +94,6 @@
 						out.print(post.getPost_content());
 					%>
 				</div><!-- quest-content -->
-				
-				<!-- 채택여부 -->
-				<div class="adopt-container">
-					<div class="adopt">
-						<span >
-							<%
-							String adopt = null;
-							if(post.getIs_adopted().equals("F")){
-								if(dao.ansCount(post.getPost_id())!=0)
-									adopt = "채택대기";
-								adopt = "답변대기";
-							}else{
-								adopt = "채택완료";
-							}
-							%>
-							<%=adopt %>
-						</span>
-					</div><!-- adopt -->
-				</div><!-- adopt-container -->
 				
 				<div class="res-container">
 					<span>답변</span> 
@@ -143,6 +143,18 @@
 					let addHtml = "";
 					for (var i = 0; i < data.length; i++) {
 						var post = data[i];
+						//채택여부
+						let adopt;
+						addHtml += "<div class='adopt-container'> <div class='adopt'><span>"
+						if(post.is_adopted=="F"){
+							if(post.answer_cnt!=0){
+								adopt = "채택대기";
+							}
+							adopt = "답변대기";
+						}else{
+							adopt = "채택완료";
+						}
+						addHtml += adopt + "</span></div></div>"
 						//제목
 						addHtml += "<a href='QnaContent.jsp?idx=" + post.post_id
 								+ `'class="link"><div class='quest-container-in'> <div class='quest-title'><b>[Q] </b>`
@@ -152,17 +164,6 @@
 							addHtml += post.post_content.substring(0, 43) + "⋯";
 						else
 							addHtml += post.post_content
-						//채택여부
-						let adopt;
-						addHtml += "<div class='adopt-container'> <div class='adopt'><span>"
-						if(post.is_adopted=="F"){
-							if(post.answer_cnt!=0)
-								adopt = "채택대기";
-							adopt = "답변대기";
-						}else{
-							adopt = "채택완료";
-						}
-						addHtml += adopt + "</span></div></div>"
 						//답변, 좋아요
 						addHtml += `
 						<div class="res-container">
