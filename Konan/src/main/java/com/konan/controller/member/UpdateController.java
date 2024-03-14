@@ -1,6 +1,7 @@
 package com.konan.controller.member;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +41,7 @@ public class UpdateController extends HttpServlet {
         String gender = multi.getParameter("gender");
         
      // 사용자 정보 업데이트를 위한 UserInfo 객체 생성
-        UserInfo updatedUserInfo = new UserInfo(user_pw, email, name, phone_number, region, gender, user_id);
+        Map<String,user_pw>
 
         
         // 사용자 정보 업데이트
