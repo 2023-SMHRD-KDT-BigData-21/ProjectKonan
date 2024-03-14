@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.konan.model.Article;
+import com.konan.model.ArticleDAO;
 import com.konan.model.Paging;
 import com.konan.model.Post;
 import com.konan.model.PostCommentDAO;
@@ -30,34 +32,40 @@ public class PagingController extends HttpServlet {
 		
 		String postType = request.getParameter("postType");
 		int idx = Integer.parseInt(request.getParameter("idx"));
+        
+        ObjectMapper mapper = new ObjectMapper(); //JSON 형식으로 변환하기 위해
+        String jsonString = null;
 		
-		PostDAO dao = new PostDAO();
-		UserReactionDAO reactionDao = new UserReactionDAO();//좋아요 개수 세려고
-		PostCommentDAO commentDao = new PostCommentDAO();//댓글 개수 세려고
-		List<Post> list = dao.moreList(postType,idx);
-		List<Paging> resultList = new ArrayList<>();
-		
-		for(Post post : list) {
-			Paging page = new Paging();
-			page.setPost_id(post.getPost_id());
-			page.setUser_id(post.getUser_id());
-			page.setTitle(post.getTitle());
-			page.setPost_content(post.getPost_content());
-			page.setIs_adopted(post.getIs_adopted());
-			page.setIs_anonymous(post.getIs_anonymous());
-			page.setLike_cnt(reactionDao.countLike(post.getPost_id()));
-			page.setComment_cnt(commentDao.countComments(post.getPost_id()));
-			page.setAnswer_cnt(dao.ansCount(post.getPost_id()));
+		if(postType==null) {
+			//탐정 신문 페이징
+			ArticleDAO dao = new ArticleDAO();
+			List<Article> resultList = dao.moreList(idx);
+			jsonString = mapper.writeValueAsString(resultList);
+		}else {
+			PostDAO dao = new PostDAO();
+			UserReactionDAO reactionDao = new UserReactionDAO();//좋아요 개수 세려고
+			PostCommentDAO commentDao = new PostCommentDAO();//댓글 개수 세려고
+			List<Post> list = dao.moreList(postType,idx);
+			List<Paging> resultList = new ArrayList<>();
 			
-			System.out.println(commentDao.countComments(post.getPost_id()));
-			
-			resultList.add(page);
+			for(Post post : list) {
+				Paging page = new Paging();
+				page.setPost_id(post.getPost_id());
+				page.setUser_id(post.getUser_id());
+				page.setTitle(post.getTitle());
+				page.setPost_content(post.getPost_content());
+				page.setIs_adopted(post.getIs_adopted());
+				page.setIs_anonymous(post.getIs_anonymous());
+				page.setLike_cnt(reactionDao.countLike(post.getPost_id()));
+				page.setComment_cnt(commentDao.countComments(post.getPost_id()));
+				page.setAnswer_cnt(dao.ansCount(post.getPost_id()));
+				System.out.println(commentDao.countComments(post.getPost_id()));
+				resultList.add(page);
+				
+			}	
+			jsonString = mapper.writeValueAsString(resultList);
 		}
 		
-		
-        // JSON 형식으로 변환
-        ObjectMapper mapper = new ObjectMapper();
-        String jsonString = mapper.writeValueAsString(resultList);
 
         // JSON 응답 반환
         response.setContentType("application/json");

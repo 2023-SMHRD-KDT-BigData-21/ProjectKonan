@@ -33,6 +33,7 @@
 	<%
 	ArticleDAO dao = new ArticleDAO();
 
+	int max = dao.maxRow(); // 총 보여줄 글 개수
 	int showNum = 5; // 한 페이지에 보여줄 글 개수(고정)
 	
 	List<Article> list = dao.firstList(); // 첫 페이지에 보여줄 글 목록 불러오기
@@ -91,6 +92,7 @@
 	let div = document.getElementsByTagName("div")[0];
 		function moreList() {
 			const questionContainers = document.querySelectorAll(".quest-container-in");
+			var max = "<%=max%>"
 			var idx = questionContainers.length; //더보기 전 게시글 수를 알아내기 위해서 해당 div의 length를 구함
 			//console.log("idx", idx); //콘솔로그로 값이 들어오는지 확인
 
@@ -118,7 +120,7 @@
 								+ "</div> </div>";
 					} //for
 					$(".more-container").append(addHtml);
-					if (data.length <= 5) { // 더보기 클릭 후 보여줄 게시글(data)이 5개 이하이면 더보기 버튼 없앰
+					if (max-idx <= 5) { // 더보기 클릭 후 보여줄 게시글(data)이 5개 이하이면 더보기 버튼 없앰
 						$("#more-btn").remove();
 					}
 				} //success

@@ -13,6 +13,14 @@ public class ArticleDAO {
 	SqlSessionFactory sessionFactory = SqlSessionManager.getSqlSessionFactory();
 	String articleMapper = "com.konan.database.ArticleMapper.";
 	
+	// 기사 개수 세기 (최신순 정렬)
+	public int maxRow() {
+		SqlSession sqlSession = sessionFactory.openSession(true);
+		int max = sqlSession.selectOne(articleMapper+"selectMaxRow");
+		sqlSession.close();
+		return max;
+	}
+	
 	public List<Article> firstList() {
 		SqlSession sqlSession = sessionFactory.openSession(true);
 		List<Article> list = sqlSession.selectList(articleMapper+"selectFirst");
