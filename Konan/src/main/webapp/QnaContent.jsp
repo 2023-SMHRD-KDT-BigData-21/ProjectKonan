@@ -45,9 +45,28 @@
 
 				<!-- 해시태그 공간 -->
 				<div class="hashtags-container">
-					<div class="hashtags">
-						<span>#호기심</span> <span>#명탐정코난</span>
-					</div>
+					
+						<%
+						String adopt = "채택대기";
+						System.out.println(post.getIs_adopted());
+
+						if (postDao.ansCount(post.getPost_id()) == 0) {
+						%>
+							<div class="hashtags">답변대기</div>
+						<%
+						} else{
+						if ((post.getIs_adopted()).equals("T")) {
+							adopt = "채택완료";
+						%>
+							<div class="adoptedHashtags"><%=adopt%></div>
+						<%
+						} else {
+						%>
+							<div class="hashtags"><%=adopt%></div>
+						<%
+						}}
+						%>
+					
 					<div class="btn-bookmark"></div>
 				</div>
 
@@ -177,19 +196,19 @@
 						<a href="Profile.jsp?targetId=<%=commentWriter.getUser_id()%>"
 							class="link">
 							<div class="comment-info">
-							<!-- 댓글 작성자 프사 넣는 공간 -->
-							<%
-							if (commentWriter.getPropic() != null) {
-							%>
-							<div class="comment-propic"
-								style="background-image: url('data:image/jpg;base64,<%=commentWriter.getPropic()%>')"></div>
-							<%
-							} else {
-							%>
-							<div class="comment-propic"></div>
-							<%
-							}
-							%>
+								<!-- 댓글 작성자 프사 넣는 공간 -->
+								<%
+								if (commentWriter.getPropic() != null) {
+								%>
+								<div class="comment-propic"
+									style="background-image: url('data:image/jpg;base64,<%=commentWriter.getPropic()%>')"></div>
+								<%
+								} else {
+								%>
+								<div class="comment-propic"></div>
+								<%
+								}
+								%>
 							</div>
 						</a>
 

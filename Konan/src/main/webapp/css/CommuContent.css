@@ -29,10 +29,19 @@
     font-size: 0.7em;
 }
 
-.hashtags span {
+.hashtags {
     margin-right: 10px;
     background-color: var(--lightmain);
     color: var(--maincolor);
+    padding: 5px 7px;
+    /* 좌우 패딩 추가 */
+    border-radius: 5px;
+    /* 더 둥근 모양을 위한 경계 반경 추가 */
+}
+.adoptedHashtags {
+    margin-right: 10px;
+    background-color: var(--maincolor);
+    color: white;
     padding: 5px 7px;
     /* 좌우 패딩 추가 */
     border-radius: 5px;

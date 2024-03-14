@@ -75,25 +75,20 @@
 			<div class="adopt-container">
 
 				<%
-				String adopt = "답변대기";
+				String adopt = "채택대기";
 				System.out.println(post.getIs_adopted());
 
-				if (dao.ansCount(post.getPost_id()) > 0) {
+				if (dao.ansCount(post.getPost_id()) == 0) {
 				%>
-				<div class="unAdopted">채택대기</div>
+				<div class="unAdopted">답변대기</div>
 				<%
 				} else {
-				if ((post.getIs_adopted()).equals("T")){
-					adopt = "채택완료";
+					if ((post.getIs_adopted()).equals("T")){
+						adopt = "채택완료";
+					}
 				%>
 				<div class="adopted"><%=adopt%></div>
-				<%
-				}else{
-				%>
-				<div class="unAdopted"><%=adopt%></div>
-				<%
-				}}
-				%>
+				<%}%>
 
 			</div>
 			<!-- adopt-container -->
