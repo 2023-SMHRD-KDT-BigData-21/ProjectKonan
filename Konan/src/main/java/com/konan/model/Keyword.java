@@ -13,4 +13,7 @@ public class Keyword {
 	public Keyword() {
 		
 	}
+	public Keyword(String key_word) {
+		this.key_word = key_word;
+	}
 }
