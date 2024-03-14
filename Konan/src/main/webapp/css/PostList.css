@@ -213,7 +213,7 @@
 }
 
 .quest-title {
-	margin-top:20px;
+	margin-top:0px;
     font-weight: bold;
     font-size: 1.1em; /* 수정: 2vw 대신 픽셀 값으로 변경 */
 }
@@ -264,7 +264,25 @@
 }
 
 
+.unAdopted{
+	 background-color: var(--lightmain);
+	 color: var(--maincolor);
+	 font-size:0.7em;
+	 padding: 3px 5px;
+	 border-radius: 3px;
+	 width:fit-content;
+	 margin:0px;
+}
 
+.adopted{
+	background-color:  var(--maincolor);
+	color: white;
+	font-size:0.7em;
+	padding: 3px 5px;
+	border-radius: 3px;
+	width:fit-content;
+	margin:0px;
+}
 
 /* 
 답변 작성 after 페이지에 있는 요소
