@@ -35,46 +35,48 @@
 	Post post = postDao.postContent(postId);
 	UserInfo userInfo = userDao.getUser(post.getUser_id());
 	List<CommentHierarchyView> postComments = commntDao.getComments(postId);
+
+	List<Post> answerList = postDao.getAns(postId);
 	%>
 	<!-- body 전체 가운데로 -->
 	<div class="container">
 
 		<!-- 게시글 박스-->
-		<div class="post-container shadow-div">
+		<div class="post-container">
 			<div class="post-title-container">
 
 				<!-- 해시태그 공간 -->
 				<div class="hashtags-container">
-					
-						<%
-						String adopt = "채택대기";
-						System.out.println(post.getIs_adopted());
 
-						if (postDao.ansCount(post.getPost_id()) == 0) {
-						%>
-							<div class="hashtags">답변대기</div>
-						<%
-						} else{
-						if ((post.getIs_adopted()).equals("T")) {
-							adopt = "채택완료";
-						%>
-							<div class="adoptedHashtags"><%=adopt%></div>
-						<%
-						} else {
-						%>
-							<div class="hashtags"><%=adopt%></div>
-						<%
-						}}
-						%>
-					
+					<%
+					String adopt = "채택대기";
+					System.out.println(post.getIs_adopted());
+
+					if (postDao.ansCount(post.getPost_id()) == 0) {
+					%>
+					<div class="hashtags">답변대기</div>
+					<%
+					} else {
+					if ((post.getIs_adopted()).equals("T")) {
+						adopt = "채택완료";
+					%>
+					<div class="adoptedHashtags"><%=adopt%></div>
+					<%
+					} else {
+					%>
+					<div class="hashtags"><%=adopt%></div>
+					<%
+					}
+					}
+					%>
+
 					<div class="btn-bookmark"></div>
 				</div>
-
 
 				<!-- 포스트 상단 -->
 				<div class="post-group">
 					<div class="post-title">
-						<span><%=post.getTitle()%></span>
+						<span>Q. <%=post.getTitle()%></span>
 					</div>
 					<div class="post-author">
 						<span>작성자</span><span><%=userInfo.getName()%></span>
@@ -85,7 +87,63 @@
 				</div>
 				<!-- post-group -->
 			</div>
+			<!-- 내용 -->
+			<div class="post-container">
+				<!-- 사진 -->
+				<div></div>
 
+				<!-- 글 내용 -->
+				<div class="post">
+					<span style="line-height: 2.1em;"><%=post.getPost_content()%></span>
+				</div>
+
+				<div class="likes-replies-container">
+					<span class="heart"></span>&nbsp;&nbsp;&nbsp; <span
+						class="btn-likes">좋아요</span>&nbsp;
+					<!-- 좋아요 값이 들어가야 함 -->
+					<span style="font-size: 0.9em;"><%=reactionDao.countLike(post.getPost_id())%></span>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<ion-icon name="chatbox-ellipses-outline"
+						style="font-size: 1.3em;  color:gray; position: relative; top: -3px;"></ion-icon>
+					&nbsp;&nbsp; <span>댓글 </span>&nbsp;&nbsp; <span
+						style="font-size: 0.9em;"><%=commntDao.countComments(post.getPost_id())%></span>
+
+				</div><!-- likes-replies-container -->
+			</div><!-- likes-replies-container -->
+		</div><!-- post-container -->
+
+
+		<!-- 답글 컨테이너 -->
+		<%if(answerList.size()>0){%>
+		<div class="answer-container">
+		<h2>&nbsp;&nbsp;답변 (<%=answerList.size() %>)</h2>
+		
+		<%
+		for (int i = 0; i < answerList.size(); i++) {
+			Post answer = answerList.get(i);
+			UserInfo respondent = userDao.getUser(answer.getUser_id());
+		%>
+		<!-- 게시글 박스-->
+		<div class="post-container shadow-div" style="padding:20px; margin-top:0px;">
+			<div class="post-title-container">
+				<!-- 해시태그 공간 -->
+				<div class="hashtags-container">
+					<div class="hashtags">인기답변</div>
+					<div class="btn-bookmark"></div>
+				</div>
+				<!-- 포스트 상단 -->
+				<div class="post-group">
+					<div class="post-title">
+						<span><%=answer.getTitle()%></span>
+					</div>
+					<div class="post-author">
+						<span>작성자</span><span><%=respondent.getName()%></span>
+					</div>
+					<div class="post-date">
+						<span>작성일자</span><span><%=simpleDateFormat.format(answer.getWrite_date())%></span>
+					</div>
+				</div><!-- post-group -->
+			</div>
 			<!-- 내용 -->
 			<div class="post-container">
 
@@ -94,7 +152,7 @@
 
 				<!-- 글 내용 -->
 				<div class="post">
-					<span style="line-height: 2.1em;"><%=post.getPost_content()%></span>
+					<span style="line-height: 2.1em;"><%=answer.getPost_content()%></span>
 				</div>
 
 
@@ -115,6 +173,9 @@
 			<!-- likes-replies-container -->
 		</div>
 		<!-- post-container -->
+		<%}
+		}%>
+		</div> <!-- answer-container -->
 
 		<%
 		if (commntDao.countComments(post.getPost_id()) > 0) {
@@ -176,12 +237,10 @@
 								<span>답글</span>
 							</div>
 						</div>
-					</div>
-					<!-- comment-btn -->
-				</div>
-				<!-- comment-content -->
-			</div>
-			<!-- comment-container -->
+					</div><!-- comment-btn -->
+				</div><!-- comment-content -->
+			</div><!-- comment-container -->
+			
 			<%
 			} else {
 			%>
@@ -264,24 +323,6 @@
 
 		</div>
 	</div>
-
-
-	</div>
-
-
-	<!-- footer 
-    <div class="footer-container">
-        <div class="footer-item">
-            <p1>21기 빅데이터 개발자 과정</p1>
-        </div>
-        <div class="footer-item">
-            <h3>@국민탐정</h3>
-        </div>
-        <div class="footer-item">
-            <p2>project.konan@smhrd.com</p2>
-        </div>
-    </div>
--->
 
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script>
