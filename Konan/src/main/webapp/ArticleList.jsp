@@ -72,7 +72,13 @@
 						out.print(article.getArticle_content());
 					%>
 				</div><!-- quest-content -->
-				<div></div>
+				<div class="Key-word">
+					<%
+						for(int j =0; j<keywordList.size();j++){
+							out.print('#'+keywordList.get(j).getKey_word()+' ');
+						}
+					%>
+				</div>
 				<div class="res-container">
 					<img class = "news-img" src="<%=article.getImg() %>">
 				</div><!-- res-container -->
@@ -96,42 +102,53 @@
 
 	<script>
 	let div = document.getElementsByTagName("div")[0];
-		function moreList() {
-			const questionContainers = document.querySelectorAll(".quest-container-in");
-			var max = "<%=max%>"
-			var idx = questionContainers.length; //더보기 전 게시글 수를 알아내기 위해서 해당 div의 length를 구함
-			//console.log("idx", idx); //콘솔로그로 값이 들어오는지 확인
+	function moreList() {
+	    const questionContainers = document.querySelectorAll(".quest-container-in");
+	    var max = "<%=max%>"
+	    var idx = questionContainers.length; //더보기 전 게시글 수를 알아내기 위해서 해당 div의 length를 구함
+	    //console.log("idx", idx); //콘솔로그로 값이 들어오는지 확인
 
-			$.ajax({
-				url : "PagingController",
-				type : "get",
-				data : {	
-					"idx" : idx
-				},
-				dataType : "json",
-				success : function(data) {
-					var itr = data.length>5?5:data.length; //for문 돌아갈 횟수
-					// 더보기 클릭 후 보여줄 게시글(data)이 5개이상이면 5번, 아니면 남은 게시글 수 
-					let addHtml = "";
-					for (var i = 0; i < itr; i++) {
-						var article = data[i];
-						addHtml += "<div class='quest-container-in'> <div class='quest-title'> <a href='article.url'>" + article.title
-								+ "</a></div> <div class='quest-content'>";
-						if (article.article_content.length > 50)
-							addHtml += article.article_content.substring(0, 50) + "⋯";
-						else
-							addHtml += article.article_content
-						addHtml += "</div> <div class='res-container'>"
-								+"<img src='" + article.img+"' class = 'news-img'>"//여기다가 사진 넣습니다.
-								+ "</div> </div>";
-					} //for
-					$(".more-container").append(addHtml);
-					if (max-idx <= 5) { // 더보기 클릭 후 보여줄 게시글(data)이 5개 이하이면 더보기 버튼 없앰
-						$("#more-btn").remove();
-					}
-				} //success
-			}) //ajax
-		}; //moreList
+	    $.ajax({
+	        url : "PagingController",
+	        type : "get",
+	        data : {    
+	            "idx" : idx
+	        },
+	        dataType : "json",
+	        success : function(data) {
+	            var itr = data.length > 5 ? 5 : data.length; //for문 돌아갈 횟수
+	            // 더보기 클릭 후 보여줄 게시글(data)이 5개이상이면 5번, 아니면 남은 게시글 수 
+	            let addHtml = "";
+	            for (var i = 0; i < itr; i++) {
+	                var article = data[i];
+	                
+	                addHtml += "<div class='quest-container-in'> <div class='quest-title'> <a href='" + article.url + "'>" + article.title
+	                        + "</a></div> <div class='quest-content'>";
+	                        
+	                if (article.article_content.length > 50)
+	                    addHtml += article.article_content.substring(0, 50) + "⋯";
+	                else
+	                    addHtml += article.article_content;
+	                
+	                addHtml += "</div><div class='keyword-container'>";
+
+	                // 키워드 추가
+	                for (var j = 0; j < article.keyword_list.length; j++) {
+	                    addHtml += "<span class='keyword'>#" + article.keyword_list[j].key_word + "</span>";
+	                }
+	                addHtml += "</div>"; // keyword-container 닫기
+	                
+	                addHtml += "<div class='res-container'>"
+	                        + "<img src='" + article.img + "' class='news-img'>" //여기다가 사진 넣습니다.
+	                        + "</div> </div>";
+	            } //for
+	            $(".more-container").append(addHtml);
+	            if (max - idx <= 5) { // 더보기 클릭 후 보여줄 게시글(data)이 5개 이하이면 더보기 버튼 없앰
+	                $("#more-btn").remove();
+	            }
+	        } //success
+	    }); //ajax
+	} //moreList
 	</script>
 
 </body>

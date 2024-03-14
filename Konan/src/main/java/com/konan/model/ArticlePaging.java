@@ -8,7 +8,7 @@ import lombok.Data;
 
 @AllArgsConstructor
 @Data
-public class Article {
+public class ArticlePaging {
 	private BigDecimal article_id;
 	private String title;
 	private String article_content;
@@ -16,7 +16,8 @@ public class Article {
 	private String reported_date;
 	private String url;
 	private String img;
-	public Article() {
+	private List<Keyword> keyword_list;
+	public ArticlePaging() {
 		
 	}
 }
