@@ -21,6 +21,19 @@
 	color:purple;
 }
 
+/* 답변대기 칸 */
+.adopt-container {
+	margin-top : 20px;
+}
+
+/* 회원가입 후 질문을 할수있습니다 칸 */
+.notice {
+	margin-left : 70px;
+	margin-bottom : 30px;
+}
+
+
+
 /* 검색창 */
 .search-container {
     position: relative;
