@@ -1,3 +1,11 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.konan.model.UserReaction"%>
+<%@page import="com.konan.model.UserReactionDAO"%>
+<%@page import="com.konan.model.PostCommentDAO"%>
+<%@page import="com.konan.model.UserInfoDAO"%>
+<%@page import="com.konan.model.Post"%>
+<%@page import="java.math.BigDecimal"%>
+<%@page import="com.konan.model.PostDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,6 +18,20 @@
 </head>
 <body>
 	<%@ include file="Header.jsp"%>
+	<% 
+	BigDecimal postId = BigDecimal.valueOf(Double.valueOf(request.getParameter("idx")));
+	pageContext.setAttribute("postId", postId);
+	
+	PostDAO postDao = new PostDAO();
+	UserInfoDAO userDao = new UserInfoDAO();
+	PostCommentDAO commntDao = new PostCommentDAO();
+	UserReactionDAO reactionDao = new UserReactionDAO();
+	
+	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
+
+	Post post = postDao.postContent(postId);
+	UserInfo userInfo = userDao.getUser(post.getUser_id());
+	%>
 	<!-- body 전체 가운데로 -->
 	<div class="container">
 
@@ -29,13 +51,13 @@
 				<!-- 포스트 상단 -->
 				<div class="post-group">
 					<div class="post-title">
-						<span>탐정 쉽게 되는 법</span>
+						<span><%=post.getTitle() %></span>
 					</div>
 					<div class="post-author">
-						<span>작성자</span><span>유명한</span>
+						<span>작성자</span><span><%=userInfo.getName() %></span>
 					</div>
 					<div class="post-date">
-						<span>작성일자</span><span>2024.01.01</span>
+						<span>작성일자</span><span><%=simpleDateFormat.format(post.getWrite_date()) %></span>
 					</div>
 				</div>
 				<!-- post-group -->
@@ -49,16 +71,19 @@
 
 				<!-- 글 내용 -->
 				<div class="post">
-					<span>머리가 좋으면 됩니다</span>
+					<span style="line-height: 2.1em;"><%=post.getPost_content() %></span>
 				</div>
 
 
 				<div class="likes-replies-container">
 					<span class="heart"></span>&nbsp;&nbsp;&nbsp;
-					<span class="btn-likes">좋아요</span>&nbsp;<span style="font-size: 0.9em;">1</span>
+					<span class="btn-likes">좋아요</span>&nbsp;
+					<!-- 좋아요 값이 들어가야 함 -->
+					<span style="font-size: 0.9em;"><%=reactionDao.countLike(post.getPost_id()) %></span>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<ion-icon name="chatbox-ellipses-outline" style="font-size: 1.3em;  color:gray; position: relative; top: -3px;"></ion-icon> &nbsp;&nbsp; 
-					<span>답변 </span>&nbsp;&nbsp;<span style="font-size: 0.9em;">25</span>
+					<span>댓글 </span>&nbsp;&nbsp;
+					<span style="font-size: 0.9em;"><%=commntDao.countComments(post.getPost_id()) %></span>
 					
 				</div>
 				<!-- likes-replies-container -->
@@ -70,7 +95,7 @@
 
 		<!-- 댓글! -->
 		<div class="comment-text"  style="font-weight: bold; font-size: 1.2em;">
-			<span>댓글</span>&nbsp;<span>4</span>
+			<span>댓글</span>&nbsp;<span><%=commntDao.countComments(post.getPost_id()) %></span>
 		</div>
 
 		<!-- 댓글 박스 -->
