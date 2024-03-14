@@ -39,7 +39,7 @@
 	
 	<!-- 타입별 작성자의 포스팅 목록 조회 -->
 	<select id="selectMine" parameterType="java.util.Map" resultType="Post">
-		select * from post where user_id=#{user_id} and post_type=#{post_type}
+		select * from post where user_id=#{user_id} and post_type=#{post_type} order by post_id desc
 	</select>
 
 

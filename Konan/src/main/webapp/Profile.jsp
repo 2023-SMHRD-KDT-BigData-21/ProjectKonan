@@ -34,7 +34,7 @@ pageContext.setAttribute("targetFollowers", targetFollowers);
 <link rel="stylesheet" href="./css/Profile.css">
 </head>
 <body>
-	<%@ include file="Header.jsp"%>
+<%@ include file="Header.jsp"%>
 	<div class="container">
 		<!-- 프로필 컨테이터 -->
 		<div class="profile-container shadow-div">
@@ -158,18 +158,18 @@ pageContext.setAttribute("targetFollowers", targetFollowers);
 			<!--  내용 넣는 곳, onclick으로 비동기 페이지 전환 -->
 			<div class="tab-body">
 				<div class="post-container">
-					<h2>제목</h2>
-					<p>내용</p>
 				</div>
 			</div>
-
-
-		</div>
-	</div>
+		</div> <!-- content-tab -->
+	</div> <!-- container -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	
+	
+	
 	<script>//탭 js
-
+		loadTabContent("community");
+	
 		//탭 클릭 시 css 이동하게
 		let tabHeader = document.getElementsByClassName("tab-header")[0];
 		let tabIndicator = document.getElementsByClassName("tab-indicator")[0];
@@ -214,14 +214,41 @@ pageContext.setAttribute("targetFollowers", targetFollowers);
 				addHtml = "<span id='none'>작성한 게시물이 없습니다</span>";
 			}else{
 				let parsedData = JSON.parse(data);
-				console.log(parsedData);
-				parsedData.forEach(function(item) {
-					let addHtml = "";
-					console.log(item.key);
-				})
+				parsedData.forEach(function(post) {
+					console.log(post.title);
+					//채택여부
+					let adopt = "답변대기";
+					addHtml += "<div class='adopt-container'> <div class='adopt'><span>"
+					if(post.answer_cnt>0)
+						adopt = "채택대기";
+					if(post.is_adopted=="T")
+						adopt = "채택완료";
+					addHtml += adopt + "</span></div></div>"
+					//제목
+					addHtml += "<a href='QnaContent.jsp?idx=" + post.post_id
+							+ `'class="link"><div class='quest-container-in'> <div class='quest-title'><b>[Q] </b>`
+							+ post.title + "</div> <div class='quest-content'>";
+					//내용
+					if (post.post_content.length > 43)
+						addHtml += post.post_content.substring(0, 43) + "⋯";
+					else
+						addHtml += post.post_content
+					//답변, 좋아요
+					addHtml += `
+						<div class="res-container">
+							<span>답변</span> 
+							<span class="res-icon"><ion-icon name="chatbox-outline"></ion-icon></span>
+							<span>`+post.answer_cnt+`</span>
+							<span>&nbsp;&nbsp;</span>
+							<span>좋아요</span>
+							<span class="res-icon"><ion-icon name="heart-outline"></ion-icon></span>
+							<span>`+post.like_cnt+`</span>
+						</div>
+					</div></div></a>`
+				}) //foreach
 			} //else
 			$(".post-container").append(addHtml);
-		}
+		} //function
 	</script>
 
 	<script> //팔로잉 js

@@ -45,9 +45,7 @@ public class PagingController extends HttpServlet {
 			KeywordDAO keywordDao = new KeywordDAO();
 			
 			List<Article> list = articleDao.moreList(idx);
-			
 			List<ArticlePaging> resultList = new ArrayList<>();
-			
 			
 			for(Article arti : list) {
 				ArticlePaging page = new ArticlePaging();
@@ -81,9 +79,7 @@ public class PagingController extends HttpServlet {
 				page.setLike_cnt(reactionDao.countLike(post.getPost_id()));
 				page.setComment_cnt(commentDao.countComments(post.getPost_id()));
 				page.setAnswer_cnt(dao.ansCount(post.getPost_id()));
-				System.out.println(commentDao.countComments(post.getPost_id()));
 				resultList.add(page);
-				
 			}	
 			jsonString = mapper.writeValueAsString(resultList);
 		}
