@@ -17,6 +17,7 @@
         <typeAlias type="com.konan.model.PostComment" alias="PostComment"/>
         <typeAlias type="com.konan.model.UserReaction" alias="UserReaction"/>
         <typeAlias type="com.konan.model.Article" alias="Article"/>
+        <typeAlias type="com.konan.model.Keyword" alias="Keyword"/>
        
      </typeAliases>
      
@@ -41,5 +42,6 @@
     <mapper resource="com/konan/database/PostImageMapper.xml"/>
     <mapper resource="com/konan/database/UserReactionMapper.xml"/>
     <mapper resource="com/konan/database/ArticleMapper.xml"/>
+    <mapper resource="com/konan/database/KeywordMapper.xml"/>
   </mappers>
 </configuration>

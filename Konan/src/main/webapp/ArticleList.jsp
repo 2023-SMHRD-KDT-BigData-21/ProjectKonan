@@ -1,3 +1,5 @@
+<%@page import="com.konan.model.Keyword"%>
+<%@page import="com.konan.model.KeywordDAO"%>
 <%@page import="com.konan.model.Article"%>
 <%@page import="com.konan.model.ArticleDAO"%>
 <%@page import="com.konan.model.Post"%>
@@ -32,11 +34,13 @@
 
 	<%
 	ArticleDAO dao = new ArticleDAO();
+	KeywordDAO dao2 = new KeywordDAO();
 
 	int max = dao.maxRow(); // 총 보여줄 글 개수
 	int showNum = 5; // 한 페이지에 보여줄 글 개수(고정)
 	
 	List<Article> list = dao.firstList(); // 첫 페이지에 보여줄 글 목록 불러오기
+	
 	%>
 
 
@@ -54,6 +58,7 @@
 			<%
 			for (int i = 0; i < list.size(); i++) {
 				Article article = list.get(i);
+				List<Keyword> keywordList = dao2.getKeyword(article.getArticle_id());
 			%>
 			<div class="quest-container-in">
 				<div class="quest-title">
@@ -67,8 +72,9 @@
 						out.print(article.getArticle_content());
 					%>
 				</div><!-- quest-content -->
+				<div></div>
 				<div class="res-container">
-					
+					<img class = "news-img" src="<%=article.getImg() %>">
 				</div><!-- res-container -->
 			</div><!-- quest-container-in -->
 			<%}%>
@@ -115,8 +121,8 @@
 							addHtml += article.article_content.substring(0, 50) + "⋯";
 						else
 							addHtml += article.article_content
-						addHtml += "</div> <div class='res-container'> <span>답변</span>"
-								+ "<span class='res-icon'><ion-icon name='chatbox-outline'></ion-icon></span>"
+						addHtml += "</div> <div class='res-container'>"
+								+"<img src='" + article.img+"' class = 'news-img'>"//여기다가 사진 넣습니다.
 								+ "</div> </div>";
 					} //for
 					$(".more-container").append(addHtml);
