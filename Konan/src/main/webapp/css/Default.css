@@ -82,3 +82,14 @@ a{
 .clicked-bold {
   font-weight: bold;
 }
+
+/* 게시글 a태그 */
+.link:link{
+	color:black;
+}
+.link:visited{
+	color:black;
+}
+.link:active{
+	color:purple;
+}
