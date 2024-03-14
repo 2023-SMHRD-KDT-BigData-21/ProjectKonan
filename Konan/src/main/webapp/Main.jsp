@@ -62,7 +62,7 @@
 			for (int i = 0; i < list.size(); i++) {
 				Post post = list.get(i);
 			%>
-							<!-- 채택여부 -->
+
 			<!-- 채택여부 -->
 			<div class="adopt-container">
 				<div class="adopt">

@@ -46,20 +46,26 @@
                     <span class="title">커뮤니티</span>
                 </a>
             </li>
+            <li class="list <%=(request.getRequestURI().endsWith("ArticleList.jsp")) ? "active_header" : "" %>">
+                <a href="ArticleList.jsp">
+                    <span class="icon"><ion-icon name="newspaper-outline"></ion-icon></ion-icon></span>
+                    <span class="title">탐정뉴스</span>
+                </a>
+            </li>
             <%if(user!=null){ %>
-            <li class="list">
+            <li class="list <%=(request.getRequestURI().endsWith("Profile.jsp")) ? "active_header" : "" %>">
                 <a href="Profile.jsp?targetId=${userId}">
                     <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                     <span class="title">내 프로필</span>
                 </a>
             </li>
-            <li class="list">
+            <li class="list <%=(request.getRequestURI().endsWith("Bookmark.jsp")) ? "active_header" : "" %>">
                 <a href="Bookmark.jsp">
                     <span class="icon"><ion-icon name="bookmark-outline"></ion-icon></span>
                     <span class="title">북마크</span>
                 </a>
             </li>
-            <li class="list">
+            <li class="list <%=(request.getRequestURI().endsWith("Mypage.jsp")) ? "active_header" : "" %>">
                 <a href="Mypage.jsp">
                     <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
                     <span class="title">마이페이지</span>

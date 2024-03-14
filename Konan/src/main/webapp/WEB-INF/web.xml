@@ -136,6 +136,12 @@
   	<description></description>
   	<servlet-class>com.konan.controller.postwrite.PostImageController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>TabController</servlet-name>
+  	<display-name>TabController</display-name>
+  	<description></description>
+  	<servlet-class>com.konan.controller.profile.TabController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>JoinController</servlet-name>
   	<url-pattern>/JoinController</url-pattern>
@@ -223,5 +229,9 @@
   <servlet-mapping>
   	<servlet-name>PostImageController</servlet-name>
   	<url-pattern>/PostImageController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>TabController</servlet-name>
+  	<url-pattern>/TabController</url-pattern>
   </servlet-mapping>
 </web-app>

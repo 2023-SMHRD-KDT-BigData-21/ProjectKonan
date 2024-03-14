@@ -54,16 +54,22 @@ public class PostDAO {
 		SqlSession sqlSession = sessionFactory.openSession(true);		 
 		Map<String, Object> map = new HashMap<>(); 
 		int cnt = 5;
-
-		System.out.println("게시글 타입: "+post_type);
-		System.out.println("시작 인덱스: "+idx);
-		System.out.println("가져올 행 개수: "+cnt);
-		
 		map.put("post_type", post_type);
 		map.put("idx", idx); 
 		map.put("cnt", cnt); 
 		List<Post> list = sqlSession.selectList(postMapper+"selectMore", map); 
 		return list; 
+	}
+	
+	// 타입별 작성자의 포스팅 목록 조회
+	public List<Post> myList(String user_id, String post_type) {
+		SqlSession sqlSession = sessionFactory.openSession(true);
+		Map<String, Object> map = new HashMap<>(); 
+		map.put("user_id", user_id);
+		map.put("post_type", post_type);
+		List<Post> list = sqlSession.selectList(postMapper+"selectMine", map);
+		sqlSession.close();
+		return list;
 	}
 	
 	
