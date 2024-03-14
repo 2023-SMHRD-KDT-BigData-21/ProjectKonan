@@ -85,6 +85,12 @@
                     <span class="title">커뮤니티</span>
                 </a>
             </li>
+            <li class="list">
+                <a href="AccModify.jsp">
+                    <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
+                    <span class="title">회원정보수정</span>
+                </a>
+            </li>
            </ul>
         </div>
         

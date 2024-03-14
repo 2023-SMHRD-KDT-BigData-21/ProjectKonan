@@ -26,7 +26,8 @@ public class LoginController extends HttpServlet {
 		
 		
 		// 세션 생성
-		HttpSession session = request.getSession();		
+		HttpSession session = request.getSession();	
+		session.setMaxInactiveInterval(3600);
 		try {
 			//가끔 오류 나서 try 구문 안에 넣음
 			UserInfo user = dao.login(member);

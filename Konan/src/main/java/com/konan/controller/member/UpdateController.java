@@ -38,15 +38,11 @@ public class UpdateController extends HttpServlet {
 		String email = multi.getParameter("email");
 		String name = multi.getParameter("name");
 		String phone_number = multi.getParameter("phone_number");
-		String region = multi.getParameter("region");
-		String gender = multi.getParameter("gender");
-		String propic = multi.getOriginalFileName("propic");
+	
 		System.out.println(userInfo.getName() + email + name + phone_number);
 		
 		UserInfoDAO dao = new UserInfoDAO();
-		if(propic!=null) {
-			userInfo.setPropic(propic);			
-		}
+		
 		int res = dao.update(userInfo);
 		
 		if(res>0) {
