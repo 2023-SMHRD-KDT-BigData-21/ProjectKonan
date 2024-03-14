@@ -1,6 +1,7 @@
 package com.konan.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -23,4 +24,13 @@ public class PostCommentDAO {
 		return count;
 		
 	}//countComments
+	
+	//포스트별 댓글 불러오기
+	public List<CommentHierarchyView> getComments(BigDecimal post_id) {
+		SqlSession sqlSession = sessionFactory.openSession(true);
+		List<CommentHierarchyView> comments = sqlSession.selectList(postCommentMapper+"commentsByPostId", post_id);
+		sqlSession.close();
+		
+		return comments;
+	}
 }

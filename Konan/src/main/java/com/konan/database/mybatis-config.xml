@@ -18,6 +18,7 @@
         <typeAlias type="com.konan.model.UserReaction" alias="UserReaction"/>
         <typeAlias type="com.konan.model.Article" alias="Article"/>
         <typeAlias type="com.konan.model.Keyword" alias="Keyword"/>
+        <typeAlias type="com.konan.model.CommentHierarchyView" alias="CommentHierarchyView"/>
        
      </typeAliases>
      

@@ -1,3 +1,6 @@
+<%@page import="com.konan.model.CommentHierarchyView"%>
+<%@page import="java.util.List"%>
+<%@page import="com.konan.model.PostComment"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.konan.model.UserReaction"%>
 <%@page import="com.konan.model.UserReactionDAO"%>
@@ -18,19 +21,20 @@
 </head>
 <body>
 	<%@ include file="Header.jsp"%>
-	<% 
+	<%
 	BigDecimal postId = BigDecimal.valueOf(Double.valueOf(request.getParameter("idx")));
 	pageContext.setAttribute("postId", postId);
-	
+
 	PostDAO postDao = new PostDAO();
 	UserInfoDAO userDao = new UserInfoDAO();
 	PostCommentDAO commntDao = new PostCommentDAO();
 	UserReactionDAO reactionDao = new UserReactionDAO();
-	
-	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
+
+	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd"); //날짜 형식 맞춰 줌
 
 	Post post = postDao.postContent(postId);
 	UserInfo userInfo = userDao.getUser(post.getUser_id());
+	List<CommentHierarchyView> postComments = commntDao.getComments(postId);
 	%>
 	<!-- body 전체 가운데로 -->
 	<div class="container">
@@ -51,13 +55,13 @@
 				<!-- 포스트 상단 -->
 				<div class="post-group">
 					<div class="post-title">
-						<span><%=post.getTitle() %></span>
+						<span><%=post.getTitle()%></span>
 					</div>
 					<div class="post-author">
-						<span>작성자</span><span><%=userInfo.getName() %></span>
+						<span>작성자</span><span><%=userInfo.getName()%></span>
 					</div>
 					<div class="post-date">
-						<span>작성일자</span><span><%=simpleDateFormat.format(post.getWrite_date()) %></span>
+						<span>작성일자</span><span><%=simpleDateFormat.format(post.getWrite_date())%></span>
 					</div>
 				</div>
 				<!-- post-group -->
@@ -71,20 +75,21 @@
 
 				<!-- 글 내용 -->
 				<div class="post">
-					<span style="line-height: 2.1em;"><%=post.getPost_content() %></span>
+					<span style="line-height: 2.1em;"><%=post.getPost_content()%></span>
 				</div>
 
 
 				<div class="likes-replies-container">
-					<span class="heart"></span>&nbsp;&nbsp;&nbsp;
-					<span class="btn-likes">좋아요</span>&nbsp;
+					<span class="heart"></span>&nbsp;&nbsp;&nbsp; <span
+						class="btn-likes">좋아요</span>&nbsp;
 					<!-- 좋아요 값이 들어가야 함 -->
-					<span style="font-size: 0.9em;"><%=reactionDao.countLike(post.getPost_id()) %></span>
+					<span style="font-size: 0.9em;"><%=reactionDao.countLike(post.getPost_id())%></span>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<ion-icon name="chatbox-ellipses-outline" style="font-size: 1.3em;  color:gray; position: relative; top: -3px;"></ion-icon> &nbsp;&nbsp; 
-					<span>댓글 </span>&nbsp;&nbsp;
-					<span style="font-size: 0.9em;"><%=commntDao.countComments(post.getPost_id()) %></span>
-					
+					<ion-icon name="chatbox-ellipses-outline"
+						style="font-size: 1.3em;  color:gray; position: relative; top: -3px;"></ion-icon>
+					&nbsp;&nbsp; <span>댓글 </span>&nbsp;&nbsp; <span
+						style="font-size: 0.9em;"><%=commntDao.countComments(post.getPost_id())%></span>
+
 				</div>
 				<!-- likes-replies-container -->
 			</div>
@@ -92,12 +97,19 @@
 		</div>
 		<!-- post-container -->
 
-
+		<%
+		if (commntDao.countComments(post.getPost_id()) > 0) {
+		%>
 		<!-- 댓글! -->
-		<div class="comment-text"  style="font-weight: bold; font-size: 1.2em;">
-			<span>댓글</span>&nbsp;<span><%=commntDao.countComments(post.getPost_id()) %></span>
+		<div class="comment-text" style="font-weight: bold; font-size: 1.2em;">
+			<span>댓글</span>&nbsp;<span><%=commntDao.countComments(post.getPost_id())%></span>
 		</div>
-
+		<%
+		for (int i = 0; i < postComments.size(); i++) {
+			CommentHierarchyView comment = postComments.get(i);
+			UserInfo commentWriter = userDao.getUser(comment.getUser_id());
+			if ((comment.getLv()).compareTo(BigDecimal.valueOf(1)) == 0) {
+		%>
 		<!-- 댓글 박스 -->
 		<div class="comments-container">
 			<div class="comment-area">
@@ -105,16 +117,18 @@
 				<div class="comment-container">
 
 					<!-- 댓글 작성자 -->
-					<div class="comment-info">
-						<!-- 댓글 작성자 프사 넣는 공간 -->
-						<div class="comment-propic"></div>
-						<div class="comment-name">이름</div>
-					</div>
+					<a href="Profile.jsp?targetId=<%=commentWriter.getUser_id()%>>">
+						<div class="comment-info">
+							<!-- 댓글 작성자 프사 넣는 공간 -->
+							<div class="comment-propic"></div>
+							<div class="comment-name"><%=commentWriter.getName()%></div>
+						</div>
+					</a>
 
 
 					<div class="comment-content shadow-div">
 						<!-- 댓글 내용 -->
-						<span>댓글내용댓글내용댓글내용</span>
+						<span><%=comment.getComment_content()%></span>
 						<!-- 수정/삭제/신고 버튼 -->
 						<div class="btn-edit">
 							<ion-icon name="ellipsis-horizontal-outline"></ion-icon>
@@ -128,70 +142,78 @@
 								<span>답글</span>
 							</div>
 						</div>
-						<!-- comment-btn -->
 					</div>
-					<!-- comment-content -->
+					<!-- comment-btn -->
 				</div>
-				<!-- comment-container -->
+				<!-- comment-content -->
 			</div>
-
+			<!-- comment-container -->
+			<%
+			} else {
+			%>
 
 			<!-- 대댓글 박스 -->
 			<div class="recomments-container">
-			<div class="comment-area">
-				<!-- 이미 쓰여 있는 댓글 박스 -->
-				<div class="comment-container">
+				<div class="comment-area">
+					<!-- 이미 쓰여 있는 댓글 박스 -->
+					<div class="comment-container">
 
-					<!-- 댓글 작성자 -->
-					<div class="comment-info">
-						<!-- 댓글 작성자 프사 넣는 공간 -->
-						<div class="comment-propic"></div>
-						<div class="comment-name">이름</div>
-					</div>
-
-
-					<div class="comment-content shadow-div" style="background-color: lightgray">
-						<!-- 댓글 내용 -->
-						<span>대댓글내용대댓글내용대댓글내용</span>
-						<!-- 수정/삭제/신고 버튼 -->
-						<div class="btn-edit">
-							<ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+						<!-- 댓글 작성자 -->
+						<a href="Profile.jsp?targetId=<%=commentWriter.getUser_id()%>>">
+						<div class="comment-info">
+							<!-- 댓글 작성자 프사 넣는 공간 -->
+							<div class="comment-propic"></div>
+							<div class="comment-name"><%=commentWriter.getName()%></div>
 						</div>
-						<div class="comment-btn">
-							<div class="comment-btn-likes">
-								<span>좋아요</span>
+						</a>
+
+						<div class="comment-content shadow-div"
+							style="background-color: lightgray">
+							<!-- 댓글 내용 -->
+							<span><%=comment.getComment_content()%></span>
+							<!-- 수정/삭제/신고 버튼 -->
+							<div class="btn-edit">
+								<ion-icon name="ellipsis-horizontal-outline"></ion-icon>
 							</div>
-							&nbsp; &nbsp; &nbsp;
-							<div class="comment-btn-reply">
-								<span>답글</span>
+							<div class="comment-btn">
+								<div class="comment-btn-likes">
+									<span>좋아요</span>
+								</div>
+								&nbsp; &nbsp; &nbsp;
+								<div class="comment-btn-reply">
+									<span>답글</span>
+								</div>
 							</div>
+							<!-- comment-btn -->
 						</div>
-						<!-- comment-btn -->
+						<!-- comment-content -->
 					</div>
-					<!-- comment-content -->
+					<!-- comment-container -->
 				</div>
-				<!-- comment-container -->
-			</div>
-
-			<!-- 댓글 쓰기 박스-->
-			<div class="user-reply-container">
-				<div class="profile-img"></div>
-				<div class="content-container">
-					<div class="post-reply">
-						<span>댓글 쓰기</span>
+				<%
+				} //else
+				} //for
+				} //if - 댓글이 0개가 아니라면
+				%>
+				<!-- 댓글 쓰기 박스-->
+				<div class="user-reply-container">
+					<div class="profile-img"></div>
+					<div class="content-container">
+						<div class="post-reply">
+							<span>댓글 쓰기</span>
+						</div>
+						<input type="text" name="reply-comment" class="reply-comment"
+							placeholder="남기고 싶은 이야기를 적으셈">
 					</div>
-					<input type="text" name="reply-comment" class="reply-comment"
-						placeholder="남기고 싶은 이야기를 적으셈">
 				</div>
-			</div>
-			<div class="reply-btn">
-				<button type="submit">
-					<span>게시하기</span>
-				</button>
-			</div>
+				<div class="reply-btn">
+					<button type="submit">
+						<span>게시하기</span>
+					</button>
+				</div>
 
+			</div>
 		</div>
-	</div>
 
 
 	</div>
