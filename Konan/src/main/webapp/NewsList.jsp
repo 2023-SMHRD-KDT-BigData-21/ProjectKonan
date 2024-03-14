@@ -107,13 +107,12 @@
 					let addHtml = "";
 					for (var i = 0; i < itr; i++) {
 						var article = data[i];
-						addHtml += "<div class='quest-container-in'> <div class='quest-title'> <a href='QnaContent.jsp?idx="
-								+ article.article_id + "'>" + article.title
+						addHtml += "<div class='quest-container-in'> <div class='quest-title'> <a href='article.url'>" + article.title
 								+ "</a></div> <div class='quest-content'>";
 						if (article.article_content.length > 50)
-							addHtml += post.post_content.substring(0, 50) + "⋯";
+							addHtml += article.article_content.substring(0, 50) + "⋯";
 						else
-							addHtml += post.post_content
+							addHtml += article.article_content
 						addHtml += "</div> <div class='res-container'> <span>답변</span>"
 								+ "<span class='res-icon'><ion-icon name='chatbox-outline'></ion-icon></span>"
 								+ "</div> </div>";
