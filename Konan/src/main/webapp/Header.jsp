@@ -23,7 +23,7 @@
 
 <body>
 
-<a href="Main.jsp"><div class="logo"><img src = "./img/logo.png"></div></a>
+<div class="logo"><a href="Main.jsp"><img src = "./img/logo.png"></a></div>
     <div class="navigation">
         <ul>
         	<%if(user==null){%>

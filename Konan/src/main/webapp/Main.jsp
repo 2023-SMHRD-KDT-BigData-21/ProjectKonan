@@ -68,14 +68,12 @@
 				<div class="adopt">
 					<span >
 						<%
-						String adopt = null;
-						if(post.getIs_adopted().equals("F")){
-							if(dao.ansCount(post.getPost_id())!=0)
-								adopt = "채택대기";
-							adopt = "답변대기";
-						}else{
+						String adopt = "답변대기";
+						System.out.println(post.getIs_adopted());
+						if(dao.ansCount(post.getPost_id())>0)
+							adopt = "채택대기";
+						if((post.getIs_adopted()).equals("T"))
 							adopt = "채택완료";
-						}
 						%>
 						<%=adopt %>
 					</span>
@@ -144,16 +142,12 @@
 					for (var i = 0; i < data.length; i++) {
 						var post = data[i];
 						//채택여부
-						let adopt;
+						let adopt = "답변대기";
 						addHtml += "<div class='adopt-container'> <div class='adopt'><span>"
-						if(post.is_adopted=="F"){
-							if(post.answer_cnt!=0){
-								adopt = "채택대기";
-							}
-							adopt = "답변대기";
-						}else{
+						if(post.answer_cnt>0)
+							adopt = "채택대기";
+						if(post.is_adopted=="T")
 							adopt = "채택완료";
-						}
 						addHtml += adopt + "</span></div></div>"
 						//제목
 						addHtml += "<a href='QnaContent.jsp?idx=" + post.post_id
