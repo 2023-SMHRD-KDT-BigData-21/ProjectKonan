@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>커뮤니티 게시글</title>
 <link rel="stylesheet" href="./css/CommuContent.css">
 <link rel="stylesheet" href="./css/HeartBtn.css">
 </head>
@@ -40,8 +40,9 @@
 				</div>
 				<!-- post-group -->
 			</div>
+
 			<!-- 내용 -->
-			<div class="post-question-container">
+			<div class="post-container">
 
 				<!-- 사진 -->
 				<div></div>
@@ -53,13 +54,12 @@
 
 
 				<div class="likes-replies-container">
-				<span class="heart"></span>
-					<div class="btn-likes">
-						<span>좋아요</span>&nbsp;&nbsp;<span>1</span>
-					</div>
-					<div class="btn-replies">
-						<span>답변 </span>&nbsp;&nbsp;<span>25</span>
-					</div>
+					<span class="heart"></span>&nbsp;&nbsp;&nbsp;
+					<span class="btn-likes">좋아요</span>&nbsp;<span style="font-size: 0.9em;">1</span>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<ion-icon name="chatbox-ellipses-outline" style="font-size: 1.3em;  color:gray; position: relative; top: -3px;"></ion-icon> &nbsp;&nbsp; 
+					<span>답변 </span>&nbsp;&nbsp;<span style="font-size: 0.9em;">25</span>
+					
 				</div>
 				<!-- likes-replies-container -->
 			</div>
@@ -68,79 +68,84 @@
 		<!-- post-container -->
 
 
-
+		<!-- 댓글! -->
+		<div class="comment-text"  style="font-weight: bold; font-size: 1.2em;">
+			<span>댓글</span>&nbsp;<span>4</span>
+		</div>
 
 		<!-- 댓글 박스 -->
+		<div class="comments-container">
+			<div class="comment-area">
+				<!-- 이미 쓰여 있는 댓글 박스 -->
+				<div class="comment-container">
 
-		<div class="post-replies-container">
-			<div class="post-replies-text">
-				<span style="font-weight: 700; font-size: 30px;">댓글</span> <span
-					style="font-weight: 700; font-size: 30px;">&nbsp;&nbsp;</span> <span
-					style="font-weight: 700; font-size: 30px;">4</span>
-			</div>
-
-			<!-- 이미 쓰여 있는 댓글 박스 -->
-			<div class="det-profile-containerr">
-				<div class="det-profile-img-container">
-					<div class="det-profile-imgg"></div>
-				</div>
-				<div class="det-info">
-					<div class="det-name">
-						<span>강아지</span>&nbsp;&nbsp;<span>2024.03.11</span>
+					<!-- 댓글 작성자 -->
+					<div class="comment-info">
+						<!-- 댓글 작성자 프사 넣는 공간 -->
+						<div class="comment-propic"></div>
+						<div class="comment-name">이름</div>
 					</div>
-					<div class="det-rply-cntent">
+
+
+					<div class="comment-content shadow-div">
+						<!-- 댓글 내용 -->
 						<span>댓글내용댓글내용댓글내용</span>
-					</div>
-					<div class="btn-repliess">
-						<div class="btn-likess">
-							<span>좋아요</span>
-						</div>
-						<div class="btn-reply">
-							<span>답글</span>
-						</div>
+						<!-- 수정/삭제/신고 버튼 -->
 						<div class="btn-edit">
-							<span>수정</span>
+							<ion-icon name="ellipsis-horizontal-outline"></ion-icon>
 						</div>
-						<div class="btn-delete-container">
-							<div class="btn-delete">
-								<span>삭제</span>
+						<div class="comment-btn">
+							<div class="comment-btn-likes">
+								<span>좋아요</span>
+							</div>
+							&nbsp; &nbsp; &nbsp;
+							<div class="comment-btn-reply">
+								<span>답글</span>
 							</div>
 						</div>
+						<!-- comment-btn -->
 					</div>
+					<!-- comment-content -->
 				</div>
+				<!-- comment-container -->
 			</div>
-
 
 
 			<!-- 대댓글 박스 -->
-			<div class="re-det-profile-containerr">
-				<div class="re-det-profile-img-container">
-					<div class="re-det-profile-imgg"></div>
-				</div>
-				<div class="re-det-info">
-					<div class="re-det-name">
-						<span>강아지</span>&nbsp;&nbsp;<span>2024.03.11</span>
+			<div class="recomments-container">
+			<div class="comment-area">
+				<!-- 이미 쓰여 있는 댓글 박스 -->
+				<div class="comment-container">
+
+					<!-- 댓글 작성자 -->
+					<div class="comment-info">
+						<!-- 댓글 작성자 프사 넣는 공간 -->
+						<div class="comment-propic"></div>
+						<div class="comment-name">이름</div>
 					</div>
-					<div class="re-det-rply-cntent">
-						<span>댓글내용댓글내용댓글내용</span>
-					</div>
-					<div class="re-btn-repliess">
-						<div class="re-btn-likess">
-							<span>좋아요</span>
+
+
+					<div class="comment-content shadow-div" style="background-color: lightgray">
+						<!-- 댓글 내용 -->
+						<span>대댓글내용대댓글내용대댓글내용</span>
+						<!-- 수정/삭제/신고 버튼 -->
+						<div class="btn-edit">
+							<ion-icon name="ellipsis-horizontal-outline"></ion-icon>
 						</div>
-						<div class="re-btn-reply">
-							<span>답글</span>
-						</div>
-						<div class="re-btn-edit">
-							<span>수정</span>
-						</div>
-						<div class="re-btn-delete-container">
-							<div class="re-btn-delete">
-								<span>삭제</span>
+						<div class="comment-btn">
+							<div class="comment-btn-likes">
+								<span>좋아요</span>
+							</div>
+							&nbsp; &nbsp; &nbsp;
+							<div class="comment-btn-reply">
+								<span>답글</span>
 							</div>
 						</div>
+						<!-- comment-btn -->
 					</div>
+					<!-- comment-content -->
 				</div>
+				<!-- comment-container -->
 			</div>
 
 			<!-- 댓글 쓰기 박스-->
