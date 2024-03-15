@@ -70,7 +70,9 @@
 					}
 					%>
 
-					<div class="btn-bookmark"></div>
+					<div class="edit-btn" style="position:absolute; right:0px; top: -10px;font-size: 2em; color:gray;">
+					<ion-icon name="ellipsis-vertical-outline"></ion-icon>
+					</div>
 				</div>
 
 				<!-- 포스트 상단 -->
