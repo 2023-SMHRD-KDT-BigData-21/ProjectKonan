@@ -1,3 +1,4 @@
+<%@page import="java.math.BigDecimal"%>
 <%@page import="com.konan.model.Post"%>
 <%@page import="java.util.List"%>
 <%@page import="com.konan.model.PostDAO"%>
@@ -21,7 +22,7 @@
                 <span><%= post.getPost_content() %></span> |
                 <span><%= post.getUser_id() %></span> |
                 <span><%= post.getReport_cnt() %></span> |
-                <a href="ReportDController=<%= post.getPost_id() %>">삭제</a>
+                <a href="ReportDController?id=<%= (BigDecimal)post.getPost_id() %>">삭제</a>
             </p>
         <%
             }
