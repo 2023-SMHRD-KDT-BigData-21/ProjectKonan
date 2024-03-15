@@ -22,12 +22,10 @@ public class TabController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
 		PostDAO dao = new PostDAO();
 		
 		//유저 아이디 가져오기
-		UserInfo userInfo = (UserInfo)session.getAttribute("userInfo");
-		String userId = userInfo.getUser_id();
+		String userId = request.getParameter("targetId");
 		//탭 아이디 가져오기
 		String tabId = request.getParameter("tabId");
 		
@@ -59,7 +57,7 @@ public class TabController extends HttpServlet {
 		}
 		
 		ObjectMapper mapper = new ObjectMapper(); //JSON 형식으로 변환하기 위해
-		String jsonString = mapper.writeValueAsString(myList);
+		String jsonString = mapper.writeValueAsString(resultList);
 		
         // JSON 응답 반환
         response.setContentType("application/json");

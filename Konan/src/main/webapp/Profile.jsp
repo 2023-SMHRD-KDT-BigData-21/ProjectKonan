@@ -32,12 +32,13 @@ pageContext.setAttribute("targetFollowers", targetFollowers);
 <title>${targetId}님의 프로필</title>
 <link rel="stylesheet" href="./css/Default.css">
 <link rel="stylesheet" href="./css/Profile.css">
+<link rel="stylesheet" href="./css/PostList.css">
 </head>
 <body>
 <%@ include file="Header.jsp"%>
 	<div class="container">
 		<!-- 프로필 컨테이터 -->
-		<div class="profile-container shadow-div">
+		<div class="profile-container shadow-div" style = "margin:0 auto;">
 			<div class="profile-background"></div>
 
 			<!-- 프로필 페이지 상단 유저 정보 담은 부분 -->
@@ -182,7 +183,7 @@ pageContext.setAttribute("targetFollowers", targetFollowers);
 						.remove("active");
 				tabsPane[i].classList.add("active");
 
-				tabIndicator.style.left = `calc(calc(100% / 3) * )`;
+				tabIndicator.style.left = "calc(calc(100% / 3) * "+i+")";
 
 		        // AJAX 요청 보내기
 		        let tabId = tabsPane[i].getAttribute("id");
@@ -193,7 +194,7 @@ pageContext.setAttribute("targetFollowers", targetFollowers);
 		function loadTabContent(tabId) {
 			// AJAX 요청 보내기
 			let xhr = new XMLHttpRequest();
-			xhr.open("get", "TabController?tabId=" + tabId, true);
+			xhr.open("get", "TabController?tabId=" + tabId + "&targetId=<%=targetId%>", true);
 			xhr.onreadystatechange = function() {
 				if (xhr.readyState === XMLHttpRequest.DONE) {
 					if (xhr.status === 200) {
@@ -206,7 +207,7 @@ pageContext.setAttribute("targetFollowers", targetFollowers);
 			};
 			xhr.send();
 		}
-
+		
 		function updateTabContent(data) {
 			let addHtml = "";
 			if(data==null){
@@ -215,14 +216,18 @@ pageContext.setAttribute("targetFollowers", targetFollowers);
 				let parsedData = JSON.parse(data);
 				parsedData.forEach(function(post) {
 					console.log(post.title);
+					console.log(post.post_type);
 					//채택여부
-					let adopt = "답변대기";
-					addHtml += "<div class='adopt-container'> <div class='adopt'><span>"
-					if(post.answer_cnt>0)
-						adopt = "채택대기";
-					if(post.is_adopted=="T")
-						adopt = "채택완료";
-					addHtml += adopt + "</span></div></div>"
+					let adopt = "<div style='margin:20px;'></div>"
+					if(post.post_type=="Q"){
+						addHtml += "<div style='margin:30px;'></div><div class='adopt-container'> <div class='adopt'><span style='background-color:var(--lightmain);padding: 5px 7px;border:none; border-radius:5px; font-size: 0.8em; color: var(--maincolor); margin-bottom: 10px;'>";
+						adopt = `답변대기</span>`;
+						if(post.answer_cnt>0)
+							adopt = "<span>채택대기</span>";
+						if(post.is_adopted=="T")
+							adopt = "<span>채택완료</span>";
+					}
+					addHtml += adopt + "</div></div>"
 					//제목
 					addHtml += "<a href='QnaContent.jsp?idx=" + post.post_id
 							+ `'class="link"><div class='quest-container-in'> <div class='quest-title'><b>[Q] </b>`
@@ -234,7 +239,7 @@ pageContext.setAttribute("targetFollowers", targetFollowers);
 						addHtml += post.post_content
 					//답변, 좋아요
 					addHtml += `
-						<div class="res-container">
+						<div class="res-container" style="right:10px">
 							<span>답변</span> 
 							<span class="res-icon"><ion-icon name="chatbox-outline"></ion-icon></span>
 							<span>` + post.answer_cnt + `</span>

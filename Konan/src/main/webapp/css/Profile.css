@@ -86,10 +86,9 @@
 /*게시글 컨테이너*/
 
 .content-tab {
+  box-sizing:border-box;
   position:relative;
-  top:100px;
-  left:50%;
-  transform:translate(-50%,-50%);
+  top:10px;
   width:100%;
   height:auto;
   padding:20px 30px;
@@ -120,13 +119,16 @@
 }
 .content-tab .tab-indicator {
   position:relative;
-  width:calc(100% / 3);
+  width:calc(90% / 3);
   height:5px;
   background:var(--maincolor);
   left:0px;
+  margin-left: calc(5% / 3);
+  margin-right: calc(5% / 3);
   border-radius:5px;
   transition:all 500ms ease-in-out;
 }
+
 .content-tab .tab-body {
   position:relative;
   height:calc(100% - 60px);
@@ -144,3 +146,4 @@
   opacity:1;
   transform:scale(1);
 }
+
