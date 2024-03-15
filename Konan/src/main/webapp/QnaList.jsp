@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" href="/Konan/css/Default2.css">
-    <link rel="stylesheet" href="/Konan/css/QnaForm.css">
+	<link rel="stylesheet" href="./css/Default2.css">
+    <link rel="stylesheet" href="./css/QnaForm.css">
 </head>
 <body>
     <div class="container">

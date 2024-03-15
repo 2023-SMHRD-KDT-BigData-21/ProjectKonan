@@ -208,7 +208,6 @@ pageContext.setAttribute("targetFollowers", targetFollowers);
 		}
 
 		function updateTabContent(data) {
-			console.log("data:" + data + "datatype:" + typeof data)
 			let addHtml = "";
 			if(data==null){
 				addHtml = "<span id='none'>작성한 게시물이 없습니다</span>";
@@ -238,16 +237,16 @@ pageContext.setAttribute("targetFollowers", targetFollowers);
 						<div class="res-container">
 							<span>답변</span> 
 							<span class="res-icon"><ion-icon name="chatbox-outline"></ion-icon></span>
-							<span>`+post.answer_cnt+`</span>
+							<span>` + post.answer_cnt + `</span>
 							<span>&nbsp;&nbsp;</span>
 							<span>좋아요</span>
 							<span class="res-icon"><ion-icon name="heart-outline"></ion-icon></span>
-							<span>`+post.like_cnt+`</span>
+							<span>` + post.like_cnt + `</span>
 						</div>
 					</div></div></a>`
 				}) //foreach
 			} //else
-			$(".post-container").append(addHtml);
+			$(".post-container").html(addHtml);
 		} //function
 	</script>
 
