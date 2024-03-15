@@ -34,13 +34,15 @@
 
 .login-form > input {
 	width: 300px;
-	height: 30px;
+	height: 45px;
 	border-radius: 5px;
 }
 
 .login-form > input[type="text"] , input[type="password"] {
 	border: 0.01em solid black;
 	margin: 3px auto; 
+	height: 45px;
+	width: 294px;
 }
 
 .login-form > input[type="text"]::focus , input[type="password"]::focus {
@@ -48,7 +50,8 @@
 }
 
 .login_btn {
-	width: 100%;
+	width: 300px;
+	height: 45px;
 	border: 0.01em solid #1e90ff;
     background-color:#1e90ff;
     color: white;
@@ -68,6 +71,23 @@
     -webkit-transform: scale(1.01);
     transform: scale(1.01);
 }
+
+
+/* 카카오 로그인 */
+.kakao-login-btn {
+    display: inline-block;
+    margin-top: 0px; /* 카카오 로그인 버튼과 일반 로그인 버튼 사이의 간격 조절 */
+}
+
+.kakao-login-btn img {
+    width: 300px; /* 이미지의 너비 조절 */
+    height: auto; /* 이미지의 높이를 자동으로 조절하여 비율 유지 */
+    cursor: pointer; /* 마우스가 버튼 위에 올라갔을 때 포인터 모양으로 변경 */
+}
+
+
+
+
 
 
 body{
