@@ -83,7 +83,7 @@
 					<span class="heart"></span>&nbsp;&nbsp;&nbsp; <span
 						class="btn-likes">좋아요</span>&nbsp;
 					<!-- 좋아요 값이 들어가야 함 -->
-					<span style="font-size: 0.9em;"><%=reactionDao.countLike(post.getPost_id())%></span>
+					<span style="font-size: 0.9em;" id="<%=post.getPost_id()%>"><%=reactionDao.countLike(post.getPost_id())%></span>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<ion-icon name="chatbox-ellipses-outline"
 						style="font-size: 1.3em;  color:gray; position: relative; top: -3px;"></ion-icon>
@@ -264,14 +264,100 @@
     </div>
 -->
 
-	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js" /></script>
 	<script>
+		<%if (user != null){%>	
 		//하트 버튼
+		function start() {
+			const postId = "<%=post.getPost_id()%>";
+			const userId = "<%=user.getUser_id()%>";
+			
+			$.ajax({
+				type :"post", // 타입 (get, post, put 등등)    
+				url : "LikeController", // 요청할 서버url    
+				async : true, // 비동기화 여부 (default : true)    
+				dataType : "json", // 데이터 타입 (html, xml, json, text 등등), 여러개 보낼 땐 보통 json으로 보냄
+				data : {
+					"modify" : "F",
+					"postId" : postId,
+					"userId" : userId,
+					"type" : "L"
+				},
+				success : function(result) {
+					// 성공 콜백함수        
+					console.log(result)
+					console.log("이미 좋아요 한 글")
+					if(result==2){
+						$('.heart').toggleClass("heart-active")
+					}
+				},
+				error : function(request, status, error) {
+					//에러 콜백함수        
+					console.log("좋아요 안 한 글")
+					console.log(request.responseText)
+					console.log(error)
+				}
+			})//ajax
+		}
+		start();
 		$(document).ready(function() {
+			
 			$('.heart').click(function() {
+				const postId = "<%=post.getPost_id()%>";
+				const userId = "<%=user.getUser_id()%>";
+
+				$.ajax({
+					type :"post", // 타입 (get, post, put 등등)    
+					url : "LikeController", // 요청할 서버url    
+					async : true, // 비동기화 여부 (default : true)    
+					dataType : "json", // 데이터 타입 (html, xml, json, text 등등), 여러개 보낼 땐 보통 json으로 보냄
+					data : {
+						"modify" : "T",
+						"postId" : postId,
+						"userId" : userId,
+						"type" : "L"
+					},
+					success : function(result) {
+						// 성공 콜백함수        
+						console.log(result)
+						console.log("좋아요 반영 성공")
+						if(result==1){
+							$('.heart').toggleClass("heart-active")
+							let like_cnt = document.getElementById(postId);
+							
+							
+							let currentValue = parseInt(like_cnt.innerHTML);
+					        let newValue = currentValue + 1;
+
+					        // 결과를 다시 innerHTML에 할당하여 화면에 반영
+					        like_cnt.innerHTML = newValue;
+						}else if(result == -1){
+							$('.heart').toggleClass("heart-active")
+							let like_cnt = document.getElementById(postId);
+							
+							
+							let currentValue = parseInt(like_cnt.innerHTML);
+					        let newValue = currentValue - 1;
+
+					        // 결과를 다시 innerHTML에 할당하여 화면에 반영
+					        like_cnt.innerHTML = newValue;
+						}
+					},
+					error : function(request, status, error) {
+						//에러 콜백함수        
+						console.log("좋아요 반영 실패")
+						console.log(request.responseText)
+						console.log(error)
+					}
+				})//ajax
+			});//$('.heart').click(function()
+					
+			$('heart-active').click(function(){
 				$('.heart').toggleClass("heart-active")
-			});
-		});
+			})
+		});//$(document).ready(function()
+		<%}%>
 	</script>
 </body>
 

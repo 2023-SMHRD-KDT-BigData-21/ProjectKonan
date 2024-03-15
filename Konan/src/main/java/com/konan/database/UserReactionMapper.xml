@@ -14,21 +14,21 @@
 		select * from user_reaction where user_id=#{user_id} and type='B'
 	</select>
 	
+	<!-- 특정 사용자의 특정 포스트의 특정 반응이 존재하는지 확인 -->
+	<select id="findReaction" parameterType="UserReaction" resultType="int">
+		select count(*) from user_reaction where user_id = #{user_id} and post_id = #{post_id} and type=#{type}
+	</select>
 	
-	<!-- 좋아요 추가 -->
-	<insert id="like" parameterType="UserReaction">
+	<!-- 반응 추가 -->
+	<insert id="insertReaction" parameterType="UserReaction">
+		insert into user_reaction(user_id, post_id, type) values(#{user_id}, #{post_id}, #{type})
 	</insert>
 	
-	<!-- 좋아요 삭제 -->
-	<delete id="unLike" parameterType="UserReaction">
+	<!-- 반응 삭제 -->
+	<delete id="deleteReaction" parameterType="UserReaction">
+		DELETE FROM user_reaction WHERE user_id = #{user_id} and post_id = #{post_id} and type=#{type}
 	</delete>
 
-	<!-- 북마크 추가 -->
-	<insert id="bookMark" parameterType="UserReaction">
-	</insert>
 	
-	<!-- 북마크 삭제 -->
-	<delete id="unBookMark" parameterType="UserReaction">
-	</delete>
 
 </mapper>

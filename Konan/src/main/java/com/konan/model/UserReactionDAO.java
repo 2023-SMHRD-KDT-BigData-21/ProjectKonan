@@ -24,4 +24,48 @@ public class UserReactionDAO {
 		}
 		return count;
 	}//countLike
+	
+	//반응 넣기
+	public int insertReaction(UserReaction userReaction) {
+		SqlSession sqlSession = sessionFactory.openSession(true);
+		int count = (int)sqlSession.insert(userReactionMapper+"insertReaction", userReaction);
+		
+		if(count>0) {
+			System.out.println("성공");;
+		}else {
+			System.out.println("실패");
+		}
+		
+		sqlSession.close();
+		return count;
+	}
+	
+	public int deleteReaction(UserReaction userReaction) {
+		SqlSession sqlSession = sessionFactory.openSession(true);
+		int count = (int)sqlSession.delete(userReactionMapper+"deleteReaction", userReaction);
+		
+		if(count>0) {
+			System.out.println("성공");;
+		}else {
+			System.out.println("실패");
+		}
+		
+		sqlSession.close();
+		return count;
+	}
+	
+	//사용자, 포스트, 반응 종류가 일치하는 row가 db에 존재하는 지 확인
+	public int findReaction(UserReaction userReaction) {
+		SqlSession sqlSession = sessionFactory.openSession(true);
+		int count = (int)sqlSession.selectOne(userReactionMapper+"findReaction", userReaction);
+		
+		if(count>0) {
+			System.out.println("성공");;
+		}else {
+			System.out.println("실패");
+		}
+		
+		sqlSession.close();
+		return count;
+	}
 }
