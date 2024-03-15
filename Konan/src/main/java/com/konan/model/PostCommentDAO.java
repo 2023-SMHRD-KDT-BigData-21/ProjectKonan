@@ -12,6 +12,15 @@ public class PostCommentDAO {
 	SqlSessionFactory sessionFactory = SqlSessionManager.getSqlSessionFactory();
 	String postCommentMapper = "com.konan.database.PostCommentMapper.";
 	
+	//댓글 삽입
+	public int insertComment(PostComment postComment) {
+		SqlSession sqlSession = sessionFactory.openSession(true);
+		int rownum = sqlSession.insert(postCommentMapper+"insertComment", postComment);
+		sqlSession.close();
+		
+		return rownum;
+	}
+	
 	// 포스트별 댓글 개수 세기
 	public Integer countComments(BigDecimal post_id) {
 		SqlSession sqlSession = sessionFactory.openSession(true);

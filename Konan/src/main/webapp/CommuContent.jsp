@@ -193,7 +193,7 @@
 							</div>
 						</a>
 
-						<div class="comment-content shadow-div">
+						<div class="comment-content shadow-div"  style="background-color: lightgray;">
 							<a href="Profile.jsp?targetId=<%=commentWriter.getUser_id()%>"
 								class="link">
 								<div class="comment-name"><%=commentWriter.getName()%></div>
@@ -229,8 +229,7 @@
 			if (user != null) {
 			%>
 			<!-- 댓글 쓰기 박스-->
-			<h3>댓글 쓰기</h3>
-			<div class="comment-container">
+			<div class="comment-container" style="margin-top:50px;margin-bottom:50px;">
 				<a href="Profile.jsp?targetId=<%=user.getUser_id()%>" class="link">
 					<div class="comment-info">
 						<!-- 댓글 작성자 프사 넣는 공간 -->
@@ -249,10 +248,12 @@
 						%>
 					</div>
 				</a>
-				<form action="" class="comment-area">
+				<form action="CommentInsertController" class="comment-area">
+					<input type="hidden" name="post_id" value="<%=post.getPost_id() %>">
+					<input type="hidden" name="user_id" value="<%=user.getUser_id() %>">
 					<div class="comment-write-container shadow-div"
-						style="background-color: var(--lightmain)">
-						<textarea name="post_comment" placeholder="남기고 싶은 이야기를 적으셈"
+						style="box-shadow: 0px 0px 20px rgba(218, 196, 248, 1);">
+						<textarea name="comment_content" placeholder="남기고 싶은 이야기를 적으셈"
 							class="comment" rows="4" cols="300"></textarea>
 					</div>
 					<button id="submit" type="submit">게시하기</button>
@@ -262,8 +263,6 @@
 			}
 			%>
 		</div>
-
-
 	</div>
 
 

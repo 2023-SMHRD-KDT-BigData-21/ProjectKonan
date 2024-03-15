@@ -29,11 +29,9 @@
 
 	<!-- QnaForm, CommuForm -->
 	<!-- 댓글 작성 -->
-	<insert id="insert" parameterType="PostComment">
-		insert into post
-		values(post_id_seq.NEXTVAL, (null), #{post_type}, #{user_id},
-		#{title}, #{post_content}, #{is_rewrite}, sysdate, #{report_cnt},
-		#{is_adopted}, #{is_anonymous})
+	<insert id="insertComment" parameterType="PostComment">
+		insert into post_comment(post_id,user_id,comment_content, write_date)
+		values(#{post_id}, #{user_id}, #{comment_content}, sysdate)
 	</insert>
 
 	<!-- 대댓글 작성 -->

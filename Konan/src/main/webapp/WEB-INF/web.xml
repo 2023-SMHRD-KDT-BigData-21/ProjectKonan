@@ -172,6 +172,12 @@
   	<description></description>
   	<servlet-class>com.konan.controller.admin.ReportDController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>CommentInsertController</servlet-name>
+  	<display-name>CommentInsertController</display-name>
+  	<description></description>
+  	<servlet-class>com.konan.controller.postreact.CommentInsertController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>JoinController</servlet-name>
   	<url-pattern>/JoinController</url-pattern>
@@ -283,5 +289,9 @@
   <servlet-mapping>
   	<servlet-name>ReportDController</servlet-name>
   	<url-pattern>/ReportDController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CommentInsertController</servlet-name>
+  	<url-pattern>/CommentInsertController</url-pattern>
   </servlet-mapping>
 </web-app>
