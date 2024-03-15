@@ -21,7 +21,7 @@
                 <span><%= post.getPost_content() %></span> |
                 <span><%= post.getUser_id() %></span> |
                 <span><%= post.getReport_cnt() %></span> |
-                <a href="DeleteController?id=<%= post.getPost_id() %>">삭제</a>
+                <a href="ReportDController=<%= post.getPost_id() %>">삭제</a>
             </p>
         <%
             }

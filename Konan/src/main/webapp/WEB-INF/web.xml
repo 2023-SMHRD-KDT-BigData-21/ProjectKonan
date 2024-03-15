@@ -154,6 +154,24 @@
   	<description></description>
   	<servlet-class>com.konan.controller.admin.ReportedController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ReportedDeleteController</servlet-name>
+  	<display-name>ReportedDeleteController</display-name>
+  	<description></description>
+  	<servlet-class>com.konan.controller.admin.ReportedDeleteController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ReportDeleteController</servlet-name>
+  	<display-name>ReportDeleteController</display-name>
+  	<description></description>
+  	<servlet-class>com.konan.controller.admin.ReportDeleteController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ReportDController</servlet-name>
+  	<display-name>ReportDController</display-name>
+  	<description></description>
+  	<servlet-class>com.konan.controller.admin.ReportDController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>JoinController</servlet-name>
   	<url-pattern>/JoinController</url-pattern>
@@ -253,5 +271,17 @@
   <servlet-mapping>
   	<servlet-name>ReportedController</servlet-name>
   	<url-pattern>/ReportedController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ReportedDeleteController</servlet-name>
+  	<url-pattern>/ReportedDeleteController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ReportDeleteController</servlet-name>
+  	<url-pattern>/ReportDeleteController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ReportDController</servlet-name>
+  	<url-pattern>/ReportDController</url-pattern>
   </servlet-mapping>
 </web-app>
