@@ -63,42 +63,43 @@
              회원탈퇴 페이지
              회원탈퇴 완료 
       -->
-      
-      <h4>나의 활동 기록</h4>
-        <div class="my-activity-btn-container align-item">
-            <ul>
-            <li class="list">
-                <a href="Login.jsp">
-                    <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
-                    <span class="title">나의 좋아요 목록</span>
-                </a>
-            </li>
-            <li class="list active_header">
-                <a href="Main.jsp">
-                    <span class="icon"><ion-icon name="chatbox-ellipses-outline"></ion-icon></span>
-                    <span class="title">나의 댓글 목록</span>
-                </a>
-            </li>
-            <li class="list">
-                <a href="CommuList.jsp">
-                    <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
-                    <span class="title">커뮤니티</span>
-                </a>
-            </li>
-            <li class="list">
-                <a href="AccModify.jsp">
-                    <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
-                    <span class="title">회원정보수정</span>
-                </a>
-            </li>
-            <li class="list">
-                <a href="AccOut.jsp">
-                    <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
-                    <span class="title">회원 탈퇴</span>
-                </a>
-            </li>
-           </ul>
-        </div>
+      <ul id="active-list">
+	      <h4 id="active-title">나의 활동 기록</h4>
+	        <div class="my-activity-btn-container align-item">
+	           <ul>
+	            <li class="list">
+	                <a href="Login.jsp">
+	                    <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
+	                    <span class="title">나의 좋아요 목록</span>
+	                </a>
+	            </li>
+	            <li class="list active_header">
+	                <a href="Main.jsp">
+	                    <span class="icon"><ion-icon name="chatbox-ellipses-outline"></ion-icon></span>
+	                    <span class="title">나의 댓글 목록</span>
+	                </a>
+	            </li>
+	            <li class="list">
+	                <a href="CommuList.jsp">
+	                    <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
+	                    <span class="title">커뮤니티</span>
+	                </a>
+	            </li>
+	            <li class="list">
+	                <a href="AccModify.jsp">
+	                    <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
+	                    <span class="title">회원정보수정</span>
+	                </a>
+	            </li>
+	            <li class="list">
+	                <a href="AccOut.jsp">
+	                    <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
+	                    <span class="title">회원 탈퇴</span>
+	                </a>
+	            </li>
+	           </ul>
+	        </div>
+        </ul>
         
 
     </div>
