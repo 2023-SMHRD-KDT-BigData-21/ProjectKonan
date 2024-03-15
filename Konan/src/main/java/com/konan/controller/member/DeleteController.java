@@ -45,7 +45,7 @@ public class DeleteController extends HttpServlet {
 		    } else {
 		        System.out.println("삭제 실패");
 		    }
-		    response.sendRedirect("Main.jsp");
+		    response.sendRedirect("AccOutComp.jsp");
 		} catch (Exception e) {
 		    e.printStackTrace();
 		    System.out.println("삭제 실패");

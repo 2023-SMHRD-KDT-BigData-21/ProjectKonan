@@ -148,6 +148,12 @@
   	<description></description>
   	<servlet-class>com.konan.controller.profile.TabController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ReportedController</servlet-name>
+  	<display-name>ReportedController</display-name>
+  	<description></description>
+  	<servlet-class>com.konan.controller.admin.ReportedController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>JoinController</servlet-name>
   	<url-pattern>/JoinController</url-pattern>
@@ -243,5 +249,9 @@
   <servlet-mapping>
   	<servlet-name>TabController</servlet-name>
   	<url-pattern>/TabController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ReportedController</servlet-name>
+  	<url-pattern>/ReportedController</url-pattern>
   </servlet-mapping>
 </web-app>

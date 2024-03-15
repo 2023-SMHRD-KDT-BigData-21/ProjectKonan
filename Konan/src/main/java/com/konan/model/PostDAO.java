@@ -25,6 +25,15 @@ public class PostDAO {
 		return post;
 	}
 	
+	// 신고 받은 포스트만 조회
+		public List<Post> reportedPost() {
+			SqlSession sqlSession = sessionFactory.openSession(true);
+			List<Post> list = sqlSession.selectList(postMapper+"reportedPost");
+			sqlSession.close();
+			System.out.println(list);
+			return list;
+		}
+	
 	// 작성자의 최근 작성 포스팅 조회(작성,수정 후 보여줄 상세페이지)
 	public BigDecimal recentPost(String user_id) {
 		SqlSession sqlSession = sessionFactory.openSession(true);
