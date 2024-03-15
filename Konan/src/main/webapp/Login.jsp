@@ -42,26 +42,16 @@
                src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_wide.png"
                alt="카카오 로그인">
             </a>
+            <!-- 회원가입 버튼 -->
+            <button class="join_btn">
+                <a href="Join.jsp">회원가입</a>
+             </button>
          </form>
       </div>
 
-      <ul>
-        <li onclick="kakaoLogin();">
-          <a href="javascript:void(0)">
-              <span>카카오 로그인</span>
-          </a>
-        </li>
-        <li onclick="kakaoLogout();">
-          <a href="javascript:void(0)">
-              <span>카카오 로그아웃</span>
-          </a>
-        </li>
-          <li>
-             <button>
-                <a href="Join.jsp">회원가입</a>
-             </button>
-          </li>
-    </ul>
+
+
+
     <!-- 카카오 스크립트 -->
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script>
