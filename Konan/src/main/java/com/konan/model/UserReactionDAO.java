@@ -31,9 +31,9 @@ public class UserReactionDAO {
 		int count = (int)sqlSession.insert(userReactionMapper+"insertReaction", userReaction);
 		
 		if(count>0) {
-			System.out.println("성공");;
+			System.out.println("db 넣기 성공");;
 		}else {
-			System.out.println("실패");
+			System.out.println("db 넣기 실패");
 		}
 		
 		sqlSession.close();
