@@ -91,8 +91,6 @@
 			</div>
 			<!-- 내용 -->
 			<div class="post-container">
-				<!-- 사진 -->
-				<div></div>
 
 				<!-- 글 내용 -->
 				<div class="post">
@@ -100,7 +98,7 @@
 				</div>
 				
 				<!-- 사진 -->
-				<div class="images">
+				<div class="image-container">
 				</div>
 
 				<div class="likes-replies-container">
@@ -119,7 +117,7 @@
 		</div><!-- post-container -->
 
 
-		<!-- 답글 컨테이너 -->
+		<!-- 답변 컨테이너 -->
 		<%if(answerList.size()>0){%>
 		<div class="answer-container">
 		<h2>&nbsp;&nbsp;답변 (<%=answerList.size() %>)</h2>
@@ -150,11 +148,8 @@
 					</div>
 				</div><!-- post-group -->
 			</div>
-			<!-- 내용 -->
+			<!-- 답글 내용 -->
 			<div class="post-container">
-
-				<!-- 사진 -->
-				<div class="image-container">사진ㄴ</div>
 
 				<!-- 글 내용 -->
 				<div class="post">
@@ -347,7 +342,7 @@
 				success : function(data) {
 					let addHtml = "";
 					for (var i = 0; i < data.length; i++) {
-						addHtml += "<div class='image' style=\"background-image: url('data:image/jpg;base64," + data[i] + "')\"></div>";
+						addHtml += "<img src='data:image/jpg;base64," + data[i] + "'></div>";
 					}
 					$(".image-container").append(addHtml);
 				},
