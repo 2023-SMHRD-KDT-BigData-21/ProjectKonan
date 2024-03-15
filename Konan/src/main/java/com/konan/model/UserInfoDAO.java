@@ -34,10 +34,10 @@ public class UserInfoDAO {
 		return user;
 		}
 	
-	public Integer delete(String id){
+	public Integer delete(UserInfo userInfo){
 		SqlSession sqlsession = sqlsessionFactory.openSession(true);
 		
-		Integer user = sqlsession.delete(userInfoMapper+"delete", id);
+		Integer user = sqlsession.delete(userInfoMapper+"delete", userInfo);
 		sqlsession.close();
 		
 		return user;

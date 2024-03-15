@@ -56,7 +56,7 @@ public class PagingController extends HttpServlet {
 				page.setReported_date(arti.getReported_date());
 				page.setUrl(arti.getUrl());
 				page.setImg(arti.getImg());
-				page.setKeyword_list(keywordDao.getKeyword(arti.getArticle_id()));
+				//page.setKeyword_list(keywordDao.getKeyword(arti.getArticle_id()));
 				resultList.add(page);
 				
 			}

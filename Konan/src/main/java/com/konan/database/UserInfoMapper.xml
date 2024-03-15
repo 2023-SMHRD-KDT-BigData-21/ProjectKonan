@@ -53,4 +53,8 @@
 		user_id = #{user_id, jdbcType=VARCHAR}
 		
 	</update>
+	
+	<delete id="delete" parameterType="UserInfo">
+		DELETE FROM user_info WHERE user_id=#{user_id} AND user_pw=#{user_pw}
+	</delete>
 </mapper>
