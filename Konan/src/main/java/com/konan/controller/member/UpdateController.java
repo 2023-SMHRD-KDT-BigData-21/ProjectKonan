@@ -47,9 +47,16 @@ public class UpdateController extends HttpServlet {
     UserInfo updatedUserInfo = new UserInfo();
     updatedUserInfo.setUser_id(user_id);
     updatedUserInfo.setUser_pw(user_pw);
-    updatedUserInfo.setName(email);
-    updatedUserInfo.setName(name);
-    updatedUserInfo.setName(phone_number);
+    if(email!=null) {
+    updatedUserInfo.setEmail(email);
+    }
+    if(name!=null) {
+    updatedUserInfo.setName(name);	
+    }
+    if(phone_number!=null) {
+    updatedUserInfo.setPhone_number(phone_number);	
+    }
+    
     updatedUserInfo.setRegion(region);
     updatedUserInfo.setGender(gender);
 

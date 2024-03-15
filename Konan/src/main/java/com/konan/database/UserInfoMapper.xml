@@ -38,11 +38,15 @@
 		UPDATE user_info
 		SET
 		USER_PW = #{user_pw, jdbcType=VARCHAR},
+		<if test="email != null">
 		EMAIL = #{email, jdbcType=VARCHAR},
+		</if>
 		<if test="name != null">
-        AND NAME = #{name, jdbcType=VARCHAR}
+        NAME = #{name, jdbcType=VARCHAR},
     	</if>
+    	<if test="phone_number != null">
 		PHONE_NUMBER = #{phone_number, jdbcType=VARCHAR},
+		</if>
 		REGION = #{region, jdbcType=VARCHAR},
 		GENDER = #{gender, jdbcType=VARCHAR}
 		WHERE
