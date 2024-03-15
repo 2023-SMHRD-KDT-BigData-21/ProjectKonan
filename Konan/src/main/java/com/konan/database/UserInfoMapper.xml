@@ -39,11 +39,14 @@
 		SET
 		USER_PW = #{user_pw, jdbcType=VARCHAR},
 		EMAIL = #{email, jdbcType=VARCHAR},
-		NAME = #{name, jdbcType=VARCHAR},
+		<if test="name != null">
+        AND NAME = #{name, jdbcType=VARCHAR}
+    	</if>
 		PHONE_NUMBER = #{phone_number, jdbcType=VARCHAR},
 		REGION = #{region, jdbcType=VARCHAR},
 		GENDER = #{gender, jdbcType=VARCHAR}
 		WHERE
 		user_id = #{user_id, jdbcType=VARCHAR}
+		
 	</update>
 </mapper>

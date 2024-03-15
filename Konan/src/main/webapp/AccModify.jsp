@@ -28,8 +28,10 @@
 					<td><input type="text" name = "region" placeholder="주소를 입력하세요" ></td>
 				</tr>
 				<tr>
-					<td><input type="text" name = "gender" placeholder="성별을 입력하세요" ></td>
+					<td align="right">성별</td>
+                	<td><input type="radio" name="gender" value="남자">남자 <input type="radio" name="gender" value="여자"> 여자</td>
 				</tr>
+				
 				
 				
 				<tr>
