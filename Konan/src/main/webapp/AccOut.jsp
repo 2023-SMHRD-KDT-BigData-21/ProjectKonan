@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<form src="">
+		<div>
+			<input type="text" name = "user_pw" >
+			
+		</div>
+	</form>
 </body>
 </html>

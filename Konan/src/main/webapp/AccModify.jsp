@@ -39,6 +39,7 @@
 				</tr>
 			</table>
 		</form>
+		<button><a href="JoinAsDetective.jsp">탐정승인</a></button>
 	</div>
 	
 	
