@@ -63,7 +63,7 @@
     /* 가상 요소에 텍스트 내용 추가 */
     font-size: 24px;
     /* 텍스트 크기 설정 (조절 가능) */
-    line-height: 250px;
+    line-height: 173px;
     /* 수직 가운데 정렬을 위한 높이 설정 */
     color: rgb(9, 9, 9);
     /* 텍스트 색상 설정 */
@@ -84,9 +84,9 @@
 
 .add-photo-img {
     position: relative;
-    width: 250px;
+    width: 173px;
     /* 원하는 가로 크기로 조절 */
-    height: 250px;
+    height: 173px;
     /* 원하는 세로 크기로 조절 */
     border-radius: 20%;
     background-color: #d2b5b5;
