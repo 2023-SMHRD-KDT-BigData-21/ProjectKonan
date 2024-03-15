@@ -50,7 +50,7 @@
   	<servlet-name>LikeController</servlet-name>
   	<display-name>LikeController</display-name>
   	<description></description>
-  	<servlet-class>com.konan.controller.boardreact.LikeController</servlet-class>
+  	<servlet-class>com.konan.controller.postreact.LikeController</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>BookmarkController</servlet-name>
