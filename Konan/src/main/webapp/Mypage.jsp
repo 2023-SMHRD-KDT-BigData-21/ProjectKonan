@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html lang="kor">
 <%
-		String targetId = request.getParameter("targetId"); 
-		pageContext.setAttribute("targetId", targetId);
+      String targetId = request.getParameter("targetId"); 
+      pageContext.setAttribute("targetId", targetId);
 %>
 <head>
     <meta charset="UTF-8">
@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="./css/MyPage.css" type="text/css">
 </head>
 <body>
-	<%@ include file="Header.jsp" %>
+   <%@ include file="Header.jsp" %>
     <div class="container">
         <div class="upper">
             <a href="#"><img class="propic" src="./img/defaultPropic.png"></a>
@@ -62,9 +62,9 @@
              비밀번호 변경 페이지
              회원탈퇴 페이지
              회원탈퇴 완료 
-		-->
-		
-		<h4>나의 활동 기록</h4>
+      -->
+      
+      <h4>나의 활동 기록</h4>
         <div class="my-activity-btn-container align-item">
             <ul>
             <li class="list">
@@ -89,6 +89,12 @@
                 <a href="AccModify.jsp">
                     <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
                     <span class="title">회원정보수정</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="AccOut.jsp">
+                    <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
+                    <span class="title">회원 탈퇴</span>
                 </a>
             </li>
            </ul>

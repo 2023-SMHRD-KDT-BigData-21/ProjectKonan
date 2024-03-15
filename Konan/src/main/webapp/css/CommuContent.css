@@ -128,12 +128,12 @@
 
 /* 댓글 */
 .comment-text{
-	margin:20px;
-	margin-top:40px;
+   margin:20px;
+   margin-top:40px;
 }
 /*댓글 리스트 컨테이너*/
 .comments-container {
-	box-sizing:  border-box;
+   box-sizing:  border-box;
     width: 100%;
     height: auto;
     /* border: 1px solid; */
@@ -145,34 +145,34 @@
 }
 /*대댓글 박스*/
 .recomments-container{
-	box-sizing:  border-box;
+   box-sizing:  border-box;
     width: calc(100% - 40px);
     height: auto;
-	min-height: 80px;
-	margin: 10px;
+   min-height: 80px;
+   margin: 10px;
     position: relative;
     left:20px;
 }
 
 /*개별 댓글 컨테이너*/
-.comment-area{	
-	width:100%;
-	box-sizing:  border-box;
+.comment-area{   
+   width:100%;
+   box-sizing:  border-box;
 }
 .comment-container{
-	box-sizing:  border-box;
-	width:100%;
-	min-height: 80px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	display: flex;
+   box-sizing:  border-box;
+   width:100%;
+   min-height: 80px;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   display: flex;
 
-	position:relative;
+   position:relative;
 }
 
 /*댓글 작성자 정보(프사) 컨테이너*/
 .comment-info {
-	width: auto;
+   width: auto;
     height: 50px;
     display: flex;
     text-align: center;
@@ -185,45 +185,45 @@
     border-radius: 50%;
     background-image: url('../img/defaultPropic.png');
 
-	margin-top: 10px;
+   margin-top: 10px;
     margin-right: 15px;
     /* 이미지와 텍스트 사이 여백 (선택적) */
     background-size: cover;
     background-position: center;
 }
 .comment-name{
-	position:relative;
-	margin-bottom: 10px;
-	font-weight: bold;
-	font-size: 1.2em;
+   position:relative;
+   margin-bottom: 10px;
+   font-weight: bold;
+   font-size: 1.2em;
 }
 
 /*댓글 내용 컨테이너*/
 .comment-content{
-	position:relative;
+   position:relative;
 
-	top: 10px;
-	right:-10px !important;
-	width: calc(100% - 130px);
-	
-	padding:30px;
-	padding-top:30px;
-	padding-bottom:40px;
+   top: 10px;
+   right:-10px !important;
+   width: calc(100% - 130px);
+   
+   padding:30px;
+   padding-top:30px;
+   padding-bottom:40px;
 }
 
 .btn-edit{
-	position: absolute;
-	top:20px;
-	right:20px;
+   position: absolute;
+   top:20px;
+   right:20px;
 }
 /*댓글 작성자 정보(프사) 컨테이너*/
 
 
 /* 좋아요, 답글, 수정, 삭제 버튼 */
 .comment-btn {
-	position: absolute;
-	bottom: 20px;
-	right: 20px;
+   position: absolute;
+   bottom: 20px;
+   right: 20px;
     font-size: 0.8em;
     display: flex;
     align-items: center;
@@ -231,14 +231,17 @@
 
 
 .answer-container{
-	margin: 0;
-	margin-top: 0px;
-	padding: 50px;
-	width:initial; 
+   margin: 0;
+   margin-top: 0px;
+   padding: 50px;
+   width:initial; 
 }
 
-
-
+.comment-container{
+   width:100%;
+   background-color: lightgray;
+   
+}
 
 
 
