@@ -27,27 +27,27 @@
                     <div class="add-photo-text"><span>사진추가</span></div>
                     <div class="add-photo-img-container">
                         <label for="photo1">
-                            <div class="add-photo-img1">
+                            <div class="add-photo-img" id="img1">
                     			<input type="file" id="photo1" name="photo1" accept="image/*" style="display: none;" formaction="PostImageController" onchange="setThumbnail(event,1);">
                             </div>
                         </label>
                         <label for="photo2">
-                            <div class="add-photo-img2">
+                            <div class="add-photo-img" id="img2">
                             	<input type="file" id="photo2" name="photo2" accept="image/*" style="display: none;" formaction="PostImageController" onchange="setThumbnail(event,2);">
                             </div>
                         </label>
                         <label for="photo3">
-                            <div class="add-photo-img3">
+                            <div class="add-photo-img" id="img3">
                             <input type="file" id="photo3" name="photo3" accept="image/*" style="display: none;" formaction="PostImageController" onchange="setThumbnail(event,3);">
                             </div>
                         </label>
                         <label for="photo4">
-                            <div class="add-photo-img4">
+                            <div class="add-photo-img" id="img4">
                             	<input type="file" id="photo4" name="photo4" accept="image/*" style="display: none;" formaction="PostImageController" onchange="setThumbnail(event,4);">
                             </div>
                         </label>
                         <label for="photo5">
-                            <div class="add-photo-img5">
+                            <div class="add-photo-img" id="img5">
                             	<input type="file" id="photo5" name="photo5" accept="image/*" style="display: none;" formaction="PostImageController" onchange="setThumbnail(event,5);">
                             </div>
                         </label>
@@ -91,20 +91,12 @@
 	    var reader = new FileReader();
 
 	    reader.onload = function (event) {
-	        var img = document.createElement("img");
-	        img.setAttribute("src", event.target.result);
-	        img.setAttribute("class", "col-lg-6");
+	        var imgSrc = event.target.result;
 	        
-	        // 이미지의 너비와 높이를 설정합니다.
-	        img.style.width = "200px"; // 너비를 200px로 설정
-
-
-	        var container = document.querySelector("div.add-photo-img" + num);
-	        
-	        //container.innerHTML = '';
-	        //container.appendChild(img);
-	        console.log(num + "번째 반영!");
-	        console.log(container);
+	        // 썸네일
+	        var container = document.querySelector("div#img" + num);
+	        container.style.backgroundImage = "url('" + imgSrc + "')";
+	        container.style.backgroundSize = "cover";
 	    };
 
 	    reader.readAsDataURL(event.target.files[0]);
