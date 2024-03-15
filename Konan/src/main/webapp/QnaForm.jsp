@@ -28,27 +28,27 @@
                     <div class="add-photo-img-container">
                         <label for="photo1">
                             <div class="add-photo-img" id="img1">
-                    			<input type="file" id="photo1" name="photo1" accept="image/*" style="display: none;" formaction="PostImageController" onchange="setThumbnail(event,1);">
+                    			<input type="file" id="photo1" name="photo1" accept="image/*" style="display: none;" onchange="setThumbnail(event,1);">
                             </div>
                         </label>
                         <label for="photo2">
                             <div class="add-photo-img" id="img2">
-                            	<input type="file" id="photo2" name="photo2" accept="image/*" style="display: none;" formaction="PostImageController" onchange="setThumbnail(event,2);">
+                            	<input type="file" id="photo2" name="photo2" accept="image/*" style="display: none;" onchange="setThumbnail(event,2);">
                             </div>
                         </label>
                         <label for="photo3">
                             <div class="add-photo-img" id="img3">
-                            <input type="file" id="photo3" name="photo3" accept="image/*" style="display: none;" formaction="PostImageController" onchange="setThumbnail(event,3);">
+                            <input type="file" id="photo3" name="photo3" accept="image/*" style="display: none;" onchange="setThumbnail(event,3);">
                             </div>
                         </label>
                         <label for="photo4">
                             <div class="add-photo-img" id="img4">
-                            	<input type="file" id="photo4" name="photo4" accept="image/*" style="display: none;" formaction="PostImageController" onchange="setThumbnail(event,4);">
+                            	<input type="file" id="photo4" name="photo4" accept="image/*" style="display: none;" onchange="setThumbnail(event,4);">
                             </div>
                         </label>
                         <label for="photo5">
                             <div class="add-photo-img" id="img5">
-                            	<input type="file" id="photo5" name="photo5" accept="image/*" style="display: none;" formaction="PostImageController" onchange="setThumbnail(event,5);">
+                            	<input type="file" id="photo5" name="photo5" accept="image/*" style="display: none;" onchange="setThumbnail(event,5);">
                             </div>
                         </label>
                     </div> <!-- add-photo-img-container -->
