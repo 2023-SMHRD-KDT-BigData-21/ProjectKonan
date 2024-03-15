@@ -6,6 +6,10 @@
 	<insert id="insert" parameterType="PostImage">
 		insert into post_image values(#{post_id},#{image})
 	</insert>
+	
+	<select id="select" resultType="String">
+		select image from post_image where post_id=#{post_id}
+	</select>
 
 
 </mapper>

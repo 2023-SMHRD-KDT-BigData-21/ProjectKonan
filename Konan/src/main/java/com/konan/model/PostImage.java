@@ -8,4 +8,8 @@ import lombok.AllArgsConstructor;
 public class PostImage {
 	private BigDecimal post_id;
 	private String image;
+	
+	public PostImage(String image) {
+		this.image = image;
+	}
 }
