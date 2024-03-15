@@ -86,6 +86,16 @@
 }
 
 
+/* 이미지 크기 조정 */
+.image-container {
+	object-fit: cover;
+	width: 250px;
+	height: 190px;
+}
+
+
+
+
 /*유저 반응 컨테이너 -  댓글/좋아요*/
 .likes-replies-container {
     display: flex;
