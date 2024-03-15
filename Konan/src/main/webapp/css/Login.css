@@ -9,12 +9,12 @@
     -moz-box-sizing: border-box;  
     box-sizing: border-box; 
     
-	max-width:70%;
+	max-width:60%;
 	min-width: 350px;
-	height: 400px;
+	height: 540px;
     background-color: #fff;
     
-    padding: 20px;
+    padding: 50px;
     margin: 20px auto;
     border-radius: 20px;
     text-align:center;
@@ -35,28 +35,35 @@
 .login-form > input {
 	width: 300px;
 	height: 45px;
-	border-radius: 5px;
+	border-radius: 10px;
 }
 
 .login-form > input[type="text"] , input[type="password"] {
 	border: 0.01em solid black;
+	border-radius: 10px;
 	margin: 3px auto; 
 	height: 45px;
 	width: 294px;
+	padding: 2px;
+	font-size: 0.8em;
 }
 
-.login-form > input[type="text"]::focus , input[type="password"]::focus {
-	outline:none;
+.login-form > input:focus {
+	border: 2px solid var(--maincolor);
+	outline: none;
+	
 }
 
 .login_btn {
+	border-radius: 10px;
+	
 	width: 300px;
 	height: 45px;
-	border: 0.01em solid #1e90ff;
-    background-color:#1e90ff;
+	border: 0.01em solid var(--maincolor);
+    background-color: var(--maincolor);
     color: white;
     
-	margin: 10px auto;
+	margin: 5px auto;
     text-align: center;
     -webkit-transition-duration: 0.1s;
     transition-duration: 0.1s;
@@ -74,13 +81,16 @@
 
 /* 회원가입 */
 .join_btn {
+	border: none;
+	border-radius: 20px;
+	
 	width: 300px;
 	height: 45px;
-	border: 0.01em solid #1e90ff;
-    background-color: rgb(192, 192, 192);
+	border: 0.03em solid var(--maincolor);
+    background-color: white;
     color: white;
     
-	margin: 10px auto;
+	margin: 5px auto;
     text-align: center;
     -webkit-transition-duration: 0.1s;
     transition-duration: 0.1s;
@@ -99,11 +109,15 @@
 
 /* 카카오 로그인 */
 .kakao-login-btn {
+	border-radius: 10px;
+	
     display: inline-block;
     margin-top: 0px; /* 카카오 로그인 버튼과 일반 로그인 버튼 사이의 간격 조절 */
 }
 
 .kakao-login-btn img {
+	margin: 0px auto;
+	border-radius: 10px;
     width: 300px; /* 이미지의 너비 조절 */
     height: auto; /* 이미지의 높이를 자동으로 조절하여 비율 유지 */
     cursor: pointer; /* 마우스가 버튼 위에 올라갔을 때 포인터 모양으로 변경 */

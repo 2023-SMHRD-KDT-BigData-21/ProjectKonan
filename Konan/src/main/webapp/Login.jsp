@@ -1,8 +1,7 @@
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="com.konan.model.UserInfo"%>
 <%@page import="com.konan.model.UserInfoDAO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,11 +13,16 @@
 <link rel="stylesheet" href="./css/Login.css" type="text/css">
 <link rel="stylesheet" href="./css/Default.css" type="text/css">
 </head>
-<body>
+<body style="background-color: rgba(0,0,0,0.5); background-image:url('./img/background.gif');background-size: cover;" >
    <div class="container">
       <!-- Menu -->
-      <div class="login-container">
-         <h3>로그인</h3>
+      <div class="login-container" style="box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.2);">
+      	 <img src="./img/logo.png" style="width:300px; height: auto;">
+      	 <br>
+      	 <br>
+         <strong>로그인</strong>
+      	 <br>
+      	 <br>
          <%
          try {
             boolean isSuccess = (boolean) session.getAttribute("isSuccess");
@@ -34,16 +38,16 @@
          }
          %>
          <form class="login-form" action="LoginController" method="post">
-            <input type="text" name="userId" placeholder="아이디를 입력하세요"> <input
-               type="password" name="userPw" placeholder="PW를 입력하세요"> <input
-               type="submit" value="LogIn" class="login_btn">
+            <input type="text" name="userId" placeholder="아이디를 입력하세요" autofocus> 
+            <input type="password" name="userPw" placeholder="PW를 입력하세요"> 
+            <input type="submit" value="LogIn" class="login_btn">
             <!-- 카카오 로그인 버튼 -->
             <a href="#" onclick="kakaoLogin()" class="kakao-login-btn"> <img
                src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_wide.png"
                alt="카카오 로그인">
             </a>
             <!-- 회원가입 버튼 -->
-            <button class="join_btn">
+            <button class="join_btn" style="border-radius: 10px; position: relative; margin: 0px auto; color: red;">
                 <a href="Join.jsp">회원가입</a>
              </button>
          </form>
