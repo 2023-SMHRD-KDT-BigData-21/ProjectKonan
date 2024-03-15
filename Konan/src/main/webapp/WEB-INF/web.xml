@@ -32,7 +32,7 @@
   	<servlet-name>DeleteController</servlet-name>
   	<display-name>DeleteController</display-name>
   	<description></description>
-  	<servlet-class>com.konan.controller.DeleteController</servlet-class>
+  	<servlet-class>com.konan.controller.member.DeleteController</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>IdCheckController</servlet-name>
