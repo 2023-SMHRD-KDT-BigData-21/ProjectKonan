@@ -7,23 +7,6 @@
     <title>질문 작성</title>
     <link rel="stylesheet" href="./css/Default2.css">
     <link rel="stylesheet" href="./css/QnaForm.css">
-    <style>
-	    .add-photo-container {
-	    padding: 20px 30px;
-	    display: block;
-	    width: 200px;
-	    margin: 5vh auto;
-	    height: 200px;
-	    border: 1px solid #dbdbdb;
-	    -webkit-box-sizing: border-box;
-	    -moz-box-sizing: border-box;
-	    box-sizing: border-box;
-		}
-		
-		.form-control {
-		display: none;
-		}
-    </style>
 </head>
 
 <body>
@@ -43,46 +26,41 @@
                 <div class="add-photo-container">
                     <div class="add-photo-text"><span>사진추가</span></div>
                     <div class="add-photo-img-container">
-                        <label for="photo0">
-                            <div class="add-photo-img">
-                    			<input type="file" id="photo1" name="photo1" accept="image/*" style="display: none;" formaction="PostImageController" onchange="setThumbnail(event);">
-                            </div>
-                        </label>
                         <label for="photo1">
-                            <div class="add-photo-img">
-                            	<input type="file" id="photo2" name="photo2" accept="image/*" style="display: none;" formaction="PostImageController" onchange="setThumbnail(event);">
+                            <div class="add-photo-img1">
+                    			<input type="file" id="photo1" name="photo1" accept="image/*" style="display: none;" formaction="PostImageController" onchange="setThumbnail(event,1);">
                             </div>
                         </label>
                         <label for="photo2">
-                            <div class="add-photo-img">
-                            <input type="file" id="photo3" name="photo3" accept="image/*" style="display: none;" formaction="PostImageController" onchange="setThumbnail(event);">
+                            <div class="add-photo-img2">
+                            	<input type="file" id="photo2" name="photo2" accept="image/*" style="display: none;" formaction="PostImageController" onchange="setThumbnail(event,2);">
                             </div>
                         </label>
                         <label for="photo3">
-                            <div class="add-photo-img">
-                            	<input type="file" id="photo4" name="photo4" accept="image/*" style="display: none;" formaction="PostImageController" onchange="setThumbnail(event);">
+                            <div class="add-photo-img3">
+                            <input type="file" id="photo3" name="photo3" accept="image/*" style="display: none;" formaction="PostImageController" onchange="setThumbnail(event,3);">
                             </div>
                         </label>
                         <label for="photo4">
-                            <div class="add-photo-img">
-                            	<input type="file" id="photo5" name="photo5" accept="image/*" style="display: none;" formaction="PostImageController" onchange="setThumbnail(event);">
+                            <div class="add-photo-img4">
+                            	<input type="file" id="photo4" name="photo4" accept="image/*" style="display: none;" formaction="PostImageController" onchange="setThumbnail(event,4);">
                             </div>
                         </label>
-                    </div>
-                </div>
-                <div class="btn-delete">
-                    <button type="submit">
-                        <span>삭제하기</span>
-                    </button>
-                </div>
+                        <label for="photo5">
+                            <div class="add-photo-img5">
+                            	<input type="file" id="photo5" name="photo5" accept="image/*" style="display: none;" formaction="PostImageController" onchange="setThumbnail(event,5);">
+                            </div>
+                        </label>
+                    </div> <!-- add-photo-img-container -->
+                </div> <!-- add-photo-container -->
                 <div class="btn-post">
                     <button type="submit">
                         <span>질문등록</span>
                     </button>
-                </div>
+                </div> <!-- btn-post -->
                 
             </form>
-        </div>       
+        </div> <!-- post-container -->
 
 	        <!-- 해시태그
 	        <div class="add-tag-container">
@@ -109,7 +87,7 @@
 	
 	<script>
     
-	function setThumbnail(event) {
+	function setThumbnail(event, num) {
 	    var reader = new FileReader();
 
 	    reader.onload = function (event) {
@@ -121,7 +99,12 @@
 	        img.style.width = "200px"; // 너비를 200px로 설정
 
 
-	        document.querySelector("div.add-photo-container").appendChild(img);
+	        var container = document.querySelector("div.add-photo-img" + num);
+	        
+	        //container.innerHTML = '';
+	        //container.appendChild(img);
+	        console.log(num + "번째 반영!");
+	        console.log(container);
 	    };
 
 	    reader.readAsDataURL(event.target.files[0]);

@@ -39,7 +39,7 @@ public class PostInsertController extends HttpServlet {
 		String postType = multi.getParameter("postType");
 		String userId = user.getUser_id();
 		String title = multi.getParameter("title");
-		String postContent = multi.getParameter("postContent");
+		String postContent = multi.getParameter("content");
 				
 		//포스팅 객체 생성
 		Post post = null;
