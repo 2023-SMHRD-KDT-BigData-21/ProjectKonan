@@ -3,10 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
+	
    <!-- db 연결을 위한 정보를 담은 파일 삽입 -->
    <properties resource="com/konan/database/db.properties"></properties>
-   
+  
    <!-- 경로 별명을 지어주는 것, controller에서 요긴하게 사용 -->
      <typeAliases>
         <typeAlias type="com.konan.model.UserInfo" alias="UserInfo"/>

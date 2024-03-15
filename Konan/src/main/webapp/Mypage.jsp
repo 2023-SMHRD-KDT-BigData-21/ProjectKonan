@@ -91,6 +91,12 @@
                     <span class="title">회원정보수정</span>
                 </a>
             </li>
+            <li class="list">
+                <a href="AccOut.jsp">
+                    <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
+                    <span class="title">회원 탈퇴</span>
+                </a>
+            </li>
            </ul>
         </div>
         

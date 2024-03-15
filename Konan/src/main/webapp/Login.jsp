@@ -47,6 +47,11 @@
               <span>카카오 로그아웃</span>
           </a>
         </li>
+       	<li>
+       		<button>
+       			<a href="Join.jsp">회원가입</a>
+       		</button>
+       	</li>
     </ul>
     <!-- 카카오 스크립트 -->
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
