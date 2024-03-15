@@ -12,9 +12,9 @@ public class KeywordDAO {
 	SqlSessionFactory sessionFactory = SqlSessionManager.getSqlSessionFactory();
 	String keywordMapper = "com.konan.database.KeywordMapper.";
 	
-	public List<Keyword> firstList(BigDecimal article_id) {
+	public List<String> firstList(BigDecimal article_id) {
 		SqlSession sqlSession = sessionFactory.openSession(true);
-		List<Keyword> list = sqlSession.selectList(keywordMapper+"selectKeyword", article_id);
+		List<String> list = sqlSession.selectList(keywordMapper+"selectFirst", article_id);
 		sqlSession.close();
 		return list;
 	}

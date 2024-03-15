@@ -45,6 +45,7 @@ public class PagingController extends HttpServlet {
 			KeywordDAO keywordDao = new KeywordDAO();
 			
 			List<Article> list = articleDao.moreList(idx);
+			//List<String> keywordList = articleDao.moreList(idx);
 			List<ArticlePaging> resultList = new ArrayList<>();
 			
 			for(Article arti : list) {
@@ -56,6 +57,7 @@ public class PagingController extends HttpServlet {
 				page.setReported_date(arti.getReported_date());
 				page.setUrl(arti.getUrl());
 				page.setImg(arti.getImg());
+				
 				//page.setKeyword_list(keywordDao.getKeyword(arti.getArticle_id()));
 				resultList.add(page);
 				
