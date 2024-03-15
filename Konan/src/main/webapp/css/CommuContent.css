@@ -237,7 +237,11 @@
 	width:initial; 
 }
 
-
+.comment-container{
+	width:100%;
+	background-color: lightgray;
+	
+}
 
 
 

@@ -227,7 +227,7 @@
 			} //if - 댓글이 0개가 아니라면
 			%>
 			<!-- 댓글 쓰기 박스-->
-			<div class="user-reply-container">
+			<div class="comment-container">
 				<div class="profile-img"></div>
 				<div class="content-container">
 					<div class="post-reply">

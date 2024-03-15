@@ -60,8 +60,8 @@
 				Post post = list.get(i);
 				System.out.println(post.getPost_id());
 			%>
-			<div class="quest-container-in">
-				<div class="quest-title">
+			<div class="quest-container-in" style="padding-bottom: 30px;">
+				<div class="quest-title" style="margin-top: 30px">
 					<a href="CommuContent.jsp?idx=<%=post.getPost_id()%>" class="link"><%=post.getTitle()%></a>
 				</div>
 				<!-- quest-title -->
@@ -124,7 +124,7 @@
 					for (var i = 0; i < itr; i++) {
 						var post = data[i];
 						console.log(post)
-						addHtml += "<div class='quest-container-in'> <div class='quest-title'> <a href='QnaContent.jsp?idx="
+						addHtml += "<div class='quest-container-in' style='padding-bottom: 30px;'> <div class='quest-title' style='margin-top: 30px'> <a href='QnaContent.jsp?idx="
 								+ post.post_id + "' class='link'>" + post.title
 								+ "</a></div> <div class='quest-content'>";
 						if (post.post_content.length > 43)
@@ -133,7 +133,7 @@
 							addHtml += post.post_content
 							
 						addHtml += `
-						<div class="res-container">
+						<div class="res-container" style="margin-top: 30px">
 							<span>댓글</span> 
 							<span class="res-icon"><ion-icon name="chatbox-outline"></ion-icon></span>
 							<span>`+post.comment_cnt+`</span>
