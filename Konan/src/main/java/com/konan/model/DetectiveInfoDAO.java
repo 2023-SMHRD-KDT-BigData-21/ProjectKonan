@@ -1,5 +1,7 @@
 package com.konan.model;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -16,6 +18,15 @@ public class DetectiveInfoDAO {
 		sqlsession.close();
 		
 		return rownum;
+	}
+	public List<DetectiveInfo> acceptList(){
+		SqlSession sqlSession = sqlsessionFactory.openSession(true);
+		List<DetectiveInfo> list = sqlSession.selectList(userInfoMapper+"reportedPost");
+		sqlSession.close();
+		System.out.println(list);
+		return list;
+		
+		
 	}
 	
 }

@@ -14,5 +14,8 @@
 	<select id = "getDetectiveInfo" parameterType="String" resultType="DetectiveInfo">
 		select * from detective_info where user_id = #{user_id}
 	</select>
+	<select id ="reportedPost" resultType="DetectiveInfo">
+		select user_id, accepted, proof_shot, reqdate from detective_info where accepted = 'F'
+	</select>
 	
 </mapper>

@@ -1,3 +1,6 @@
+<%@page import="com.konan.model.DetectiveInfoDAO"%>
+<%@page import="com.konan.model.DetectiveInfo"%>
+<%@page import="java.math.BigDecimal"%>
 <%@page import="com.konan.model.Post"%>
 <%@page import="java.util.List"%>
 <%@page import="com.konan.model.PostDAO"%>
@@ -10,34 +13,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="upper">
-		<%
-		PostDAO dao = new PostDAO();
-
-				response.setContentType("text/html;charset=UTF-8");
-				
-				List<Post> userList = dao();
-				
-				try {
-				HttpSession ContentsSession = request.getSession();
-				if(userList.size() != 0) {
-				for(UserInfo user: userList){
-					try {
-		%>
-						<p><span><%= user.getUserId()%></span>|<span><%= user.getPhoneNumber()%></span>|<span><%= user.getRegion()%></span>|<a href="DeleteController?id=<%=user.getUserId()%>">삭제</a></p>
-						<%
-					} catch (Exception e){
-						System.out.println("삭제 반영 안됨");
-						e.printStackTrace();
-					}
-				}
-				
-			}else {
-				System.out.println("불러오기 실패");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}%>
-	</div>
+	 <div class="upper">
+        <%
+            DetectiveInfoDAO dao = new DetectiveInfoDAO();
+            response.setContentType("text/html;charset=UTF-8");
+            List<DetectiveInfo> postList = dao.acceptList();
+            for (DetectiveInfo post : postList) {
+        %>
+            <p>
+                <span><%= post.getUser_id() %></span> |
+                <span><%= post.getProof_shot() %></span> |
+                <span><%= post.getReqdate() %></span> |
+            
+                <a href="ReportDController?id=<%= post.getUser_id() %>">승인</a>
+            </p>
+        <%
+            }
+        %>
+    </div>
 </body>
 </html>
