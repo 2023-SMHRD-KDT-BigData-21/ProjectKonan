@@ -14,7 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>커뮤니티 리스트</title>
+<title>국민탐정 커뮤니티</title>
 
 <link rel="stylesheet" href="./css/PostList.css">
 <link rel="stylesheet" href="">
@@ -53,16 +53,17 @@
 
 
       <!-- 답변을 기다리는 질문 -->
-      <div class="quest-container-cov">커뮤니티 리스트</div>
+      <div class="quest-container-cov">국민탐정 커뮤니티</div>
       <div class="wait-quest-container shadow-div">
          <%
          for (int i = 0; i < list.size(); i++) {
             Post post = list.get(i);
             System.out.println(post.getPost_id());
          %>
+         <a href="CommuContent.jsp?idx=<%=post.getPost_id()%>" class="link">
          <div class="quest-container-in" style="padding-bottom: 30px;">
             <div class="quest-title" style="margin-top: 30px">
-               <a href="CommuContent.jsp?idx=<%=post.getPost_id()%>" class="link"><%=post.getTitle()%></a>
+               <%=post.getTitle()%>
             </div>
             <!-- quest-title -->
             <div class="quest-content">
@@ -82,6 +83,7 @@
                <!-- like -->
             </div><!-- res-container -->
          </div><!-- quest-container-in -->
+         </a>
          <%}//for문%>
          <%
       // 첫 페이지에 보여줄 게시글이 5개 이상이면
@@ -94,8 +96,7 @@
          </button>
 
          <%}%>
-      </div>
-      <!-- wait-quest-container -->
+      </div><!-- wait-quest-container -->
 
       <script type="text/javascript"
          src="https://code.jquery.com/jquery-1.10.2.min.js" /></script>
@@ -124,9 +125,9 @@
                for (var i = 0; i < itr; i++) {
                   var post = data[i];
                   console.log(post)
-                  addHtml += "<div class='quest-container-in' style='padding-bottom: 30px;'> <div class='quest-title' style='margin-top: 30px'> <a href='QnaContent.jsp?idx="
-                        + post.post_id + "' class='link'>" + post.title
-                        + "</a></div> <div class='quest-content'>";
+                  addHtml += "<a href='QnaContent.jsp?idx="  + post.post_id + "' class='link'>"
+                		+ "<div class='quest-container-in' style='padding-bottom: 30px;'> <div class='quest-title' style='margin-top: 30px'>"
+                        + post.title + "</div> <div class='quest-content'>";
                   if (post.post_content.length > 43)
                      addHtml += post.post_content.substring(0, 43) + "⋯";
                   else
@@ -142,7 +143,7 @@
                      <span class="res-icon"><ion-icon name="heart-outline"></ion-icon></span>
                      <span>`+post.like_cnt+`</span>
                   </div>
-               </div></div>`
+               </div></a></div>`
                } //for
                $(".more-container").append(addHtml);
                if (max-idx<=5) { // 더보기 클릭 후 보여줄 게시글(data)이 5개 이하이면 더보기 버튼 없앰

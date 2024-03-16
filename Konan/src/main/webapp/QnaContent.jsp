@@ -70,8 +70,9 @@
 					}
 					%>
 
+					<!--  -->
 					<div class="edit-btn" style="position:absolute; right:0px; top: -10px;font-size: 2em; color:gray;">
-					<ion-icon name="ellipsis-vertical-outline"></ion-icon>
+						<ion-icon name="ellipsis-vertical-outline"></ion-icon>
 					</div>
 				</div>
 
@@ -96,7 +97,7 @@
 				<div class="post">
 					<span style="line-height: 2.1em;"><%=post.getPost_content()%></span>
 				</div>
-				
+				<br><br>
 				<!-- 사진 -->
 				<div class="image-container">
 				</div>
@@ -342,7 +343,7 @@
 				success : function(data) {
 					let addHtml = "";
 					for (var i = 0; i < data.length; i++) {
-						addHtml += "<img src='data:image/jpg;base64," + data[i] + "'></div>";
+						addHtml += "<img style='height:100%; width:100%; object-fit:contain' src='data:image/jpg;base64," + data[i] + "'></div>";
 					}
 					$(".image-container").append(addHtml);
 				},
