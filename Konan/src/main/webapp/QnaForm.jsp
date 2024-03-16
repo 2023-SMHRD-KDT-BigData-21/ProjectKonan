@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>질문 작성</title>
-<link rel="stylesheet" href="./css/Default2.css">
+<link rel="stylesheet" href="./css/Default.css">
 <link rel="stylesheet" href="./css/QnaForm.css">
 </head>
 
@@ -16,21 +16,29 @@
 	<div class="container">
 		<!-- 질문작성 -->
 		<div class="post-container">
-			<form action="PostInsertController" method="post" enctype="multipart/form-data">
-				<div class="post-pre-title">
-					<span>질문 작성</span>
-				</div>
-				<input type="hidden" name="postType" formaction="PostInsertController" value="Q"> 
-				<input type="radio" name="isAnonymous" formaction="PostInsertController" value="F" checked="checked"> 실명으로 작성 
-				<input type="radio" name="isAnonymous" formaction="PostInsertController" value="T">익명으로 작성
+			<form action="PostInsertController" method="post"
+				enctype="multipart/form-data">
+				<input type="hidden" name="postType"
+					formaction="PostInsertController" value="Q">
+				<fieldset>
+					<label> <input type="radio" name="isAnonymous"
+						value="email" formaction="PostInsertController" value="F" checked />
+						<span>실명으로 작성</span>
+					</label> <label> <input type="radio" name="isAnonymous"
+						value="phone" formaction="PostInsertController" value="T" /> <span>익명으로
+							작성</span>
+					</label>
+
+				</fieldset>
 				<div class="post-title-container">
-					<input type="text" class="post-title" placeholder="제목입력" formaction="PostInsertController" name="title" required>
-					<textarea class="post-content" placeholder="본문입력" formaction="PostInsertController" name="content" required></textarea>
+					<input type="text" class="post-title" placeholder="제목입력"
+						formaction="PostInsertController" name="title" required> <br>
+					<hr>
+					<br>
+					<textarea class="post-content" placeholder="본문입력"
+						formaction="PostInsertController" name="content" required></textarea>
 				</div>
 				<div class="add-photo-container">
-					<div class="add-photo-text">
-						<span>사진추가</span>
-					</div>
 					<div class="add-photo-img-container">
 						<label for="photo1">
 							<div class="add-photo-img" id="img1">
@@ -81,19 +89,7 @@
 
 	</div>
 
-	<!-- footer -->
-	<div class="footer-container">
-		<div class="footer-item">
-			<p1>21기 빅데이터 개발자 과정</p1>
-		</div>
-		<div class="footer-item">
-			<h3>@국민탐정</h3>
-		</div>
-		<div class="footer-item">
-			<p2>project.konan@smhrd.com</p2>
-		</div>
-	</div>
-
+	<%@ include file="Footer.jsp"%>
 	<script>
 		// 이미지가 추가되면 "+" 기호를 숨김
 		function setThumbnail(event, num) {

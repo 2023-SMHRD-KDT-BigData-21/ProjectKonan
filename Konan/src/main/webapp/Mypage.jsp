@@ -19,24 +19,78 @@ PostDAO postDao = new PostDAO();
 </head>
 <body>
 	<%@ include file="Header.jsp"%>
+	<%
+
+
+UserInfoDAO dao = new UserInfoDAO();
+
+UserInfo userInfo = dao.propicContent(user.getUser_id());
+pageContext.setAttribute("userInfo", userInfo);
+
+String userPropic = userInfo.getPropic();
+pageContext.setAttribute("userPropic", userPropic);
+%>
 	<div class="container">
 		<div class="upper">
-			<a href="#"><img class="propic" src="./img/defaultPropic.png"></a>
+		<!-- 프사 -->
+				<!-- 프사가 없을 때 -->
+				<%
+				if (userPropic == null) {
+				%>
+				<div class="propic shadow-div"
+					style="border-radius: 50%; background-image: url('./img/defaultPropic.png');background-size: cover; margin:10px auto;"></div>
+				<%
+				} else {
+				%>
+				<div class="propic shadow-div"
+					style="border-radius: 50%; background-image: url('data:image/jpg;base64,${userPropic}');background-size: cover;margin:0 auto;"></div>
+				<%
+				}
+				%>
+				
 			<h2>
 				<span name="username"><%=user.getName()%></span>님<span
 					class="normal">의 정보</span>
 			</h2>
 			<hr>
+			<br>
 		</div>
 
 		<div class="info-container">
+		<h3 style="postion: relative; left: 0;">&nbsp;나의 활동 기록</h3>
+		<div class="activity shadow-div" style="margin-top: 10px">
+			<ul id="active-list ">
+				<div class="my-activity-btn-container align-item">
+					<ul>
+						<li class="list active_header"><a href="Main.jsp"
+							class="link"> <ion-icon name="search-circle-outline"
+									style="font-size: 1.5em;position:relative; top:7px;"></ion-icon>
+								<span style="font-size: 1em;">&nbsp;&nbsp;나의 댓글 목록</span>
+						</a></li>
+						<br>
+						<li class="list"><a href="AccModify.jsp" class="link"> <ion-icon
+									name="person-circle-outline"
+									style="font-size: 1.5em;position:relative; top:7px;"></ion-icon>
+								<span style="font-size: 1em;">&nbsp;&nbsp;회원 정보 수정</span>
+						</a></li>
+						<br>
+						<li class="list"><a href="AccOut.jsp" class="link"> <ion-icon
+									name="chatbubbles-outline"
+									style="font-size: 1.5em;position:relative; top:7px;"></ion-icon>
+								<span style="font-size: 1em;">&nbsp;&nbsp;회원 탈퇴</span>
+						</a></li>
+					</ul>
+				</div>
+			</ul>
+		</div>
 			<!-- 상단부분 -->
+			<h3 style="postion: relative; left: 0; margin-bottom: 10px;">&nbsp;나의 탐정 기록</h3>
 			<div class="tier-container">
 				<div class="mytier shadow-div">
 					<img class="tier-image" src="./img/tier/lv2.png" alt="티어 메달 사진">
 					<div class="user-info">
 						<strong><span name="username"><%=user.getName()%></span>님은</strong>
-						<h3>유명한 탐정입니다</h3>
+						<h3>신입 탐정입니다</h3>
 						<span>작성 답변 수: </span><span><%=postDao.myList(user.getUser_id(), "A").size()%></span>
 					</div>
 				</div>
@@ -68,30 +122,6 @@ PostDAO postDao = new PostDAO();
              회원탈퇴 페이지
              회원탈퇴 완료 
       -->
-		<h3>&nbsp;나의 활동 기록</h3>
-		
-		<div class="activity shadow-div" style="margin-top: 10px">
-			<ul id="active-list ">
-				<div class="my-activity-btn-container align-item">
-					<ul>
-						<li class="list active_header"><a href="Main.jsp" class="link">
-						<ion-icon name="search-circle-outline" style="font-size: 1.5em;position:relative; top:7px;"></ion-icon>
-						<span style="font-size: 1em;">&nbsp;&nbsp;나의 댓글 목록</span>
-						</a></li>
-						<br>
-						<li class="list"><a href="AccModify.jsp" class="link"> 
-						<ion-icon name="person-circle-outline" style="font-size: 1.5em;position:relative; top:7px;"></ion-icon>
-						<span style="font-size: 1em;">&nbsp;&nbsp;회원 정보 수정</span>
-						</a></li>
-						<br>
-						<li class="list"><a href="AccOut.jsp" class="link"> 
-						<ion-icon name="chatbubbles-outline" style="font-size: 1.5em;position:relative; top:7px;"></ion-icon>
-						<span style="font-size: 1em;">&nbsp;&nbsp;회원 탈퇴</span>
-						</a></li>
-					</ul>
-				</div>
-			</ul>
-		</div>
 	</div>
 	<%@ include file="Footer.jsp"%>
 	<script
