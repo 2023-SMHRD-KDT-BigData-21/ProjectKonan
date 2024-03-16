@@ -37,6 +37,7 @@
 	List<CommentHierarchyView> postComments = commntDao.getComments(postId);
 
 	List<Post> answerList = postDao.getAns(postId);
+	
 	%>
 	<!-- body 전체 가운데로 -->
 	<div class="container">
@@ -70,10 +71,26 @@
 					}
 					%>
 
-					<!--  -->
-					<div class="edit-btn" style="position:absolute; right:0px; top: -10px;font-size: 2em; color:gray;">
-						<ion-icon name="ellipsis-vertical-outline"></ion-icon>
+
+					<!-- 게시글 작성자만 볼 수 있도록 -->
+					<%
+					if(post.getUser_id().equals(user.getUser_id())){
+					%>
+					<!-- 수정 버튼 -->
+					<a href="QnaUpdate.jsp?idx=<%=postId%>">
+					<div id="edit-btn" style="position:absolute; right:30px; top: -10px;font-size: 2em; color:gray;">
+						<ion-icon name="pencil-outline"></ion-icon>
 					</div>
+					</a>
+					
+					<!-- 삭제 버튼 -->
+					<div id="delete-btn" style="position:absolute; right:0px; top: -10px;font-size: 2em; color:gray;">
+						<ion-icon name="close-outline"></ion-icon>
+					</div>
+					<%}%>
+					
+					
+					
 				</div>
 
 				<!-- 포스트 상단 -->
@@ -99,7 +116,7 @@
 				</div>
 				<br><br>
 				<!-- 사진 -->
-				<div class="image-container">
+				<div class="image-container" style="height:0px">
 				</div>
 
 				<div class="likes-replies-container">
@@ -342,6 +359,10 @@
 				},
 				success : function(data) {
 					let addHtml = "";
+					if(data.length>0){
+						var container = document.querySelector("div.image-container");
+						container.style.height = "300px";
+					}
 					for (var i = 0; i < data.length; i++) {
 						addHtml += "<img style='height:100%; width:100%; object-fit:contain' src='data:image/jpg;base64," + data[i] + "'></div>";
 					}
@@ -449,6 +470,24 @@
 			})
 		});//$(document).ready(function()
 		<%}%>
+	</script>
+	
+	<script> // 삭제 버튼
+		document.getElementById("delete-btn").addEventListener("click", function() {
+	    	if (confirm("삭제하시겠습니까?")) {
+	    		$.ajax({
+	    			url:"PostDeleteController",
+	    			type:"post",
+	    			data:{
+	    				"postId" : <%=postId%>
+	    			},
+	    			success:function(){
+	    				console.log("삭제 성공!?")
+	    			}
+	    		}) //ajax
+	        	confirm("삭제되었습니다.")
+	    	}
+		});
 	</script>
 </body>
 

@@ -1,31 +1,41 @@
+<%@page import="com.konan.model.Post"%>
+<%@page import="com.konan.model.PostDAO"%>
+<%@page import="java.math.BigDecimal"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>질문 작성</title>
+<title>질문 수정</title>
 <link rel="stylesheet" href="./css/Default2.css">
 <link rel="stylesheet" href="./css/QnaForm.css">
 </head>
 
 <body>
 	<%@ include file="Header.jsp"%>
+	<%
+	// 수정 시 게시글 정보 불러오기
+	BigDecimal postId = BigDecimal.valueOf(Double.valueOf(request.getParameter("idx")));
+	PostDAO postDao = new PostDAO();
+	Post post = postDao.postContent(postId);
+	
+	%>
+	
 	<div class="container">
 		<!-- 질문작성 -->
 		<div class="post-container">
-			<form action="PostInsertController" method="post" enctype="multipart/form-data">
+			<form action="PostUpdateController" method="post" enctype="multipart/form-data">
 				<div class="post-pre-title">
-					<span>질문 작성</span>
+					<span>질문 수정</span>
 				</div>
-				<input type="hidden" name="postType" formaction="PostInsertController" value="Q"> 
-				<input type="radio" name="isAnonymous" formaction="PostInsertController" value="F" checked="checked"> 실명으로 작성 
-				<input type="radio" name="isAnonymous" formaction="PostInsertController" value="T">익명으로 작성
+				<input type="hidden" name="post_id" value=<%=postId%>>
+				<input type="hidden" name="postType" value="Q"> 
+				<input type="radio" name="isAnonymous" value="F" checked="checked"> 실명으로 작성 
+				<input type="radio" name="isAnonymous" value="T">익명으로 작성
 				<div class="post-title-container">
-					<input type="text" class="post-title" placeholder="제목입력" formaction="PostInsertController" name="title" required>
-					<textarea class="post-content" placeholder="본문입력" formaction="PostInsertController" name="content" required></textarea>
+					<input type="text" class="post-title" placeholder="제목입력" name="title" value="<%=post.getTitle()%>" required>
+					<textarea class="post-content" placeholder="본문입력" name="content" required><%=post.getPost_content()%></textarea>
 				</div>
 				<div class="add-photo-container">
 					<div class="add-photo-text">
@@ -95,7 +105,7 @@
 	</div>
 
 	<script>
-		// 이미지가 추가되면 "+" 기호를 숨김
+		// 이미지가 추가되면 "+" 기호를 숨
 		function setThumbnail(event, num) {
 			var reader = new FileReader();
 
