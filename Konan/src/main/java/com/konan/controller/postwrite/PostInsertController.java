@@ -75,9 +75,7 @@ public class PostInsertController extends HttpServlet {
         
         while (files.hasMoreElements()) {
         	String temp = files.nextElement();
-        	System.out.println("nextElement:" + temp);
         	String fileName = multi.getFilesystemName(temp);
-        	System.out.println(fileName);
         	if(fileName!=null) {
             	//포스팅에 연결하여 이미지 작성
             	PostImage img = new PostImage(postId, fileName);

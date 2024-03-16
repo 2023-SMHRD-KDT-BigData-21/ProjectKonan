@@ -482,9 +482,6 @@
 	    			type:"post",
 	    			data:{
 	    				"postId" : <%=postId%>
-	    			},
-	    			success:function(){
-	    				console.log("게시글 삭제 성공");
 	    			}
 	    		}) //ajax
 	    		var check = confirm("삭제되었습니다.");
