@@ -1,0 +1,192 @@
+.post-container {
+    margin-top: 5%;
+    position: relative;
+
+}
+
+.post-pre-title {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+.post-title-container {
+    margin-top: 20px;
+    position: relative;
+}
+
+.post-title,
+.post-content {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    font-size: 14px;
+    position: relative;
+    border: none;
+}
+
+.post-title {
+    border: none;
+    font-size: 25px;
+}
+
+.post-content {
+    border-top: 1px solid;
+    border-bottom: none;
+}
+
+
+.add-photo-container {
+    margin-top: 10%;
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.add-photo-text {
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 50px;
+}
+
+.add-photo-img-container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.add-photo-img::before {
+    content: "+";
+    /* 가상 요소에 텍스트 내용 추가 */
+    font-size: 24px;
+    /* 텍스트 크기 설정 (조절 가능) */
+    line-height: 173px;
+    /* 수직 가운데 정렬을 위한 높이 설정 */
+    color: rgb(9, 9, 9);
+    /* 텍스트 색상 설정 */
+    text-align: center;
+    /* 수평 가운데 정렬을 위한 설정 */
+    position: absolute;
+    /* 가상 요소를 절대 위치로 설정 */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    /* 수평 및 수직 가운데 정렬을 위한 설정 */
+    z-index: 2;
+    /* 가상 요소를 다른 내용 위로 배치하기 위한 설정 */
+}
+
+
+.add-photo-img {
+    position: relative;
+    width: 173px;
+    /* 원하는 가로 크기로 조절 */
+    height: 173px;
+    /* 원하는 세로 크기로 조절 */
+    border-radius: 20%;
+    background-color: #d2b5b5;
+    /* 배경색 설정 */
+    margin-right: 10px;
+    /* content-box 사이의 간격 조절 */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-shrink: 0;
+    z-index: 1;
+}
+
+/* 이미지 추가되면 + 숨기기 */
+.add-photo-img.hide-plus::before {
+    display: none;
+}
+
+
+
+/* 게시하기 버튼 */
+/* .btn-post {
+    padding: 15px 30px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 10%;
+    display: block;
+    margin: 2% auto; 수직 중앙 정렬
+    width: fit-content; 내용에 맞게 너비 조정
+    position: relative; 상대 위치 지정
+    z-index: 1; 다른 요소 위에 위치하도록 설정
+} */
+
+
+
+
+/* 원본 */
+.btn-post {
+    padding: 30px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    border-radius: 10%;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 2%;
+}
+
+.btn-post button {
+    /* 버튼 스타일 제거 (선택적) */
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: inherit;
+}
+
+.btn-post:hover {
+    background-color: #3e8e41;
+    /* 마우스 오버 시 진한 초록색 */
+}
+
+.btn-post span {
+    color: #f1e9e9;
+    /* 글자색 변경 */
+}
+
+/* 삭제하기 버튼 */
+.btn-delete {
+    padding: 30px;
+    background-color: #cb2f41;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    border-radius: 10%;
+    display: inline-block;
+    left: 45%;
+    transform: translateX(-50%);
+    margin-top: 2%;
+}
+
+.btn-delete button {
+    /* 버튼 스타일 제거 (선택적) */
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: inherit;
+}
+
+.btn-delete:hover {
+    background-color: #3e8e41;
+    /* 마우스 오버 시 진한 초록색 */
+}
+
+.btn-delete span {
+    color: #f1e9e9;
+    /* 글자색 변경 */
+}

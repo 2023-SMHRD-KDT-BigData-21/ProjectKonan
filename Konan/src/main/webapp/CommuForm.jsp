@@ -4,19 +4,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="/Konan/css/Default2.css">
-<link rel="stylesheet" href="/Konan/css/QnaForm.css">
+<title>게시글 작성</title>
+<link rel="stylesheet" href="./css/Default.css">
+<link rel="stylesheet" href="./css/CommuForm.css">
 </head>
 <body>
 	<%@ include file="Header.jsp"%>
 	<div class="container">
-		<!-- 질문작성 -->
+		<!-- 게시글 작성 -->
 		<div class="post-container">
 			<form action="PostInsertController" method="post"
 				enctype="multipart/form-data">
 				<div class="post-pre-title">
-					<span>질문 작성</span>
+					<span>게시글 작성</span>
 				</div>
 				<input type="hidden" formaction="PostInsertController"
 					name="postType" value="Q">
@@ -66,13 +66,13 @@
 					<!-- add-photo-img-container -->
 				</div>
 				<!-- add-photo-container -->
+
+				<!-- btn-post -->
 				<div class="btn-post">
 					<button type="submit">
 						<span>질문등록</span>
 					</button>
 				</div>
-				<!-- btn-post -->
-
 			</form>
 		</div>
 		<!-- post-container -->
@@ -84,8 +84,8 @@
 	         -->
 
 	</div>
-
-	<!-- footer -->
+<!-- 
+	<!-- footer
 	<div class="footer-container">
 		<div class="footer-item">
 			<p1>21기 빅데이터 개발자 과정</p1>
@@ -97,7 +97,7 @@
 			<p2>project.konan@smhrd.com</p2>
 		</div>
 	</div>
-
+ -->
 
 	<script>
 		// 이미지가 추가되면 "+" 기호를 숨김
