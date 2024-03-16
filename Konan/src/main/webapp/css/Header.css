@@ -121,3 +121,16 @@
     line-height: 60px;
     white-space: nowrap;
 }
+
+.navigation ul li:hover {
+    background-color: var(--maincolor);
+    color: white; /* 마우스를 올렸을 때 텍스트 색상 변경 */
+}
+
+.navigation ul li:hover a .icon ion-icon {
+    color: white; /* 마우스를 올렸을 때 아이콘 색상 변경 */
+}
+
+.navigation ul li:hover a .title {
+    color: white; /* 마우스를 올렸을 때 타이틀 색상 변경 */
+}
