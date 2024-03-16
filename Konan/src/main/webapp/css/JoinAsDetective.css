@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+/*join as detective*/
+
+.filebox input[type="file"]{
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+.add-photo-img{
+	margin:0 auto;
+	width:300px;
+	height:300px;
+	border-radius: 20px; 
+	padding: 50px;
+	background-image: url('../img/detectiveUpload.png');
+	background-size: cover; /* 배경 이미지를 요소 크기에 맞게 늘리거나 축소 */
+    background-position: center; /* 배경 이미지를 가운데 정렬 */	
+}
+.btn {
+	border: none;
+	border-radius: 20px !important;
+	
+	width: 400px;
+	height: 45px;
+    background-color: var(--maincolor);
+    color: white;
+    
+	margin: 2px auto;
+    text-align: center;
+    -webkit-transition-duration: 0.1s;
+    transition-duration: 0.1s;
+    -webkit-transition-property: box-shadow, transform;
+    transition-property: box-shadow, transform;
+    cursor: pointer; /* 마우스가 버튼 위에 올라갔을 때 포인터 모양으로 변경 */
+    border-radius: 5px;
+}
+
+.btn:hover .btn:active{
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    -webkit-transform: scale(1.01);
+    transform: scale(1.01);
+}

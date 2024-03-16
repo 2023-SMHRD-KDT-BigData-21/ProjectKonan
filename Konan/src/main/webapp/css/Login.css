@@ -9,9 +9,10 @@
     -moz-box-sizing: border-box;  
     box-sizing: border-box; 
     
-	max-width:60%;
-	min-width: 350px;
-	height: 540px;
+	width:60%;
+	min-width: fit-content;
+	height: fit-content;
+	min-height:540px;
     background-color: #fff;
     
     padding: 50px;
@@ -32,23 +33,25 @@
 	text-align: center;
 }
 
-.login-form > input {
+input {
 	width: 300px;
 	height: 45px;
 	border-radius: 10px;
-}
-
-.login-form > input[type="text"] , input[type="password"] {
-	border: 0.01em solid black;
+	padding-left: 5px;
+	border: 2px solid gray;
 	border-radius: 10px;
 	margin: 3px auto; 
 	height: 45px;
 	width: 294px;
-	padding: 2px;
 	font-size: 0.8em;
 }
-
-.login-form > input:focus {
+input::placeholder{
+	padding: 5px;
+}
+input::value{
+	padding: 5px;
+} 
+input:focus {
 	border: 2px solid var(--maincolor);
 	outline: none;
 	
@@ -62,6 +65,7 @@
 	border: 0.01em solid var(--maincolor);
     background-color: var(--maincolor);
     color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     
 	margin: 5px auto;
     text-align: center;
@@ -86,8 +90,7 @@
 	
 	width: 300px;
 	height: 45px;
-	border: 0.03em solid var(--maincolor);
-    background-color: white;
+    background-color: var(--lightmain);
     color: white;
     
 	margin: 5px auto;
@@ -121,9 +124,4 @@
     width: 300px; /* 이미지의 너비 조절 */
     height: auto; /* 이미지의 높이를 자동으로 조절하여 비율 유지 */
     cursor: pointer; /* 마우스가 버튼 위에 올라갔을 때 포인터 모양으로 변경 */
-}
-
-
-body{
-	background-color: lightgray;
 }
