@@ -20,6 +20,16 @@
 <link rel="stylesheet" href="./css/HeartBtn.css">
 </head>
 <body>
+
+	<!-- 대댓글에서 수정해야 하는 부분
+	1. commentId를 컨트롤러로 보내줘야함 
+	2. 그래서 comments-container 에다가 data-values라는 임의의 값 추가 후 거기에 commentId 담음
+	3. 근데 js 에서 data-values를 받아오지 못해 대댓글 전송이 안됨ㅠ
+	
+	for문에서 comment.getComment_id로 값이 가져와지는 건 확인함
+	아무래도 data-values에 담기는 과정에서 문제가 생긴듯 -->
+
+
 	<%@ include file="Header.jsp"%>
 	<%
 	BigDecimal postId = BigDecimal.valueOf(Double.valueOf(request.getParameter("idx")));
@@ -97,10 +107,18 @@
 		</div>
 		<!-- post-container -->
 
+	
+		<!-- 대댓글에서 수정해야 하는 부분
+		1. commentId를 컨트롤러로 보내줘야함 
+		2. 그래서 comments-container 에다가 data-values라는 임의의 값 추가 후 거기에 commentId 담음
+		3. 근데 js 에서 data-values를 받아오지 못해 대댓글 전송이 안됨ㅠ
+		
+		for문에서 comment.getComment_id로 값이 가져와지는 건 확인함
+		아무래도 data-values에 담기는 과정에서 문제가 생긴듯 -->	
 		<%
 		if (commntDao.countComments(post.getPost_id()) > 0) {
 		%>
-		<!-- 댓글! -->
+		<!-- 댓글 부분!! -->
 		<div class="comment-text" style="font-weight: bold; font-size: 1.2em;">
 			<span>댓글</span>&nbsp;<span><%=commntDao.countComments(post.getPost_id())%></span>
 		</div>
@@ -110,12 +128,12 @@
 			UserInfo commentWriter = userDao.propicContent(comment.getUser_id());
 			if ((comment.getLv()).compareTo(BigDecimal.valueOf(1)) == 0) {
 		%>
-		<!-- 댓글 박스 -->
-		<div class="comments-container">
+		<!-- 댓글 박스, value로 코멘트 아이디 넣어놓음  -->
+		<div class="comments-container" data-value="<%=comment.getComment_id() %>">
 			<div class="comment-area" style="margin-bottom: 10px;">
 				<!-- 이미 쓰여 있는 댓글 박스 -->
 				<div class="comment-container">
-
+					<!-- 댓글의 아이디 -->
 					<!-- 댓글 작성자 -->
 					<a href="Profile.jsp?targetId=<%=commentWriter.getUser_id()%>"
 						class="link">
@@ -136,7 +154,7 @@
 						</div>
 					</a>
 
-
+					<!-- 작성자 이름 누르면 프로필로 이동 -->
 					<div class="comment-content shadow-div">
 						<a href="Profile.jsp?targetId=<%=commentWriter.getUser_id()%>"
 							class="link">
@@ -154,25 +172,21 @@
 							</div>
 							&nbsp; &nbsp; &nbsp;
 							<div class="comment-btn-reply">
-								<span>답글</span>
+								<span onclick="recomment(this)">답글</span>
 							</div>
 						</div>
-					</div>
-					<!-- comment-btn -->
-				</div>
-				<!-- comment-content -->
-			</div>
-			<!-- comment-container -->
+					</div><!-- comment-btn -->
+				</div><!-- comment-content -->
+			</div><!-- comment-container -->
 			<%
 			} else {
 			%>
 
-			<!-- 대댓글 박스 -->
-			<div class="recomments-container" style="margin-top: 0px;">
+			<!-- 대댓글 박스, value로 코멘트 아이디 넣어놓음 -->
+			<div class="recomments-container" style="margin-top: 0px;" data-value="<%=comment.getComment_id() %>">
 				<div class="comment-area">
 					<!-- 이미 쓰여 있는 댓글 박스 -->
 					<div class="comment-container">
-
 						<!-- 댓글 작성자 -->
 						<a href="Profile.jsp?targetId=<%=commentWriter.getUser_id()%>"
 							class="link">
@@ -210,16 +224,13 @@
 								</div>
 								&nbsp; &nbsp; &nbsp;
 								<div class="comment-btn-reply">
-									<span>답글</span>
+									<span onclick="recomment(this)">답글</span>
 								</div>
-							</div>
-							<!-- comment-btn -->
-						</div>
-						<!-- comment-content -->
-					</div>
-					<!-- comment-container -->
-				</div>
-			</div>
+							</div><!-- comment-btn -->
+						</div><!-- comment-content -->
+					</div><!-- comment-container -->
+				</div><!-- comment-area -->
+			</div><!-- recomments-container -->
 			<%
 			} //else
 			} //for
@@ -308,8 +319,7 @@
 			
 			$('.heart').click(function() {
 				const postId = "<%=post.getPost_id()%>";
-				const userId = "<%=user.getUser_id()%>
-		";
+				const userId = "<%=user.getUser_id()%>";
 
 				$.ajax({
 					type : "post", // 타입 (get, post, put 등등)    
@@ -355,10 +365,51 @@
 				})//ajax
 			});//$('.heart').click(function()
 
-			$('heart-active').click(function() {
-				$('.heart').toggleClass("heart-active")
-			})
+
 		});//$(document).ready(function()
+		//답글 버튼이 눌리면
+		function recomment(button){
+			 
+		    let commentContainer = button.closest('.comment-container'); // 가장 가까운 .comment-container를 변수로 받아옴
+		    let value = commentContainer.getAttribute('data-value'); //
+			 
+		    let recommentDiv = document.createElement('div');
+		    recommentDiv.classList.add('recomment-container'); // 새로운 div에 클래스 추가
+		    recommentDiv.innerHTML = `<!-- 대댓글 쓰기 박스-->
+			<div class="recomment-container" style="margin-bottom:50px;margin-top: 10px; display:flex;">
+				<a href="Profile.jsp?targetId=$<%=user.getUser_id()%>&commentId=${value}" class="link">
+					<div class="comment-info">
+						<!-- 댓글 작성자 프사 넣는 공간 -->
+						<%
+						if (user.getPropic() != null) {
+						%>
+						<div class="comment-propic"
+							style="background-image: url('data:image/jpg;base64,<%=userDao.propicContent(user.getUser_id()).getPropic()%>')"></div>
+						<%
+						} else {
+						%>
+						<div class="comment-propic"></div>
+						<%
+						}
+						%>
+					</div>
+				</a>
+				<form action="CommentInsertController" class="comment-area" style="width:100%;">
+					<input type="hidden" name="post_id" value="<%=post.getPost_id() %>">
+					<input type="hidden" name="user_id" value="<%=user.getUser_id() %>">
+					<div class="comment-write-container shadow-div"
+						style="box-shadow: 0px 0px 20px rgba(218, 196, 248, 1);background-color: lightgray;">
+						<textarea name="comment_content" placeholder="남기고 싶은 이야기를 적으셈"
+							class="comment" rows="4" cols="300"></textarea>
+					</div>
+					<button id="submit" type="submit" style="bottom:60px; height: 30px;">게시하기</button>
+				</form>
+			</div>
+			</div>
+		    `
+		    // 부모 요소의 다음 형제로 새로운 div를 추가
+		    commentContainer.parentNode.insertBefore(recommentDiv, commentContainer.nextSibling);
+		}
 	<%}%>
 		
 	</script>
