@@ -482,12 +482,17 @@
 	    				"postId" : <%=postId%>
 	    			},
 	    			success:function(){
-	    				console.log("삭제 성공!?")
+	    				console.log("게시글 삭제 성공");
 	    			}
 	    		}) //ajax
-	        	confirm("삭제되었습니다.")
-	    	}
-		});
+	    		var check = confirm("삭제되었습니다.");
+	        	if(check==true){
+	        		window.location.href = "Main.jsp";
+	        	}else if(check==false){
+	        		window.location.href = "Main.jsp";
+	        	}
+	    	} //if
+		});//funciton
 	</script>
 </body>
 
