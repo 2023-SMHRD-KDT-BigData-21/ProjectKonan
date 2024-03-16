@@ -286,11 +286,23 @@
 
 /* 탐정뉴스 */
 .image-container{
+	height:100px; 
+	width:100px; 
 	position: absolute;
-	margin-top: 0px;
-    right: 0px;
+    right: 80px;
     white-space: nowrap;
+    border-radius: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+    object-fit:cover;
 }
+
+.keyword-container{
+	margin-top: 20px;
+	font-size: 0.8em;
+	color:var(--maincolor);
+}
+
 
 /* 
 답변 작성 after 페이지에 있는 요소
