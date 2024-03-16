@@ -57,7 +57,7 @@
 
 
 		<!-- 답변을 기다리는 질문 -->
-		<div class="quest-container-cov">탐정에게 질문을 해보세요.</div>
+		<div class="quest-container-cov">탐정에게 질문을 해보세요</div>
 		<%
 		if (user == null) {
 		%>
