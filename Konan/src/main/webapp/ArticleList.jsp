@@ -97,7 +97,7 @@
 			</div><!-- wait-quest-container -->
 		</div><!-- container -->
 		
-
+		<%@ include file="Footer.jsp"%>
 		<script type="text/javascript"
 			src="https://code.jquery.com/jquery-1.10.2.min.js" /></script>
 
