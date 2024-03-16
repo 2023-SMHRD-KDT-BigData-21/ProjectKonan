@@ -128,11 +128,11 @@
 			UserInfo commentWriter = userDao.propicContent(comment.getUser_id());
 			if ((comment.getLv()).compareTo(BigDecimal.valueOf(1)) == 0) {
 		%>
-		<!-- 댓글 박스, value로 코멘트 아이디 넣어놓음  -->
-		<div class="comments-container" data-value="<%=comment.getComment_id() %>">
+		<!-- 댓글 박스, value로 코멘트 아이디 넣어놓음 //지호 한칸 밑에 넣어놨어요!! -->
+		<div class="comments-container">
 			<div class="comment-area" style="margin-bottom: 10px;">
 				<!-- 이미 쓰여 있는 댓글 박스 -->
-				<div class="comment-container">
+				<div class="comment-container" data-value="<%=comment.getComment_id() %>">
 					<!-- 댓글의 아이디 -->
 					<!-- 댓글 작성자 -->
 					<a href="Profile.jsp?targetId=<%=commentWriter.getUser_id()%>"
@@ -182,11 +182,11 @@
 			} else {
 			%>
 
-			<!-- 대댓글 박스, value로 코멘트 아이디 넣어놓음 -->
-			<div class="recomments-container" style="margin-top: 0px;" data-value="<%=comment.getComment_id() %>">
+			<!-- 대댓글 박스, value로 코멘트 아이디 넣어놓음 //지호 이건 전체 댓글 컨테이너라 밑에 이미 쓰인 댓글 박스에 넣어줬어요! -->
+			<div class="recomments-container" style="margin-top: 0px;">
 				<div class="comment-area">
 					<!-- 이미 쓰여 있는 댓글 박스 -->
-					<div class="comment-container">
+					<div class="comment-container" data-value="<%=comment.getComment_id() %>">
 						<!-- 댓글 작성자 -->
 						<a href="Profile.jsp?targetId=<%=commentWriter.getUser_id()%>"
 							class="link">
@@ -367,11 +367,14 @@
 
 
 		});//$(document).ready(function()
+		
 		//답글 버튼이 눌리면
 		function recomment(button){
 			 
 		    let commentContainer = button.closest('.comment-container'); // 가장 가까운 .comment-container를 변수로 받아옴
-		    let value = commentContainer.getAttribute('data-value'); //
+		    console.log(commentContainer.dataset.value); //(지호) 이렇게도 접근 가능!
+		    let value = commentContainer.getAttribute('data-value');
+		    console.log(value); //(지호) 찬우씨것도 혹시 몰라서 찍어봤어요 - 동일하게 나옴
 			 
 		    let recommentDiv = document.createElement('div');
 		    recommentDiv.classList.add('recomment-container'); // 새로운 div에 클래스 추가
