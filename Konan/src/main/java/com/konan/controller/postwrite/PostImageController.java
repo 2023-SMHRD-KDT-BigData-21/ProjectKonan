@@ -27,18 +27,18 @@ public class PostImageController extends HttpServlet {
 		
 		String chanu = "C:\\workplace\\git\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\konan\\upload\\";
 		String jiho = "C:\\Users\\USER\\Desktop\\WebServer\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\konan\\upload\\";
-		
+		String jiholg = "C:\\Users\\jiho_\\OneDrive\\Desktop\\Java Server\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\konan\\upload\\";
 		try {
 			if(list.size()>0) {
 				for(int i=0; i<list.size(); i++) {
-					File file = new File(jiho + list.get(i));
+					File file = new File(jiholg + list.get(i));
 					ImageToBase64 converter = new ImageToBase64();
 					String fileStringValue = converter.convert(file);
 					list.set(i, fileStringValue);
 				}
 			}
 		} catch (Exception e) {
-			
+			System.out.println(e);
 		}
 		
 		ObjectMapper mapper = new ObjectMapper(); //JSON 형식으로 변환하기 위해
