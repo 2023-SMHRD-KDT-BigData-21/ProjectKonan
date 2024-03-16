@@ -13,10 +13,7 @@ public class Article {
 	private String title;
 	private String article_content;
 	private String reporter;
-	private String reported_date;
+	private java.sql.Timestamp reported_date;
 	private String url;
 	private String img;
-	public Article() {
-		
-	}
 }

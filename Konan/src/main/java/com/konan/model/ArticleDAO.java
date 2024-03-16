@@ -41,13 +41,22 @@ public class ArticleDAO {
 		return list; 
 	}
 	
-	// 첫 페이지 키워드 목록 조회
-	public List<String> firstKeyList(BigDecimal article_id) {
+	// 기사별 키워드 목록 조회
+	public List<String> keyList(BigDecimal article_id) {
 		SqlSession sqlSession = sessionFactory.openSession(true);
-		List<String> list = sqlSession.selectList(articleMapper+"selectFirstKey", article_id);
+		List<String> list = sqlSession.selectList(articleMapper+"selectKey", article_id);
 		sqlSession.close();
 		return list;
 	}
 	
-	
+	// 더보기 버튼으로 보여줄 키워드 목록 조회
+	public List<String> moreKeyList(int idx){ 
+		SqlSession sqlSession = sessionFactory.openSession(true);		 
+		Map<String, Object> map = new HashMap<>(); 
+		int cnt = 5;
+		map.put("idx", idx); 
+		map.put("cnt", cnt); 
+		List<String> list = sqlSession.selectList(articleMapper+"selectMoreKey", map); 
+		return list; 
+	}
 }

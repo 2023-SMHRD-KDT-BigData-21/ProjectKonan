@@ -49,29 +49,27 @@
 		</div>
 
 
-		<!-- 답변을 기다리는 질문 -->
+		<!-- 최근 탐정 소식 -->
 		<div class="quest-container-cov">최근 탐정 소식</div>
 		<div class="wait-quest-container shadow-div">
 			<%
 			for (int i = 0; i < list.size(); i++) {
 				Article article = list.get(i);
-				keywordList = dao.firstKeyList(article.getArticle_id());
+				keywordList = dao.keyList(article.getArticle_id());
 			%>
 			<div class="quest-container-in" style="display: flex;">
 				<div style="flex-direction: column;">
-					<div class="quest-title">
-						<br> <a href="<%=article.getUrl()%>" class="link"><%=article.getTitle()%></a>
-					</div>
-					<!-- quest-title -->
+					<a href="<%=article.getUrl()%>" class="link"><div class="quest-title">
+						<br> <%=article.getTitle()%>
+					</div><!-- quest-title -->
 					<div class="quest-content">
 						<%
-						if (article.getArticle_content().length() > 43)
-							out.print(article.getArticle_content().substring(0, 43) + "⋯");
+						if (article.getArticle_content().length() > 37)
+							out.print(article.getArticle_content().substring(0, 37) + "⋯");
 						else
 							out.print(article.getArticle_content());
 						%>
-					</div>
-					<!-- quest-content -->
+					</div><!-- quest-content -->
 					<div class="keyword-container">
 						<div class="keyword">
 							<%
@@ -79,24 +77,16 @@
 								out.print("#" + keywordList.get(j) + " ");
 							}
 							%>
-						</div>
-						<!-- keyword -->
-					</div>
-				</div>
-				<!-- keyword-container -->
+						</div><!-- keyword -->
+					</div><!-- keyword-container -->
+					</a>
+			</div><!-- flex -->
 				<div class="image-container">
 					<img style="height:100%; width:100%; object-fit:cover" src="<%=article.getImg()%>">
-				</div>
-
-				<!-- image-container -->
-			</div>
-			<!-- quest-container-in -->
+				</div><!-- image-container -->
+			</div><!-- quest-container-in -->
 			<%
 			}
-			%>
-			<%
-			// 첫 페이지에 보여줄 게시글이 5개 이상이면
-			if (list.size() == showNum) {
 			%>
 			<div class="more-container"></div>
 
@@ -104,11 +94,9 @@
 				<ion-icon name="chevron-down-circle-outline"></ion-icon>
 			</button>
 
-			<%
-			}
-			%>
-		</div>
-		<!-- wait-quest-container -->
+			</div><!-- wait-quest-container -->
+		</div><!-- container -->
+		
 
 		<script type="text/javascript"
 			src="https://code.jquery.com/jquery-1.10.2.min.js" /></script>
@@ -117,55 +105,60 @@
    		let div = document.getElementsByTagName("div")[0];
    		function moreList() {
        		const questionContainers = document.querySelectorAll(".quest-container-in");
-       		var max = "<%=max%>
-			"
+       		var max = "<%=max%>"
 				var idx = questionContainers.length; //더보기 전 게시글 수를 알아내기 위해서 해당 div의 length를 구함
 				//console.log("idx", idx); //콘솔로그로 값이 들어오는지 확인
 
-				$
-						.ajax({
-							url : "PagingController",
-							type : "get",
-							data : {
-								"idx" : idx
-							},
-							dataType : "json",
-							success : function(data) {
-								let addHtml = "";
-								for (var i = 0; i < data.length; i++) {
-									var article = data[i];
+				$.ajax({
+					url : "PagingController",
+					type : "get",
+					data : {
+						"idx" : idx
+					},
+					dataType : "json",
+					success : function(data) {
+						let addHtml = "";
+						for (var i = 0; i < data.length; i++) {
+							var article = data[i];
+							addHtml += `
+								<div class="quest-container-in" style="display: flex;">
+									<div style="flex-direction: column;">
+									<a href="`
+									+ article.url + `" class="link">
+									<div class="quest-title">
+									<br>`
+									+ article.title + `</div>
+									<div class="quest-content">`;
 
-									addHtml += "<div class='quest-container-in'> <div class='quest-title'> <a href='" + article.url + "'>"
-											+ article.title
-											+ "</a></div> <div class='quest-content'>";
+							if (article.article_content.length > 37)
+								addHtml += article.article_content.substring(0, 37)+ "⋯";
+							else
+								addHtml += article.article_content;
 
-									if (article.article_content.length > 43)
-										addHtml += article.article_content
-												.substring(0, 43)
-												+ "⋯";
-									else
-										addHtml += article.article_content;
+							addHtml += `
+								</div>
+								<div class="keyword-container">
+									<div class="keyword">`;
 
-									addHtml += "</div><div class='keyword-container'>";
-
-									// 키워드 추가
-									for (var j = 0; j < article.keyword_list.length; j++) {
-										addHtml += "<span class='keyword'>#"
-												+ article.keyword_list[j].key_word
-												+ " </span>";
-										addHtml += "</div>"; // keyword-container 닫기
-
-										addHtml += "<div class='res-container'>"
-												+ "<img src='" + article.img + "' class='news-img'>" //여기다가 사진 넣습니다.
-												+ "</div> </div>";
-									}
-								} //for
-								$(".more-container").append(addHtml);
-								if (max - idx <= 5) { // 더보기 클릭 후 보여줄 게시글(data)이 5개 이하이면 더보기 버튼 없앰
-									$("#more-btn").remove();
-								}
-							} //success
-						}); //ajax
+							// 키워드 추가
+							for (var j = 0; j < article.keyword_list.length; j++) {
+								addHtml += "#" + article.keyword_list[j] + " ";
+							} //for
+							
+							addHtml += `</div>
+								</div>
+								</a>
+								</div>
+								<div class="image-container">
+									<img style="height:100%; width:100%; object-fit:cover" src="`
+									+ article.img + '"></div></div>';
+						} //for
+						$(".more-container").append(addHtml);
+						// 더보기 클릭 후 보여줄 게시글(data)이 5개 이하이면 더보기 버튼 없앰
+						if (max - idx <= 5)
+							$("#more-btn").remove();
+					} //success
+				}); //ajax
 			} //moreList
 		</script>
 </body>

@@ -17,8 +17,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.konan.model.Article;
 import com.konan.model.ArticleDAO;
 import com.konan.model.ArticlePaging;
-import com.konan.model.Keyword;
-import com.konan.model.KeywordDAO;
 import com.konan.model.Paging;
 import com.konan.model.Post;
 import com.konan.model.PostCommentDAO;
@@ -41,14 +39,21 @@ public class PagingController extends HttpServlet {
 		
 		if(postType==null) {
 			//탐정 신문 페이징
-			ArticleDAO articleDao = new ArticleDAO();
-			KeywordDAO keywordDao = new KeywordDAO();
+			ArticleDAO dao = new ArticleDAO();
 			
-			List<Article> list = articleDao.moreList(idx);
-			//List<String> keywordList = articleDao.moreList(idx);
+			//더보기 버튼으로 보여줄 포스팅 리스트
+			List<Article> list = dao.moreList(idx);
+			
+			//더보기 버튼으로 보여줄 키워드 리스트의 리스트 생성
+			List<List<String>> keywordList = new ArrayList<>();
+			for(int i=0; i<list.size(); i++) {
+				List<String> temp = dao.keyList(list.get(i).getArticle_id());
+				keywordList.add(temp);
+			}
+			
 			List<ArticlePaging> resultList = new ArrayList<>();
-			
-			for(Article arti : list) {
+			for(int i=0; i<list.size(); i++) {
+				Article arti = list.get(i);
 				ArticlePaging page = new ArticlePaging();
 				page.setArticle_id(arti.getArticle_id());
 				page.setTitle(arti.getTitle());
@@ -57,10 +62,8 @@ public class PagingController extends HttpServlet {
 				page.setReported_date(arti.getReported_date());
 				page.setUrl(arti.getUrl());
 				page.setImg(arti.getImg());
-				
-				//page.setKeyword_list(keywordDao.getKeyword(arti.getArticle_id()));
-				resultList.add(page);
-				
+				page.setKeyword_list(keywordList.get(i));
+				resultList.add(page);	
 			}
 			jsonString = mapper.writeValueAsString(resultList);
 		}else {
