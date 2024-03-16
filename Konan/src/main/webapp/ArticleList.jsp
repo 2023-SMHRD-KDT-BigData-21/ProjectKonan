@@ -1,5 +1,3 @@
-<%@page import="com.konan.model.Keyword"%>
-<%@page import="com.konan.model.KeywordDAO"%>
 <%@page import="com.konan.model.Article"%>
 <%@page import="com.konan.model.ArticleDAO"%>
 <%@page import="com.konan.model.Post"%>
@@ -34,7 +32,6 @@
 
    <%
    ArticleDAO dao = new ArticleDAO();
-   KeywordDAO daoKey = new KeywordDAO();
 
    int max = dao.maxRow(); // 총 보여줄 글 개수
    int showNum = 5; // 한 페이지에 보여줄 글 개수(고정)
@@ -54,12 +51,12 @@
 
 
       <!-- 답변을 기다리는 질문 -->
-      <div class="quest-container-cov">답변을 기다리는 질문</div>
+      <div class="quest-container-cov">최근 탐정 소식</div>
       <div class="wait-quest-container shadow-div">
          <%
          for (int i = 0; i < list.size(); i++) {
             Article article = list.get(i);
-            keywordList = daoKey.firstList(article.getArticle_id());
+            keywordList = dao.firstKeyList(article.getArticle_id());
          %>
          <div class="quest-container-in">
             <div class="quest-title">
@@ -67,8 +64,8 @@
             </div><!-- quest-title -->
             <div class="quest-content">
                <%
-               if (article.getArticle_content().length() > 50)
-                  out.print(article.getArticle_content().substring(0, 50) + "⋯");
+               if (article.getArticle_content().length() > 43)
+                  out.print(article.getArticle_content().substring(0, 43) + "⋯");
                else
                   out.print(article.getArticle_content());
                %>
@@ -82,9 +79,9 @@
                %>
                </div><!-- keyword -->
             </div><!-- keyword-container -->
-            <div class="res-container">
-               <img class ="news-img" src="<%=article.getImg() %>">
-            </div><!-- res-container -->
+            <div class="image-container">
+            	<img height=100 width=100 src="<%=article.getImg()%>">
+            </div><!-- image-container -->
          </div><!-- quest-container-in -->
          <%}%>
       <%
@@ -126,8 +123,8 @@
                    		addHtml += "<div class='quest-container-in'> <div class='quest-title'> <a href='" + article.url + "'>" + article.title
                            		+ "</a></div> <div class='quest-content'>";
                            
-                   		if (article.article_content.length > 50)
-                       		addHtml += article.article_content.substring(0, 50) + "⋯";
+                   		if (article.article_content.length > 43)
+                       		addHtml += article.article_content.substring(0, 43) + "⋯";
                    		else
                       	 	addHtml += article.article_content;
                    

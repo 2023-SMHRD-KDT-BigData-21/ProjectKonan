@@ -16,8 +16,4 @@ public class ArticlePaging {
 	private String reported_date;
 	private String url;
 	private String img;
-	private List<Keyword> keyword_list;
-	public ArticlePaging() {
-		
-	}
 }

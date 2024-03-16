@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.konan.database.KeywordMapper">
-
-   <select id="selectFirst" parameterType="BigDecimal" resultType="String">
-      select key_word from key_word where article_id=#{article_id} and rownum&lt;=5
-   </select>
-
-</mapper>

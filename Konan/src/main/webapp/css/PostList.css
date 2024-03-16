@@ -284,6 +284,14 @@
 	margin:0px;
 }
 
+/* 탐정뉴스 */
+.image-container{
+	position: absolute;
+	margin-top: 0px;
+    right: 0px;
+    white-space: nowrap;
+}
+
 /* 
 답변 작성 after 페이지에 있는 요소
 1. 해시태그

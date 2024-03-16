@@ -8,10 +8,12 @@
 		select max(rownum) from article
 	</select>
 	
+	<!-- 첫 페이지 기사 목록 조회 -->
 	<select id="selectFirst"  resultType="Article">
 		select * from article where rownum &lt;= 5
 	</select>
 	
+	<!-- 더보기 버튼으로 보여줄 포스팅 목록 조회 -->
 	<select id="selectMore" parameterType="java.util.Map" resultType="Article">
 		select article_id, title, article_content, reporter, reported_date, url, img
 		from(select rownum as rnum, sub.* 
@@ -21,5 +23,9 @@
 		where rnum > #{idx}
 	</select>
 	
+	<!-- 첫 페이지 키워드 목록 조회 -->
+	<select id="selectFirstKey" parameterType="BigDecimal" resultType="String">
+      select key_word from key_word where article_id=#{article_id} and rownum&lt;=5
+   	</select>
 
 </mapper>

@@ -91,7 +91,7 @@ public class PostDAO {
 		sqlSession.close();
 		return cnt;
 	}
-	// 답변 포스팅 개수 조회
+	// 답변 포스팅 조회
 	public List<Post> getAns(BigDecimal post_id) {
 		SqlSession sqlSession = sessionFactory.openSession(true);
 		List<Post> list = sqlSession.selectList(postMapper+"getAns", post_id);
