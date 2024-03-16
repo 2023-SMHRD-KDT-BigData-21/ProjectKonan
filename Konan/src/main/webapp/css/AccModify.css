@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+#countion{
+	margin: 0 auto;
+}
+.actions-vertical {
+	/*100% 넘어가지 않게*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;  
+    box-sizing: border-box; 
+    
+	width:60%;
+	min-width: fit-content;
+	height: fit-content;
+	min-height:540px;
+    background-color: #fff;
+    
+    padding: 50px;
+    margin: 0px auto;
+    border-radius: 20px;
+    text-align:center;
+    
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.modify-form {
+	/* 요소를 세로 정렬*/
+    display: flex;
+    flex-direction: column;
+    
+	width: 100%;
+	margin: 0 auto; 
+	text-align: center;
+}
+
+input {
+	width: 300px;
+	height: 45px;
+	border-radius: 10px;
+	padding-left: 5px;
+	border: 2px solid gray;
+	border-radius: 10px;
+	margin: 3px auto; 
+	height: 45px;
+	width: 294px;
+	font-size: 0.8em;
+}
+input::placeholder{
+	padding: 5px;
+}
+input::value{
+	padding: 5px;
+} 
+input:focus {
+	border: 2px solid var(--maincolor);
+	outline: none;
+	
+}
+
+.modify_btn {
+	border-radius: 10px;
+	
+	width: 300px;
+	height: 45px;
+	border: 0.01em solid var(--maincolor);
+    background-color: var(--maincolor);
+    color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    
+	margin: 5px auto;
+    text-align: center;
+    -webkit-transition-duration: 0.1s;
+    transition-duration: 0.1s;
+    -webkit-transition-property: box-shadow, transform;
+    transition-property: box-shadow, transform;
+    cursor: pointer; /* 마우스가 버튼 위에 올라갔을 때 포인터 모양으로 변경 */
+}
+
+.modify_btn:hover .modify_btn:focus, .modify_btn:active{
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    -webkit-transform: scale(1.01);
+    transform: scale(1.01);
+}
+
+/* 탐정승인 버튼 */
+.join_as_detective {
+	border-radius: 10px;
+	width: 300px;
+	height: 45px;
+	border: 0.01em solid var(--maincolor);
+    /* background-color: var(--maincolor); */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    
+	margin: 5px auto;
+    text-align: center;
+    -webkit-transition-duration: 0.1s;
+    transition-duration: 0.1s;
+    -webkit-transition-property: box-shadow, transform;
+    transition-property: box-shadow, transform;
+    cursor: pointer; /* 마우스가 버튼 위에 올라갔을 때 포인터 모양으로 변경 */
+    
+}
+
+.join_as_detective:hover .join_as_detective:focus, .join_as_detective:active{
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    -webkit-transform: scale(1.01);
+    transform: scale(1.01);
+}
+
+
