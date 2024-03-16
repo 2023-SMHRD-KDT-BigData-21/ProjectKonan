@@ -74,7 +74,8 @@
 
 					<!-- 게시글 작성자만 볼 수 있도록 -->
 					<%
-					if(post.getUser_id().equals(user.getUser_id())){
+					if(user!=null){
+						if(post.getUser_id().equals(user.getUser_id())){
 					%>
 					<!-- 수정 버튼 -->
 					<a href="QnaUpdate.jsp?idx=<%=postId%>">
@@ -87,7 +88,8 @@
 					<div id="delete-btn" style="position:absolute; right:0px; top: -10px;font-size: 2em; color:gray;">
 						<ion-icon name="close-outline"></ion-icon>
 					</div>
-					<%}%>
+					<%}
+					}%>
 					
 					
 					
