@@ -19,17 +19,7 @@
 			<form action="PostInsertController" method="post"
 				enctype="multipart/form-data">
 				<input type="hidden" name="postType"
-					formaction="PostInsertController" value="Q">
-				<fieldset>
-					<label> <input type="radio" name="isAnonymous"
-						value="email" formaction="PostInsertController" value="F" checked />
-						<span>실명으로 작성</span>
-					</label> <label> <input type="radio" name="isAnonymous"
-						value="phone" formaction="PostInsertController" value="T" /> <span>익명으로
-							작성</span>
-					</label>
-
-				</fieldset>
+					formaction="PostInsertController" value="C">
 				<div class="post-title-container">
 					<input type="text" class="post-title" placeholder="제목입력"
 						formaction="PostInsertController" name="title" required> <br>
@@ -72,7 +62,7 @@
 				<!-- add-photo-container -->
 				<div class="btn-post">
 					<button type="submit">
-						<span>질문등록</span>
+						<span>글 등록</span>
 					</button>
 				</div>
 				<!-- btn-post -->

@@ -74,7 +74,7 @@
 				<!-- add-photo-container -->
 				<div class="btn-post">
 					<button type="submit">
-						<span>질문등록</span>
+						<span>질문수정</span>
 					</button>
 				</div>
 				<!-- btn-post -->

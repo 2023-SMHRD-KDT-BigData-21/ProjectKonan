@@ -22,10 +22,10 @@
 					formaction="PostInsertController" value="Q">
 				<fieldset>
 					<label> <input type="radio" name="isAnonymous"
-						value="email" formaction="PostInsertController" value="F" checked />
+						formaction="PostInsertController" value="F" checked />
 						<span>실명으로 작성</span>
 					</label> <label> <input type="radio" name="isAnonymous"
-						value="phone" formaction="PostInsertController" value="T" /> <span>익명으로
+						formaction="PostInsertController" value="T" /> <span>익명으로
 							작성</span>
 					</label>
 
