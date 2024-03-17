@@ -196,13 +196,13 @@
 							isReplyWriter = true;
 					%>
 					<!-- 수정 버튼 -->
-					<div id="reply-edit-btn" data-value="<%=comment.getComment_id() %>" style="position: absolute; right: 30px; top: -10px; font-size: 2em; color: gray;">
+					<div id="reply-edit-btn" data-value="<%=comment.getComment_id() %>" style="position: absolute; right: 69px; top: 5px; font-size: 1.5em; color: gray;">
 						<ion-icon name="pencil-outline"></ion-icon>
 					</div>
 
 					<!-- 삭제 버튼 -->
 					<div id="reply-delete-btn" onclick="deleteReply(this)" data-value="<%=comment.getComment_id() %>"
-						style="position: absolute; right: 0px; top: -10px; font-size: 2em; color: gray;">
+						style="position: absolute; right: 17px; top: -1px; font-size: 2em; color: gray;">
 						<ion-icon name="close-outline"></ion-icon>
 					</div>
 					<%}
