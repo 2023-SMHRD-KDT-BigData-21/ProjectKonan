@@ -1,0 +1,290 @@
+
+
+.post-container {
+    position: relative;
+    height: auto;
+    padding:40px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.post-title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    height: auto;
+    padding: 20px;
+    padding-bottom: 40px;
+    
+
+}
+
+.hashtags-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    padding-left: 10px;
+    font-size: 0.7em;
+}
+
+.hashtags {
+    margin-right: 10px;
+    background-color: var(--lightmain);
+    color: var(--maincolor);
+    padding: 5px 7px;
+    /* 좌우 패딩 추가 */
+    border-radius: 5px;
+    /* 더 둥근 모양을 위한 경계 반경 추가 */
+}
+.adoptedHashtags {
+    margin-right: 10px;
+    background-color: var(--maincolor);
+    color: white;
+    padding: 5px 7px;
+    /* 좌우 패딩 추가 */
+    border-radius: 5px;
+    /* 더 둥근 모양을 위한 경계 반경 추가 */
+}
+
+
+.post-group {
+    padding: 10px;
+    position: relative;
+    width:100%;
+    padding-bottom: 20px;
+    border-bottom: 1px solid lightgray;
+}
+
+.post-title {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.post-author span,
+.post-date span {
+    font-size: 0.8em;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.post-question-container {
+    position: relative;
+    margin-top: 5%;
+    margin-left: 3%;
+
+}
+
+.post {
+    display: block;
+    /* 블록 수준으로 변경 */
+    padding-left: 10px;
+    /* 텍스트 박스에 여백 추가 (조절 가능) */
+    font-size: 1em;
+}
+
+
+/* 이미지 크기 조정 */
+.image-container {
+	object-fit: cover;
+	width: 250px;
+	height: 190px;
+}
+
+
+
+
+/*유저 반응 컨테이너 -  댓글/좋아요*/
+.likes-replies-container {
+    display: flex;
+    /* 좋아요와 답변을 가로로 나열하는 Flexbox 추가 */
+    padding-top: 80px;
+    position: relative;
+    left: 5px;
+    padding-bottom: 5px;
+    font-size:1em;
+}
+
+
+
+.btn-replies {
+    font-size: 16px;
+    display: flex;
+    /* 좋아요와 답변을 가로로 나열하는 Flexbox 추가 */
+    margin-left: 0px;
+    /* 각각의 좋아요와 답변 사이의 여백 (선택적) */
+}
+
+
+
+
+.post-replies-container{
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid;
+    padding-top: 5%;
+    padding-left: 3%;
+}
+
+.post-replies-text {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid;
+    padding-left: 20px;
+}
+
+
+/* 댓글 */
+.comment-text{
+	margin:20px;
+	margin-top:40px;
+}
+/*댓글 리스트 컨테이너*/
+.comments-container {
+	box-sizing:  border-box;
+    width: 100%;
+    height: auto;
+    /* border: 1px solid; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+ 
+    position: relative;
+}
+/*대댓글 박스*/
+.recomments-container{
+	box-sizing:  border-box;
+    width: calc(100% - 40px);
+    height: auto;
+	min-height: 80px;
+	margin: 10px;
+    position: relative;
+    left:20px;
+}
+
+/*개별 댓글 컨테이너*/
+.comment-area{	
+	width:100%;
+	box-sizing:  border-box;
+}
+.comment-container{
+	position: relative;
+    top: 10px;
+    right: -2px !important;
+    width: calc(100% - 65px);
+    padding: 30px;
+    padding-top: 30px;
+    padding-bottom: 40px;
+}
+
+
+
+/*댓글 작성자 정보(프사) 컨테이너*/
+.comment-info {
+	width: auto;
+    height: 50px;
+    display: flex;
+    text-align: center;
+    
+    position:relative;
+}
+.comment-propic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image: url('../img/defaultPropic.png');
+
+	margin-top: 10px;
+    margin-right: 15px;
+    /* 이미지와 텍스트 사이 여백 (선택적) */
+    background-size: cover;
+    background-position: center;
+}
+.comment-name{
+	position:relative;
+	margin-bottom: 10px;
+	font-weight: bold;
+	font-size: 1em;
+}
+
+/*댓글 내용 컨테이너*/
+.comment-content{
+	position:relative;
+
+	top: 10px;
+	right:-10px !important;
+	width: calc(100% - 130px);
+	
+	padding:30px;
+	padding-top:30px;
+	padding-bottom:40px;
+}
+
+.btn-edit{
+	position: absolute;
+	top:20px;
+	right:20px;
+}
+/*댓글 작성자 정보(프사) 컨테이너*/
+
+
+/* 좋아요, 답글, 수정, 삭제 버튼 */
+.comment-btn {
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+    font-size: 0.8em;
+    display: flex;
+    align-items: center;
+}
+
+
+.answer-container{
+	margin: 0;
+	margin-top: 0px;
+	padding: 50px;
+	width:initial; 
+}
+
+.comment-write-container{
+	position: relative;
+    top: 10px;
+    right: -2px !important;
+    width: calc(100% - 65px);
+    padding: 30px;
+    padding-top: 30px;
+    padding-bottom: 40px;
+}
+#submit{
+	position:absolute;
+	bottom: 10px;
+	right: 20px;
+	border: 0;
+	border-radius: 10px;
+	padding: 5px 7px;
+	background-color: var(--maincolor);
+	color:white;
+} 
+
+
+.comment, .comment-area{
+    font-family: 'NanumBarunGothic';
+	width:100%;
+	border: 0;
+}
+
+.comment{
+	background-color: transparent;
+	border: none;
+    resize: none;
+    
+}
+.comment:focus {
+  outline: none;
+}
+
+
+
+

@@ -8,8 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 수정</title>
-<link rel="stylesheet" href="./css/Default2.css">
-<link rel="stylesheet" href="./css/QnaForm.css">
+<link rel="stylesheet" href="./css/Default.css">
+<link rel="stylesheet" href="./css/QnaUpdate.css">
 </head>
 
 <body>
@@ -90,18 +90,7 @@
 	</div>
 
 	<!-- footer -->
-	<div class="footer-container">
-		<div class="footer-item">
-			<p1>21기 빅데이터 개발자 과정</p1>
-		</div>
-		<div class="footer-item">
-			<h3>@국민탐정</h3>
-		</div>
-		<div class="footer-item">
-			<p2>project.konan@smhrd.com</p2>
-		</div>
-	</div>
-
+	<%@ include file="Footer.jsp"%>
 	<script>
 		// 이미지가 추가되면 "+" 기호를 숨
 		function setThumbnail(event, num) {

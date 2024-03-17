@@ -23,11 +23,7 @@
 
 <body>
 	<%@ include file="Header.jsp"%>
-	<!-- 글쓰기 버튼 -->
-	<div class="post-button">
-		<a href="QnaForm.jsp"> <ion-icon class="post-icon" name="pencil"></ion-icon>
-		</a>
-	</div>
+	
 
 	<%
 	ArticleDAO dao = new ArticleDAO();

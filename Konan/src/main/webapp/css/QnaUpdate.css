@@ -1,0 +1,258 @@
+/* 라디오 버튼을 대체할 사용자 지정 스타일 */
+label {
+  font-size: 1em;
+  line-height: 2rem;
+  padding: 1em 0.4em;
+}
+
+[type="radio"], span {
+  vertical-align: middle;
+}
+
+[type="radio"] {
+  appearance: none;
+  border: max(2px, 0.1em) solid gray;
+  border-radius: 50%;
+  width: 1em;
+  height: 1em;
+  transition: border 0.5s ease-in-out;
+}
+
+[type="radio"]:checked {
+  border: 0.4em solid var(--maincolor);
+}
+
+[type="radio"]:focus-visible {
+  outline-offset: max(2px, 0.1em);
+  outline: max(2px, 0.1em) dotted var(--maincolor);
+}
+
+[type="radio"]:hover {
+  box-shadow: 0 0 0 max(4px, 0.2em) lightgray;
+  cursor: pointer;
+}
+
+[type="radio"]:hover + span {
+  cursor: pointer;
+}
+
+[type="radio"]:disabled {
+  background-color: lightgray;
+  box-shadow: none;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+[type="radio"]:disabled + span {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Global CSS */
+fieldset {
+  display: flex;
+  border: none;
+  margin: 0;
+  padding:0;
+}
+label{
+	margin:0;
+	padding-left:0;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.post-container {
+    margin-top: 5%;
+    position: relative;
+    padding:10px;
+
+}
+
+.post-pre-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    padding-left:0;
+    margin-bottom: 10px;
+}
+
+
+.post-title-container {
+    margin-top: 20px;
+    position: relative;
+}
+
+.post-title,
+.post-content {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    font-size: 14px;
+    position: relative;
+    border: none;
+}
+
+.post-title {
+    border: none;
+    font-size: 1.4em;
+    resize: none;
+    row: 5;
+}
+
+.post-content {
+    border: none;
+    resize: none;
+    padding:10px;
+    font-family: 'NanumBarunGothic';
+}
+
+.post-title:focus{
+    outline: none; /* 포커스 효과 제거 */
+    box-shadow: none; /* 박스 쉐도우 효과 제거 */
+}
+.post-content:focus{
+    outline: none; /* 포커스 효과 제거 */
+    box-shadow: none; /* 박스 쉐도우 효과 제거 */
+}
+.add-photo-container {
+    margin-top: 10%;
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.add-photo-text {
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 50px;
+}
+
+.add-photo-img-container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    padding:10px;
+}
+
+.add-photo-img::before {
+    content: "+";
+    /* 가상 요소에 텍스트 내용 추가 */
+    font-size: 24px;
+    /* 텍스트 크기 설정 (조절 가능) */
+    line-height: 150px;
+    /* 수직 가운데 정렬을 위한 높이 설정 */
+    color: rgb(9, 9, 9);
+    /* 텍스트 색상 설정 */
+    text-align: center;
+    /* 수평 가운데 정렬을 위한 설정 */
+    position: absolute;
+    /* 가상 요소를 절대 위치로 설정 */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    /* 수평 및 수직 가운데 정렬을 위한 설정 */
+    /* 가상 요소를 다른 내용 위로 배치하기 위한 설정 */
+}
+
+
+.add-photo-img {
+    position: relative;
+    width: 150px;
+    /* 원하는 가로 크기로 조절 */
+    height: 150px;
+    /* 원하는 세로 크기로 조절 */
+    border-radius: 20%;
+    background-color: lightgray;
+    /* 배경색 설정 */
+    margin-right: 10px;
+    /* content-box 사이의 간격 조절 */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-shrink: 0;
+    z-index: 0;
+}
+
+/* 이미지 추가되면 + 숨기기 */
+.add-photo-img.hide-plus::before {
+    display: none;
+}
+
+
+
+/* 게시하기 버튼 */
+.btn-post {
+	width: 100px;
+	text-align: center;
+    padding: 5px 10px 5px 12px;
+    background-color: var(--maincolor);
+    color: white;
+    cursor: pointer;
+    position: relative;
+    right: 0;
+    border: none;
+    border-radius: 10px;
+    display: inline-block;
+    transform: translateX(-50%);
+    margin: 20px 50%;
+    font-size: 1.2em;
+}
+
+.btn-post button {
+    /* 버튼 스타일 제거 (선택적) */
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: inherit;
+}
+
+.btn-post:hover {
+    font-weight: bold;
+    /* 마우스 오버 시 진한 초록색 */
+}
+
+.btn-post span {
+    color: #f1e9e9;
+    /* 글자색 변경 */
+}
+
+/* 삭제하기 버튼 */
+.btn-delete {
+    padding: 30px;
+    background-color: #cb2f41;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    border-radius: 10%;
+    display: inline-block;
+    left: 45%;
+    transform: translateX(-50%);
+    margin-top: 2%;
+}
+
+.btn-delete button {
+    /* 버튼 스타일 제거 (선택적) */
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: inherit;
+}
+
+.btn-delete:hover {
+    background-color: #3e8e41;
+    /* 마우스 오버 시 진한 초록색 */
+}
+
+.btn-delete span {
+    color: #f1e9e9;
+    /* 글자색 변경 */
+}
