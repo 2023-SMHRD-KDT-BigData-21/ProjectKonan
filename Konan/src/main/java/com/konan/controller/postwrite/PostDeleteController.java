@@ -23,16 +23,8 @@ public class PostDeleteController extends HttpServlet {
 
 		if(row>0) {
 			System.out.println("포스팅 삭제 성공!");
-			if(postType.equals("C"))
-				response.sendRedirect("CommuList.jsp");
-			else
-				response.sendRedirect("Main.jsp");
 		}else {
 			System.out.println("포스팅 삭제 실패...");
-			if(postType.equals("C"))
-				response.sendRedirect("CommuContent.jsp?idx="+postId);
-			else
-				response.sendRedirect("QnaContent.jsp?idx="+postId);
 		}
 
 	}

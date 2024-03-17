@@ -39,7 +39,14 @@ public class PostCommentDAO {
 		SqlSession sqlSession = sessionFactory.openSession(true);
 		List<CommentHierarchyView> comments = sqlSession.selectList(postCommentMapper+"commentsByPostId", post_id);
 		sqlSession.close();
-		
 		return comments;
+	}
+	
+	//댓글 삭제하기
+	public int delete(BigDecimal comment_id) {
+		SqlSession sqlSession = sessionFactory.openSession(true);
+		int rownum = sqlSession.delete(postCommentMapper+"delete", comment_id);
+		sqlSession.close();
+		return rownum;
 	}
 }

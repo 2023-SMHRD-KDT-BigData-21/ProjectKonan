@@ -44,6 +44,7 @@
 
 	<!-- 포스팅 삭제 -->
 	<delete id="delete" parameterType="BigDecimal">
+		delete from post_comment where comment_id=#{comment_id}
 	</delete>
 
 

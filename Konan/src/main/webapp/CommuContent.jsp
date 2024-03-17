@@ -45,6 +45,9 @@
 	Post post = postDao.postContent(postId);
 	UserInfo userInfo = userDao.getUser(post.getUser_id());
 	List<CommentHierarchyView> postComments = commntDao.getComments(postId);
+	
+	boolean isPostWriter = false;
+	boolean isReplyWriter = false;
 	%>
 	<!-- body 전체 가운데로 -->
 	<div class="container">
@@ -59,6 +62,28 @@
 						<span>#호기심</span> <span>#명탐정코난</span>
 					</div>
 					<div class="btn-bookmark"></div>
+					
+					<!-- 게시글 작성자만 볼 수 있도록 -->
+					<%
+					if(user!=null){
+						if(post.getUser_id().equals(user.getUser_id())){
+							isPostWriter = true;
+					%>
+					<!-- 수정 버튼 -->
+					<a href="CommuUpdate.jsp?idx=<%=postId%>">
+					<div id="edit-btn" style="position:absolute; right:30px; top: -10px;font-size: 2em; color:gray;">
+						<ion-icon name="pencil-outline"></ion-icon>
+					</div>
+					</a>
+					<%}
+					}%>
+					
+					<!-- 삭제 버튼 -->
+					<div id="delete-btn" style="display:none; position:absolute; right:0px; top: -10px;font-size: 2em; color:gray;">
+						<ion-icon name="close-outline"></ion-icon>
+					</div>
+					
+					
 				</div>
 
 
@@ -162,10 +187,29 @@
 						</a>
 						<!-- 댓글 내용 -->
 						<span><%=comment.getComment_content()%></span>
-						<!-- 수정/삭제/신고 버튼 -->
-						<div class="btn-edit">
-							<ion-icon name="ellipsis-horizontal-outline"></ion-icon>
-						</div>
+					
+					
+					<!-- 댓글 작성자만 볼 수 있도록 js처리를 위해 -->
+					<%
+					if(user!=null){
+						if(commentWriter.getUser_id().equals(user.getUser_id())){
+							isReplyWriter = true;
+					%>
+					<!-- 수정 버튼 -->
+					<div id="reply-edit-btn" data-value="<%=comment.getComment_id() %>" style="position: absolute; right: 30px; top: -10px; font-size: 2em; color: gray;">
+						<ion-icon name="pencil-outline"></ion-icon>
+					</div>
+
+					<!-- 삭제 버튼 -->
+					<div id="reply-delete-btn" onclick="deleteReply(this)" data-value="<%=comment.getComment_id() %>"
+						style="position: absolute; right: 0px; top: -10px; font-size: 2em; color: gray;">
+						<ion-icon name="close-outline"></ion-icon>
+					</div>
+					<%}
+					}%>
+
+
+
 						<div class="comment-btn">
 							<div class="comment-btn-likes">
 								<span>좋아요</span>
@@ -415,6 +459,54 @@
 		}
 	<%}%>
 		
+	</script>
+	
+	<script>
+	// 포스팅 삭제 버튼
+	document.addEventListener("DOMContentLoaded", function() {
+		if (<%=isPostWriter%>){
+			var deleteButton = document.getElementById("delete-btn");
+			deleteButton.style.display = "block"; //버튼 보이게
+	        
+			deleteButton.addEventListener("click", function() {
+				if (confirm("삭제하시겠습니까?")) {
+	    			$.ajax({
+	    				url:"PostDeleteController",
+	    				type:"post",
+	    				data:{
+	    					"postId" : <%=postId%>
+	    				}
+	    			}) //ajax
+	    			var check = confirm("삭제되었습니다.");
+	        		if(check==true){
+	        			window.location.href = "Main.jsp";
+	        		}else if(check==false){
+	        			window.location.href = "Main.jsp";
+	        		}
+	    		} //if
+			}) //addEventListener
+		} //if
+	})//addEventListenr
+	
+	//댓글 삭제 버튼
+	function deleteReply(button){
+		let commentContainer = button.closest('.comment-container');
+		let commentId = commentContainer.dataset.value;
+	
+		if (confirm("삭제하시겠습니까?")) {
+    		$.ajax({
+    			url:"CommentDeleteController",
+    			type:"post",
+    			data:{
+    				"postId" : <%=postId%>,
+    				"commentId" : commentId,
+    				"postType" : "<%=post.getPost_type()%>"
+    			}
+    		}) //ajax
+    		var check = confirm("삭제되었습니다.");
+    		window.location.href = window.location.href; //새로고침
+    		}//else
+		};//funciton
 	</script>
 </body>
 

@@ -178,6 +178,12 @@
   	<description></description>
   	<servlet-class>com.konan.controller.postreact.CommentInsertController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>CommentDeleteController</servlet-name>
+  	<display-name>CommentDeleteController</display-name>
+  	<description></description>
+  	<servlet-class>com.konan.controller.postreact.CommentDeleteController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>JoinController</servlet-name>
   	<url-pattern>/JoinController</url-pattern>
@@ -293,5 +299,9 @@
   <servlet-mapping>
   	<servlet-name>CommentInsertController</servlet-name>
   	<url-pattern>/CommentInsertController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CommentDeleteController</servlet-name>
+  	<url-pattern>/CommentDeleteController</url-pattern>
   </servlet-mapping>
 </web-app>

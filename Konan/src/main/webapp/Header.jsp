@@ -59,12 +59,6 @@
                     <span class="title">내 프로필</span>
                 </a>
             </li>
-            <li class="list <%=(request.getRequestURI().endsWith("Bookmark.jsp")) ? "active_header" : "" %>">
-                <a href="Bookmark.jsp">
-                    <span class="icon"><ion-icon name="bookmark-outline"></ion-icon></span>
-                    <span class="title">북마크</span>
-                </a>
-            </li>
             <li class="list <%=(request.getRequestURI().endsWith("Mypage.jsp")) ? "active_header" : "" %>">
                 <a href="Mypage.jsp">
                     <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
