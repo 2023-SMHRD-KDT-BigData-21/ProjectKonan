@@ -7,7 +7,7 @@
 <title>회원 탈퇴 완료</title>
 <!-- css -->
 <link rel="stylesheet" href="./css/Default.css" type="text/css">
-<link rel="stylesheet" href="./css/Login.css" type="text/css">
+<link rel="stylesheet" href="./css/AccOut.css" type="text/css">
 </head>
 <body
 	style="background-image: url('./img/background.gif'); background-size: cover;">
