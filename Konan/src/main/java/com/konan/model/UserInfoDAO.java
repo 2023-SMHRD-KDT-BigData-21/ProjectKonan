@@ -90,9 +90,10 @@ public class UserInfoDAO {
 
 		String chanu = "C:\\workplace\\git\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\konan\\upload\\";
 		String jiho = "C:\\Users\\USER\\Desktop\\WebServer\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\konan\\upload\\";
+		String jiholg = "C:\\Users\\jiho_\\OneDrive\\Desktop\\Java Server\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\konan\\upload\\";
 		try {
 			if(user.getPropic()!=null) {				
-				File file = new File(jiho + user.getPropic());
+				File file = new File(jiholg + user.getPropic());
 				ImageToBase64 converter = new ImageToBase64();
 				String fileStringValue = converter.convert(file);
 				
