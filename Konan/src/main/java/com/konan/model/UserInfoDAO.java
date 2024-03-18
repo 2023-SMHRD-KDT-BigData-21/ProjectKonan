@@ -92,7 +92,7 @@ public class UserInfoDAO {
 		String jiho = "C:\\Users\\USER\\Desktop\\WebServer\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\konan\\upload\\";
 		try {
 			if(user.getPropic()!=null) {				
-				File file = new File(chanu + user.getPropic());
+				File file = new File(jiho + user.getPropic());
 				ImageToBase64 converter = new ImageToBase64();
 				String fileStringValue = converter.convert(file);
 				
@@ -100,9 +100,14 @@ public class UserInfoDAO {
 				System.out.println(fileStringValue);
 			}
 		} catch (Exception e) {
-			
-		}
-		
+		}	
 		return user;
+	}
+	
+	public int updateProfile(UserInfo userInfo) {
+		SqlSession sqlSession = sqlsessionFactory.openSession(true);
+		int res = sqlSession.update(userInfoMapper+"updateProfile", userInfo);
+		sqlSession.close();
+		return res;
 	}
 }

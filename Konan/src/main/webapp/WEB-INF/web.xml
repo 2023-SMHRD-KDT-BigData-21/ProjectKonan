@@ -184,6 +184,12 @@
   	<description></description>
   	<servlet-class>com.konan.controller.postreact.CommentDeleteController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>UpdateProfileController</servlet-name>
+  	<display-name>UpdateProfileController</display-name>
+  	<description></description>
+  	<servlet-class>com.konan.controller.profile.UpdateProfileController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>JoinController</servlet-name>
   	<url-pattern>/JoinController</url-pattern>
@@ -303,5 +309,9 @@
   <servlet-mapping>
   	<servlet-name>CommentDeleteController</servlet-name>
   	<url-pattern>/CommentDeleteController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UpdateProfileController</servlet-name>
+  	<url-pattern>/UpdateProfileController</url-pattern>
   </servlet-mapping>
 </web-app>

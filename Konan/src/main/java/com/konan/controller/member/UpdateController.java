@@ -63,7 +63,7 @@ public class UpdateController extends HttpServlet {
 
     // 사용자 정보 업데이트
     UserInfoDAO dao = new UserInfoDAO();
-    int res = dao.update(updatedUserInfo);
+    int res = dao.updateProfile(updatedUserInfo);
 
     // 업데이트 결과에 따라 리다이렉션
     if (res > 0) {

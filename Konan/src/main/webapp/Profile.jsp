@@ -89,7 +89,7 @@ pageContext.setAttribute("targetFollowers", targetFollowers);
 				<!-- 팔로잉 버튼 대신 프로필 수정 버튼 생성 -->
 				<button onclick="openModal()" class="fix-btn">프로필 수정</button>
 				<div id="modal" style="display: none; z-index: 1;">
-					<form action="UpdateController" method="post"
+					<form action="UpdateProfileController" method="post"
 						enctype="multipart/form-data">
 						<input type="file" name="propic">
 						<button type="submit" class="btn btn-primary">사진변경</button>
