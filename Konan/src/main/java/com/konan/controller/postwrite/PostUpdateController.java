@@ -2,6 +2,7 @@ package com.konan.controller.postwrite;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import com.konan.model.Post;
 import com.konan.model.PostDAO;
+import com.konan.model.PostImage;
+import com.konan.model.PostImageDAO;
 import com.konan.model.UserInfo;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 
 public class PostUpdateController extends HttpServlet {
@@ -24,7 +29,14 @@ public class PostUpdateController extends HttpServlet {
 		
 		UserInfo user = (UserInfo)session.getAttribute("loginInfo");
 		
-		BigDecimal postId = BigDecimal.valueOf(Double.valueOf(request.getParameter("postId"))); //수정 페이지에서 수정 버튼에 연결 필요
+		//사진 저장 처리
+		String savePath = request.getServletContext().getRealPath("/upload");
+		int sizeLimit = 5*1024*1024; //5메가 제한 넘어서면 예외발생
+		MultipartRequest multi = new MultipartRequest(request, savePath, sizeLimit, "UTF-8", new DefaultFileRenamePolicy());
+		
+		//매개변수 가져오기
+		BigDecimal postId = BigDecimal.valueOf(Double.valueOf(request.getParameter("postId")));
+		System.out.println("수정할 postid:" + postId);
 		String postType = request.getParameter("postType");
 		String userId = user.getUser_id();
 		String title = request.getParameter("title");
@@ -51,7 +63,23 @@ public class PostUpdateController extends HttpServlet {
 		else
 			System.out.println("수정 실패...");
 
-		
+		//이미지 처리
+		PostImageDAO daoImg = new PostImageDAO();
+        Enumeration<String> files = multi.getFileNames();
+        
+        while (files.hasMoreElements()) {
+        	String temp = files.nextElement();
+        	String fileName = multi.getFilesystemName(temp);
+        	if(fileName!=null) {
+            	//포스팅에 연결하여 이미지 작성
+            	PostImage img = new PostImage(postId, fileName);
+            	int rowImg = daoImg.insert(img);
+            	if(rowImg>0)
+            		System.out.println("사진 작성 성공!");
+            	else
+            		System.out.println("사진 작성 실패...");
+        	}
+        }
 		// 작성된 글 보여주는 페이지로 넘겨주기
 		if(postType.equals("C"))
 			response.sendRedirect("CommuContent.jsp?idx="+postId);

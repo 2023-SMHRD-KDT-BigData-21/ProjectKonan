@@ -31,7 +31,7 @@ public class PostImageController extends HttpServlet {
 		try {
 			if(list.size()>0) {
 				for(int i=0; i<list.size(); i++) {
-					File file = new File(jiholg + list.get(i));
+					File file = new File(jiho + list.get(i));
 					ImageToBase64 converter = new ImageToBase64();
 					String fileStringValue = converter.convert(file);
 					list.set(i, fileStringValue);

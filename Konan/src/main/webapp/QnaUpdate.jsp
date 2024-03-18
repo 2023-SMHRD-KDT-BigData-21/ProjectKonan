@@ -29,7 +29,7 @@
 				<div class="post-pre-title">
 					<span>질문 수정</span>
 				</div>
-				<input type="hidden" name="post_id" value=<%=postId%>>
+				<input type="hidden" name="postId" value="<%=postId%>">
 				<input type="hidden" name="postType" value="Q"> 
 				<input type="radio" name="isAnonymous" value="F" checked="checked"> 실명으로 작성 
 				<input type="radio" name="isAnonymous" value="T">익명으로 작성
