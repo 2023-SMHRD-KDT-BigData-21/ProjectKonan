@@ -617,9 +617,7 @@
 	    		url:"CommentDeleteController",
 	    		type:"post",
 	    		data:{
-	    			"postId" : <%=postId%>,
 	    			"commentId" : commentId,
-	    			"postType" : "<%=post.getPost_type()%>"
 	    		}
 	    	}) //ajax
 	    	var check = confirm("삭제되었습니다.");

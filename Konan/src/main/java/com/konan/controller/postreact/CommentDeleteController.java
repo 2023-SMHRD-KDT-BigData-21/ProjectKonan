@@ -18,8 +18,6 @@ public class CommentDeleteController extends HttpServlet {
 		BigDecimal postId = BigDecimal.valueOf(Double.valueOf(request.getParameter("postId"))); 
 		BigDecimal commentId = BigDecimal.valueOf(Double.valueOf(request.getParameter("commentId"))); //삭제 페이지에서 삭제 버튼에 연결 필요
 		
-		String postType = request.getParameter("postType");
-		
 		PostCommentDAO dao = new PostCommentDAO();
 		int row = dao.delete(commentId);
 
