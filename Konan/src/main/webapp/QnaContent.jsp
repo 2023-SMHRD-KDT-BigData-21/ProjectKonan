@@ -617,7 +617,7 @@
 	    		url:"CommentDeleteController",
 	    		type:"post",
 	    		data:{
-	    			"commentId" : commentId,
+	    			"commentId" : commentId
 	    		}
 	    	}) //ajax
 	    	var check = confirm("삭제되었습니다.");
